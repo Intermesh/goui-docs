@@ -55,9 +55,8 @@ export class Data extends Page {
 				flex: 1,
 				disabled: true,
 				handler: async (form) => {
-					const entity = form.getValues() as DemoEntity;
-					entity.id = this.table.store.get(this.table.rowSelection!.selected[0])!.id;
-					await demoDataSource.update(entity);
+					const entity = form.value as DemoEntity;
+					await demoDataSource.update(this.table.store.get(this.table.rowSelection!.selected[0])!.id, entity);
 
 					Notifier.success("The record was updated. The change is immediately updated in the list.");
 				}
@@ -117,7 +116,7 @@ export class Data extends Page {
 				navigate: (list, storeIndex) => {
 					//problem is that record is a reference in the store and the reload won't update
 					const record = list.store.get(storeIndex)!;
-					this.form.setValues(record);
+					this.form.value = record;
 					this.form.disabled = false;
 				},
 

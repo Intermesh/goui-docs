@@ -98,12 +98,12 @@ export class Window extends Page {
 								flex: 1,
 								cls: "vbox",
 								handler: (f) => {
-									GouiWindow.alert("<code>" + JSON.stringify(f.getValues(), null, 4) + "</code>");
+									GouiWindow.alert("<code>" + JSON.stringify(f.value, null, 4) + "</code>");
 								}
 							},
 
 							fieldset({
-									cls: "scroll",
+									cls: "scroll flow",
 									flex: 1
 								},
 
