@@ -36,9 +36,9 @@ import {
 	TextField,
 	textfield,
 	Window,
-	rangefield, displayfield, Format, comp, timefield, durationfield,DateInterval
+	rangefield, displayfield, Format, comp, timefield, durationfield, DateInterval, list, listfield, ListField
 } from "@intermesh/goui";
-import {demoDataSource} from "./DemoDataSource";
+import {demoDataSource, DemoEntity} from "./DemoDataSource";
 
 export class Form extends Page {
 	private form: GouiForm;
@@ -384,6 +384,28 @@ export class Form extends Page {
 							frequency: "yearly",
 
 						}
+					}),
+
+
+					listfield({
+						label: "Listfield",
+						hint: "A field similar to a standard HTML select field but with full HTML support in the options and rendering.",
+						list: list({
+							cls: "listfield-list",
+							store: datasourcestore({
+								dataSource: demoDataSource
+							}),
+							renderer: (record:DemoEntity, row, list1, storeIndex) => {
+								return `<i class="icon" style="display: inline-block;vertical-align: middle">person</i> ${record.name}`;
+							}
+						}),
+						valueProperty: "id",
+						async renderValue(field, value: string): Promise<string> {
+							const record = await demoDataSource.single(value);
+
+							return `<i class="icon" style="display: inline-block;vertical-align: middle">person</i> ${record!.name}`;
+						}
+
 					})
 				),
 

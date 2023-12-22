@@ -1,7 +1,7 @@
 import {
 	BaseEntity,
 	btn,
-	column,
+	column, combobox,
 	Component,
 	datasourceform,
 	datasourcestore,
@@ -102,6 +102,16 @@ export class RestApiExample extends Component {
 										name: "last_name",
 										label: "Last",
 										required: true
+									}),
+
+									combobox({
+										dataSource: userDS,
+										displayProperty: 'first_name',
+										renderer:(field, record) => {
+											return record.first_name + " " + record.last_name;
+										},
+										label: "Manager",
+										name: "manager"
 									})
 								),
 
