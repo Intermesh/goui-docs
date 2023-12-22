@@ -36,7 +36,7 @@ import {
 	TextField,
 	textfield,
 	Window,
-	rangefield, displayfield, Format, comp
+	rangefield, displayfield, Format, comp, timefield, durationfield,DateInterval
 } from "@intermesh/goui";
 import {demoDataSource} from "./DemoDataSource";
 
@@ -195,6 +195,44 @@ export class Form extends Page {
 						hint: "Configured with programmers date format"
 					}),
 
+					comp(), //for breaking to next line
+
+					timefield({
+						name: "time12hr",
+						label: "Time (12hr)",
+						input12hr: true,
+						value: "22:15"
+					}),
+
+					comp(), //for breaking to next line
+
+					timefield({
+						name: "time24hr",
+						label: "Time (24hr)",
+						input12hr: false,
+						value: "22:15"
+					}),
+
+					comp(), //for breaking to next line
+
+					durationfield({
+						name: "duration",
+						label: "Duration",
+						value: "99:15",
+						min: new DateInterval("PT10H"),
+						max: new DateInterval("PT100H")
+					}),
+
+					durationfield({
+						name: "durationMin",
+						label: "Duration (min)",
+						value: 315,
+						outputFormat: "j", //format as total number of minutes
+						min: new DateInterval("PT10H"),
+						max: new DateInterval("PT100H")
+					}),
+					comp(), //for breaking to next line
+
 					comp({
 						cls: "hbox gap"
 					},
@@ -340,7 +378,12 @@ export class Form extends Page {
 
 					recurrencefield({
 						label: "Recurrence",
-						name: "recurrence"
+						name: "recurrence",
+						value: {
+							count: 5,
+							frequency: "yearly",
+
+						}
 					})
 				),
 
@@ -752,6 +795,12 @@ export class Form extends Page {
 
 					"->",
 
+					btn({
+						text: "Modified",
+						handler: () => {
+							Window.alert("<code>" + JSON.stringify(this.form .modified, null, 4) + "</code>");
+						}
+					}),
 					btn({
 						cls: "primary",
 						html: "Save",
