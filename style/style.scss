@@ -112,7 +112,7 @@ code {
 
 
 @media only screen and (max-width: 1120px) {
-	menu.main {
+	menu.main-menu {
 		position:fixed;
 		z-index: 2;
 		top:0;
@@ -128,7 +128,7 @@ code {
 
 
 	.open-menu {
-		menu.main {
+		menu.main-menu {
 			transform: none;
 		}
 	}

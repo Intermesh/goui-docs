@@ -230,19 +230,24 @@ export class Button extends Page {
 
 						btn({
 							text: "Test",
+							handler: this.onClick,
 							menu: menu({},
 								btn({
-									html: "Test 1.1"
+									html: "Test 1.1",
+									handler: this.onClick,
 								}),
 
 								btn({
 									text: "Test 2.2",
+									handler: this.onClick,
 									menu: menu({},
 										btn({
-											html: "Test 2.2.1"
+											text: "Test 2.2.1",
+											handler: this.onClick,
 										}),
 										btn({
-											html: "Test 2.2.2"
+											text: "Test 2.2.2",
+											handler: this.onClick,
 										})
 									)
 								}),
@@ -384,6 +389,8 @@ export class Button extends Page {
 	}
 
 	private onClick(btn: Btn) {
-		Notifier.success("You clicked the '" + (btn.icon ?? btn.text) + "' button");
+		const msg = "You clicked the '" + (btn.icon ?? btn.text) + "' button";
+		console.log(msg);
+		Notifier.success(msg);
 	}
 }
