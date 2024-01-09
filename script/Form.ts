@@ -435,18 +435,25 @@ export class Form extends Page {
 						label: "A checkbox label comes after",
 						name: "checkbox"
 					}),
+					checkbox({
+						required: true,
+						label: 'Agree to the <a target="_blank" href="/terms">terms</a>',
+						name: "checkbox"
+					}),
 
 					checkbox({
 						label: "Checkbox type switch",
 						name: "checkbox",
-						type: "switch"
+						type: "switch",
+						required: true,
 					}),
 
 					checkbox({
 						label: "Checkbox type button",
 						name: "checkbox",
 						type: "button",
-						cls: "outlined"
+						cls: "outlined",
+						required: true,
 					}),
 
 					checkboxgroup({

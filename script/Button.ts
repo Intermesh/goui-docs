@@ -276,6 +276,8 @@ export class Button extends Page {
 					)
 				}),
 
+				hr(),
+
 				btn({
 					text: "Color",
 					menu: menu({}, colorpicker({
