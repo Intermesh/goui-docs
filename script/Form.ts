@@ -36,7 +36,7 @@ import {
 	TextField,
 	textfield,
 	Window,
-	rangefield, displayfield, Format, comp, timefield, durationfield, DateInterval, list, listfield, ListField
+	rangefield, displayfield, Format, comp, timefield, durationfield, DateInterval, list, listfield, ListField, hr
 } from "@intermesh/goui";
 import {demoDataSource, DemoEntity} from "./DemoDataSource";
 
@@ -49,12 +49,6 @@ export class Form extends Page {
 		this.title = "Form";
 		this.sourceURL = "Form.ts";
 
-
-		const timeField = textfield({
-			type: "time",
-			itemId: "timeField",
-			width: 120
-		});
 
 		type AutoCompleteRecord = {
 			id: number,
@@ -172,44 +166,33 @@ export class Form extends Page {
 				),
 				fieldset({legend: "Picker fields"},
 
+
+
 					datefield({
 						label: "Date",
 						name: "date",
 						required: true,
-						minDate: (new DateTime()).addYears(-2),
-						maxDate: (new DateTime()).addDays(-1),
+						min: (new DateTime()).addYears(-2).format("Y-m-d"),
+						max: (new DateTime()).addDays(-1).format("Y-m-d"),
 						hint: "Select a date in the past 2 years"
 					}),
 
-          datefield({
-            label: "Date",
-            name: "date",
-            inputFormat: "m/d/Y",
-            hint: "Configured with American date format"
-          }),
-
 					datefield({
-						label: "Date",
-						name: "date",
-						inputFormat: "Y-m-d",
-						hint: "Configured with programmers date format"
+						label: "Date & time",
+						name: "datetime",
+						withTime: true,
+						min: (new DateTime()).addYears(-2).format("Y-m-d"),
+						max: (new DateTime()).addDays(-1).format("Y-m-d"),
+						hint: "Select a date in the past 2 years"
 					}),
+
 
 					comp(), //for breaking to next line
 
-					timefield({
-						name: "time12hr",
-						label: "Time (12hr)",
-						input12hr: true,
-						value: "22:15"
-					}),
-
-					comp(), //for breaking to next line
 
 					timefield({
-						name: "time24hr",
-						label: "Time (24hr)",
-						input12hr: false,
+						name: "time",
+						label: "Time",
 						value: "22:15"
 					}),
 
@@ -233,38 +216,7 @@ export class Form extends Page {
 					}),
 					comp(), //for breaking to next line
 
-					comp({
-						cls: "hbox gap"
-					},
-						datefield({
-							flex: 1,
-							label:"Date with time",
-							name: "dateAndTime",
-							timeField: timeField, //connects the time field
-							value: (new DateTime()).format("Y-m-dTH:i")
-						}),
-						timeField
 
-					),
-
-					textfield({
-						type: "date",
-						name: "datenative",
-						label: "Date (native)"
-					}),
-					//
-					// textfield({
-					// 	type: "datetime-local",
-					// 	name: "datetime-local",
-					// 	label: "Date & time"
-					// }),
-
-
-					textfield({
-						type: "time",
-						name: "time",
-						label: "Time"
-					}),
 
 					colorfield({
 						label: "Color",
@@ -389,6 +341,7 @@ export class Form extends Page {
 
 					listfield({
 						label: "Listfield",
+						name: "listfield",
 						hint: "A field similar to a standard HTML select field but with full HTML support in the options and rendering.",
 						list: list({
 							cls: "listfield-list",
@@ -667,7 +620,7 @@ export class Form extends Page {
 
 					autocompletechips({
 						label: "Autocomplete single select",
-						name: "customChips",
+						name: "acChips",
 						chipRenderer: async (chip, value) => {
 							chip.text = value.name;
 						},
@@ -734,7 +687,7 @@ export class Form extends Page {
 							]
 						}),
 						label: "Autocomplete with multi select",
-						name: "customChips",
+						name: "acChipsMultiSelect",
 						chipRenderer: async (chip, value) => {
 							chip.text = value;
 						},
@@ -744,7 +697,7 @@ export class Form extends Page {
 						listeners: {
 							autocomplete: (field, input) => {
 								field.list.store.queryParams = {filter: {name: input}};
-								field.list.store.load();
+								void field.list.store.load();
 							}
 						}
 					})
