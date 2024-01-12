@@ -181,6 +181,7 @@ export class Form extends Page {
 						label: "Date & time",
 						name: "datetime",
 						withTime: true,
+						value: (new DateTime()).format("Y-m-dTH:i"),
 						min: (new DateTime()).addYears(-2).format("Y-m-d"),
 						max: (new DateTime()).addDays(-1).format("Y-m-d"),
 						hint: "Select a date in the past 2 years"
@@ -412,9 +413,9 @@ export class Form extends Page {
 					checkboxgroup({
 						label: "Group",
 						options: [
-							{label: "Option 1", name: "option1", value: true},
-							{label: "Option 2", name: "option2"},
-							{label: "Option 3", name: "option3"}
+							{label: "Checkbox 1", name: "option1", value: true},
+							{label: "Checkbox 2", name: "option2"},
+							{label: "Checkbox 3", name: "option3"}
 						]
 					}),
 
@@ -425,9 +426,9 @@ export class Form extends Page {
 							name: "radio-button",
 							value: "option1",
 							options: [
-								{text: "Option 1", value: "option1"},
-								{text: "Option 2", value: "option2"},
-								{text: "Option 3", value: "option3"}
+								{text: "Radio 1", value: "option1"},
+								{text: "Radio 2", value: "option2"},
+								{text: "Radio 3", value: "option3"}
 							]
 						}
 					),
