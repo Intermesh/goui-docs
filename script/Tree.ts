@@ -128,8 +128,7 @@ export class Tree extends Page {
 					drop: (list, e, dropRow, dropIndex, position, dragData) => {
 						const dropRecord = dragData.dropTree.store.get(dropIndex);
 
-						demoDataSource.update({
-							id: dragData.record.id,
+						demoDataSource.update(dragData.record.id,{
 							parentId: dropRecord.id
 						});
 					}

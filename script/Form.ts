@@ -39,6 +39,7 @@ import {
 	rangefield, displayfield, Format, comp, timefield, durationfield, DateInterval, list, listfield, ListField, hr
 } from "@intermesh/goui";
 import {demoDataSource, DemoEntity} from "./DemoDataSource";
+import {DateField} from "../../goui";
 
 export class Form extends Page {
 	private form: GouiForm;
@@ -174,7 +175,20 @@ export class Form extends Page {
 						required: true,
 						min: (new DateTime()).addYears(-2).format("Y-m-d"),
 						max: (new DateTime()).addDays(-1).format("Y-m-d"),
-						hint: "Select a date in the past 2 years"
+						hint: "Select a date in the past 2 years",
+						width: 240
+					}),
+
+					checkbox({
+						width: 160,
+						label: "With time",
+						listeners: {
+							change: (cb, newVal) => {
+								const df = cb.previousSibling() as DateField;
+
+								df.withTime = newVal
+							}
+						}
 					}),
 
 					datefield({
@@ -334,8 +348,7 @@ export class Form extends Page {
 						name: "recurrence",
 						value: {
 							count: 5,
-							frequency: "yearly",
-
+							frequency: "yearly"
 						}
 					}),
 
@@ -392,19 +405,19 @@ export class Form extends Page {
 					checkbox({
 						required: true,
 						label: 'Agree to the <a target="_blank" href="/terms">terms</a>',
-						name: "checkbox"
+						name: "cbAgree"
 					}),
 
 					checkbox({
 						label: "Checkbox type switch",
-						name: "checkbox",
+						name: "cbSwitch",
 						type: "switch",
 						required: true,
 					}),
 
 					checkbox({
 						label: "Checkbox type button",
-						name: "checkbox",
+						name: "cbButton",
 						type: "button",
 						cls: "outlined",
 						required: true,

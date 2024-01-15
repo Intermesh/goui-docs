@@ -255,8 +255,7 @@ export class DragAndDrop extends Page {
 
 						const dropRecord = dragData.dropTree.store.get(dropIndex);
 
-						void demoDataSource.update({
-							id: dragData.record.id,
+						void demoDataSource.update(dragData.record.id, {
 							parentId: dropRecord.id
 						});
 					},
