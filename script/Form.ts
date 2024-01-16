@@ -168,10 +168,10 @@ export class Form extends Page {
 				fieldset({legend: "Picker fields"},
 
 
-
 					datefield({
 						label: "Date",
 						name: "date",
+						defaultTime: (new DateTime()).format("H:00"),
 						required: true,
 						min: (new DateTime()).addYears(-2).format("Y-m-d"),
 						max: (new DateTime()).addDays(-1).format("Y-m-d"),
@@ -342,7 +342,6 @@ export class Form extends Page {
 						}
 					}),
 
-
 					recurrencefield({
 						label: "Recurrence",
 						name: "recurrence",
@@ -351,7 +350,6 @@ export class Form extends Page {
 							frequency: "yearly"
 						}
 					}),
-
 
 					listfield({
 						label: "Listfield",
