@@ -195,7 +195,8 @@ export class Form extends Page {
 						label: "Date & time",
 						name: "datetime",
 						withTime: true,
-						value: (new DateTime()).format("Y-m-dTH:i"),
+						defaultTime: "13:00",
+						value: (new DateTime()).format("Y-m-d"),
 						min: (new DateTime()).addYears(-2).format("Y-m-d"),
 						max: (new DateTime()).addDays(-1).format("Y-m-d"),
 						hint: "Select a date in the past 2 years"
