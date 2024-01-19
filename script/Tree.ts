@@ -61,7 +61,8 @@ export class Tree extends Page {
 			dropOn: true,
 			listeners: {
 				rowclick: (list, storeIndex, row, ev) => {
-					console.log(list, storeIndex, row,ev);
+					const record = list.store.get(storeIndex);
+					console.log(list, storeIndex, row,ev, record);
 				},
 				drop: (tree, e, dropRow, dropIndex,  dropPos, dragData) => {
 

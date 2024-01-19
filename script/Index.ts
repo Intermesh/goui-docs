@@ -1,6 +1,6 @@
 import {btn, cards, comp, Component, h2, h3, Menu, menu, radio, root, router} from "@intermesh/goui";
 import {Button} from "./Button.js";
-import {Form} from "./Form.js";
+
 import {Window} from "./Window.js";
 import {List} from "./List.js";
 import {Home} from "./Home.js";
@@ -14,6 +14,19 @@ import {Data} from "./Data.js";
 import {Table} from "./Table.js";
 import {DragAndDrop} from "./DragAndDrop";
 import {Router} from "./Router";
+import {MainMenu} from "./MainMenu";
+import {TextFieldPage} from "./form/TextFieldPage";
+import {NumberFieldPage} from "./form/NumberFieldPage";
+import {DateTimePage} from "./form/DateTimePage";
+import {SelectPage} from "./form/SelectPage";
+import {HtmlFieldPage} from "./form/HtmlFieldPage";
+import {ChecksAndRadios} from "./form/ChecksAndRadios";
+import {ContainerFieldPage} from "./form/ContainerFieldPage";
+import {MapFieldPage} from "./form/MapFieldPage";
+import {ArrayFieldPage} from "./form/ArrayFieldPage";
+import {ChipsFieldPage} from "./form/ChipsFieldPage";
+import {DisplayFieldPage} from "./form/DisplayFieldPage";
+import {Form} from "./Form";
 
 /**
  * Create main card panel for displaying SPA pages
@@ -86,90 +99,6 @@ const header = comp({
 
 )
 
-/**
- * Create main menu
- */
-const mainMenu = menu({
-		cls: "main-menu",
-		listeners: {
-				render: menu => {
-					menu.el.addEventListener("click", () => {
-						root.el.classList.remove("open-menu");
-					})
-				}
-		}
-	},
-
-
-	btn({
-		text: "Home",
-		route: ""
-	}),
-
-	btn({
-		text: "Component",
-		route: "component"
-	}),
-
-	btn({
-		text: "Layout",
-		route: "layout"
-	}),
-
-	btn({
-		text: "Data",
-		route: "data"
-	}),
-
-	btn({
-		text: "Router",
-		route: "router"
-	}),
-
-	h3({
-		text: "Components",
-		style: {padding: "0 8px 0 18px"}
-	}),
-
-	btn({
-		text: "Card container",
-		route: "cardcontainer"
-	}),
-
-	btn({
-		text: "Buttons",
-		route: "buttons"
-	}),
-
-	btn({
-		text: "Form",
-		route: "form"
-	}),
-
-	btn({
-		text: "Table",
-		route: "table"
-	}),
-
-	btn({
-		text: "Window",
-		route: "window"
-	}),
-
-	btn({
-		text: "List",
-		route: "list"
-	}),
-	btn({
-		text: "Tree",
-		route: "tree"
-	}),
-
-	btn({
-		text: "Drag and drop",
-		route: "draganddrop"
-	}),
-);
 
 /**
  * To make it memory efficient we will instantiate page components on demand when the router navigates.
@@ -200,8 +129,45 @@ router
 	.add(/^buttons$/, () => {
 		pageLoader(Button);
 	})
-	.add(/^form$/, () => {
+
+	.add(/^form$/, async (route) => {
 		pageLoader(Form);
+	})
+	.add(/^form\/TextField$/, async (route) => {
+		pageLoader(TextFieldPage);
+	})
+	.add(/^form\/TextField$/, async (route) => {
+		pageLoader(TextFieldPage);
+	})
+	.add(/^form\/NumberField$/, async (route) => {
+		pageLoader(NumberFieldPage);
+	})
+	.add(/^form\/DateTime$/, async (route) => {
+		pageLoader(DateTimePage);
+	})
+	.add(/^form\/Select$/, async (route) => {
+		pageLoader(SelectPage);
+	})
+	.add(/^form\/HtmlField$/, async (route) => {
+		pageLoader(HtmlFieldPage);
+	})
+	.add(/^form\/ChecksAndRadios$/, async (route) => {
+		pageLoader(ChecksAndRadios);
+	})
+	.add(/^form\/ContainerField$/, async (route) => {
+		pageLoader(ContainerFieldPage);
+	})
+	.add(/^form\/MapField$/, async (route) => {
+		pageLoader(MapFieldPage);
+	})
+	.add(/^form\/ArrayField$/, async (route) => {
+		pageLoader(ArrayFieldPage);
+	})
+	.add(/^form\/ChipsField$/, async (route) => {
+		pageLoader(ChipsFieldPage);
+	})
+	.add(/^form\/DisplayField$/, async (route) => {
+		pageLoader(DisplayFieldPage);
 	})
 	.add(/^table$/, () => {
 		pageLoader(Table);
@@ -246,10 +212,9 @@ router
 
 			header,
 			comp({
-				cls: "hbox",
-				flex: 1
+				cls: "hbox"
 			},
-				mainMenu,
+				comp({cls: "side-bar"}, new MainMenu()),
 				// splitter({
 				// 	resizeComponentPredicate: mainMenu
 				// }),

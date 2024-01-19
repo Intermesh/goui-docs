@@ -67,16 +67,32 @@ a {
 	min-height: 100%;
 }
 
-menu.main-menu, menu.demo {
-	//height: 100%;
+.side-bar {
+	background-color: var(--bg-side-bar);
 	width: 200px;
+}
+
+ul.goui-tree.main-menu, menu.demo {
+	//height: 100%;
+
 	list-style: none;
 	padding: 8px;
-	background-color: var(--bg-side-bar);
+
 
 	.goui-button {
 		width: 100%;
 		text-align: left;
+	}
+
+	.caret {
+		//display:none;
+	}
+	.node i.icon {
+		display:none;
+	}
+	font-weight: 600;
+	a {
+		line-height: 32px;
 	}
 }
 
@@ -112,7 +128,7 @@ code {
 
 
 @media only screen and (max-width: 1120px) {
-	menu.main-menu {
+	.side-bar {
 		position:fixed;
 		z-index: 2;
 		top:0;
@@ -128,7 +144,7 @@ code {
 
 
 	.open-menu {
-		menu.main-menu {
+		.side-bar {
 			transform: none;
 		}
 	}

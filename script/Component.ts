@@ -1,5 +1,6 @@
 import {Page} from "./Page.js";
-import {code, comp, fieldset, h1, p, textfield} from "@intermesh/goui";
+import {code, comp, fieldset, h1, h2, p, textfield, tree} from "@intermesh/goui";
+import {MainMenu} from "./MainMenu";
 
 export class Component extends Page {
 	constructor() {
@@ -36,7 +37,14 @@ export class Component extends Page {
 						label: "Text"
 					})
 				)
-			)
+			),
+
+			h2("Components"),
+
+			tree({
+				cls: "no-icons",
+				data: (new MainMenu).data[5].children
+			})
 		)
 	}
 }
