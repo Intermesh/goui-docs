@@ -7,6 +7,7 @@ export class Home extends Page {
 		this.title = "Group-Office User Interface";
 
 		this.items.add(
+
 			p("Welcome to the <a href=\"https://www.group-office.com/\">Group-Office</a> " +
 				"User Interface Documentation website. " +
 				"GOUI is written in <a href=\"https://www.typescriptlang.org/\">TypeScript</a> and " +
@@ -36,12 +37,14 @@ export class Home extends Page {
 				"We use Emcascript 6 modules that can be lazy loaded to keep memory usage low and performance high."
 			),
 
+			btn({
+				text: "Get started",
+				route: "getstarted",
+				cls: "filled primary"
+			}),
 
-			h2("Get started"),
 
-			p(
-				"To get started can install a very simple 'Hello World' example. Go to the template repository here: <a href=\"https://github.com/Intermesh/goui-hello-world.git\">https://github.com/Intermesh/goui-hello-world.git</a>."
-			),
+
 		)
 	}
 }

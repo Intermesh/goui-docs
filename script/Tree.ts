@@ -104,26 +104,36 @@ export class Tree extends Page {
 				draggable: true,
 				dropOn: true,
 				listeners: {
-					// We populate the tree directly from a datasource on the expand event. This also fires on render for the root nodes.
-					expand: async (tree1, childrenTree, record, storeIndex) => {
+					// We populate the tree directly from a datasource on the beforeexpand event. This also fires on render for the root nodes.
+					beforeexpand: (tree1, childrenTree, record, storeIndex) => {
 
-						const getResponse = await demoDataSource.get(),
+						// we already loaded the store
+						if(childrenTree.store.loaded) {
+							return;
+						}
+
+						// Get the data
+						demoDataSource.get().then(getResponse => {
 							//at the root of the tree record is undefined
-							parentId = record ? record.id : undefined,
-							data = getResponse.list.filter(value => value.parentId == parentId)
-							.map(e => {
-								return {
-									id: e.id + "",
-									text: e.name,
+							const parentId = record ? record.id : undefined,
+								data = getResponse.list.filter(value => value.parentId == parentId)
+									.map(e => {
+										return {
+											id: e.id + "",
+											text: e.name,
+											// set to empty array if it has no children. Then the tree knows it's a leaf.
+											children: getResponse.list.find(value => value.parentId == e.id) ? undefined : []
+										}
+									});
 
-									// set to empty array if it has no children. Then the tree knows it's a leaf.
-									children: getResponse.list.find(value => value.parentId == e.id) ? undefined : []
-								}
-							});
+							childrenTree.store.loadData(data, false);
 
-						childrenTree.store.loadData(data, false);
+							// retry expand
+							childrenTree.expand();
+						})
 
-						console.log(tree1.data);
+						//cancel the expand action. We will call it when data has been fetched.
+						return false;
 					},
 
 					drop: (list, e, dropRow, dropIndex, position, dragData) => {

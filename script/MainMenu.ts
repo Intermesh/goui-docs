@@ -13,7 +13,11 @@ export class MainMenu extends Tree {
 				href: "#",
 				text: "Home",
 				children: []
-			}, {
+			},{
+				href: "#getstarted",
+				text: "Get started",
+				children: []
+			},  {
 				text: "Layout",
 				href: "#layout",
 				children: []
@@ -56,6 +60,10 @@ export class MainMenu extends Tree {
 					},{
 						text: "Tree",
 						href: "#tree",
+						children: []
+					},{
+						text: "DatePicker",
+						href: "#datepicker",
 						children: []
 					}, {
 						text: "Form",

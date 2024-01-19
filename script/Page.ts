@@ -39,12 +39,13 @@ export class Page extends Component {
 	private addFooter() {
 		this.items.add(
 			comp({
-				tagName:"footer"
+				tagName:"footer",
+				cls: "main"
 			},
-			p('Powered by <a href="https://www.group-office.com">Intermesh Group-Office</a> ©2023'),
-			p("Licensed under MIT license"
+				p('Powered by <a href="https://www.group-office.com">Intermesh Group-Office</a> ©2023'),
+				p("Licensed under MIT license"
+				)
 			)
-		)
 		);
 	}
 

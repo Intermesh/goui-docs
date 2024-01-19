@@ -9,6 +9,10 @@ export class Form extends Page {
 
 		const mainMenu = new MainMenu();
 
+		const components = (new MainMenu).data.find(c => c.href=="#component")!.children!,
+			formComponents = components.find(c => c.href == "#form")!.children!
+
+
 		this.items.add(
 			p("Forms can handle complex object structures using Container and Array type fields. They don't submit in " +
 				"the traditional way but return a Javascript Object that can be sent using an XHR or fetch API request. " +
@@ -16,7 +20,7 @@ export class Form extends Page {
 
 			tree({
 				cls: "main-menu",
-				data: mainMenu.data[5].children![6].children
+				data: formComponents
 			})
 
 

@@ -27,6 +27,8 @@ import {ArrayFieldPage} from "./form/ArrayFieldPage";
 import {ChipsFieldPage} from "./form/ChipsFieldPage";
 import {DisplayFieldPage} from "./form/DisplayFieldPage";
 import {Form} from "./Form";
+import {GetStarted} from "./GetStarted";
+import {DatePickerPage} from "./DatePickerPage";
 
 /**
  * Create main card panel for displaying SPA pages
@@ -130,6 +132,10 @@ router
 		pageLoader(Button);
 	})
 
+	.add(/^getstarted$/, () => {
+		pageLoader(GetStarted);
+	})
+
 	.add(/^form$/, async (route) => {
 		pageLoader(Form);
 	})
@@ -199,6 +205,9 @@ router
 	.add(/^router$/, () => {
 		pageLoader(Router);
 	})
+	.add(/^datepicker$/, () => {
+		pageLoader(DatePickerPage);
+	})
 	.add(() => {
 		pageLoader(NotFound);
 	})
@@ -212,7 +221,8 @@ router
 
 			header,
 			comp({
-				cls: "hbox"
+				cls: "hbox",
+				flex: 1
 			},
 				comp({cls: "side-bar"}, new MainMenu()),
 				// splitter({
@@ -226,6 +236,7 @@ router
 
 				)
 			),
+
 			comp({
 				cls: "overlay",
 				listeners: {

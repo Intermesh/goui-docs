@@ -1,5 +1,5 @@
 import {Page} from "./Page.js";
-import {column, comp, datasourcestore, datecolumn, h2, splitter, table, tree} from "@intermesh/goui";
+import {btn, column, comp, datasourcestore, datecolumn, h2, splitter, table, tree} from "@intermesh/goui";
 import {demoDataSource, DemoEntity} from "./DemoDataSource";
 
 type TreeRecord = {
@@ -17,7 +17,7 @@ export class DragAndDrop extends Page {
 		this.title = "Drag And Drop";
 
 		const tree = this.createTree();
-		void tree.store.load();
+
 
 		const table = this.createTable();
 
@@ -33,6 +33,13 @@ export class DragAndDrop extends Page {
 
 			h2("From table to tree"),
 			comp({cls: "hbox"},
+				// btn({
+				// 	icon: "refresh",
+				// 	handler: () => {
+				// 		tree.reload();
+				// 	}
+				//
+				// }) ,
 				tree,
 
 				splitter({
@@ -259,25 +266,37 @@ export class DragAndDrop extends Page {
 							parentId: dropRecord.id
 						});
 					},
-					// We populate the tree directly from a datasource on the expand event. This also fires on render for the root nodes.
-					expand: async (tree1, childrenTree, record, storeIndex) => {
+					// We populate the tree directly from a datasource on the beforeexpand event. This also fires on render for the root nodes.
+					beforeexpand: (tree1, childrenTree, record, storeIndex) => {
 
-						const getResponse = await demoDataSource.get(),
+						// we already fetched the nodes
+						if(childrenTree.store.loaded) {
+							return;
+						}
+
+						// Get the data
+						demoDataSource.get().then(getResponse => {
 							//at the root of the tree record is undefined
-							parentId = record ? record.id : undefined,
-							data = getResponse.list.filter(value => value.parentId == parentId)
-								.map(e => {
-									return {
-										id: e.id + "",
-										text: e.name,
+							const parentId = record ? record.id : undefined,
+								data = getResponse.list.filter(value => value.parentId == parentId)
+									.map(e => {
+										return {
+											id: e.id + "",
+											text: e.name,
+											// set to empty array if it has no children. Then the tree knows it's a leaf.
+											children: getResponse.list.find(value => value.parentId == e.id) ? undefined : []
+										}
+									});
 
-										// set to empty array if it has no children. Then the tree knows it's a leaf.
-										children: getResponse.list.find(value => value.parentId == e.id) ? undefined : []
-									}
-								});
+							childrenTree.store.loadData(data, false);
 
-						childrenTree.store.loadData(data, false);
-					}
+							// retry expand
+							childrenTree.expand();
+						})
+
+						//cancel the expand action. We will call it when data has been fetched.
+						return false;
+					},
 				},
 				draggable: true,
 				dropOn: true
@@ -286,6 +305,7 @@ export class DragAndDrop extends Page {
 
 		// when the data source changes reload the tree
 		demoDataSource.on("change", () => {
+
 			dsTree.reload();
 		});
 
