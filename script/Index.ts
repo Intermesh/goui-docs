@@ -1,4 +1,4 @@
-import {btn, cards, comp, Component, h2, h3, Menu, menu, radio, root, router} from "@intermesh/goui";
+import {a, btn, cards, comp, Component, h2, img, Menu, menu, radio, root, router} from "@intermesh/goui";
 import {Button} from "./Button.js";
 
 import {Window} from "./Window.js";
@@ -35,11 +35,10 @@ import {DatePickerPage} from "./DatePickerPage";
  */
 const main = cards({cls: "main", flex: 1});
 
-const img = comp({
-	tagName: "img",
-	style: {width: "66px", height: "56px", padding: "8px 8px 8px 18px", verticalAlign: "middle"}
+const logo = img({
+	style: {width: "66px", height: "56px", padding: "8px 8px 8px 18px", verticalAlign: "middle"},
+	src: "./resources/groupoffice-icon.png"
 });
-img.el.setAttribute("src", "./resources/groupoffice-icon.png");
 
 const header = comp({
 	tagName: "header",
@@ -57,22 +56,25 @@ const header = comp({
 		cls: "hbox",
 		flex: 1
 	},
-		img,
+		logo,
 		h2({text: "GOUI", flex: 1}),
-		comp({
-			tagName: "a",
-			attr: {
-				href: "https://goui.io/api"
-			},
-			html: 'API'
+
+		a({
+			href: "https://goui.io/api",
+			text: 'API'
 		}),
-		comp({
-			tagName: "a",
-			attr: {
-				href: "https://github.com/intermesh/goui"
-			},
-			html: '<img src="resources/github.png" alt="GitHub" width="30" height="30">'
-		}),
+
+		a({
+			href: "https://github.com/intermesh/goui",
+		},
+			img({
+				src: "resources/github.png",
+				alt: "GitHub",
+				width: 24,
+				height: 24
+			})
+		),
+
 		btn({
 			icon: "format_color_fill",
 			menu: menu({},
@@ -86,7 +88,7 @@ const header = comp({
 							{text: "Dark", value: "dark"}
 						],
 						listeners: {
-							change: (field, newValue, oldValue) => {
+							change: (field, newValue, _oldValue) => {
 								root.el.classList.toggle("dark", newValue == "dark");
 								root.el.classList.toggle("light", newValue == "light");
 								root.el.classList.toggle("system", newValue == "system");
@@ -136,43 +138,43 @@ router
 		pageLoader(GetStarted);
 	})
 
-	.add(/^form$/, async (route) => {
+	.add(/^form$/, async () => {
 		pageLoader(Form);
 	})
-	.add(/^form\/TextField$/, async (route) => {
+	.add(/^form\/TextField$/, async () => {
 		pageLoader(TextFieldPage);
 	})
-	.add(/^form\/TextField$/, async (route) => {
+	.add(/^form\/TextField$/, async () => {
 		pageLoader(TextFieldPage);
 	})
-	.add(/^form\/NumberField$/, async (route) => {
+	.add(/^form\/NumberField$/, async () => {
 		pageLoader(NumberFieldPage);
 	})
-	.add(/^form\/DateTime$/, async (route) => {
+	.add(/^form\/DateTime$/, async () => {
 		pageLoader(DateTimePage);
 	})
-	.add(/^form\/Select$/, async (route) => {
+	.add(/^form\/Select$/, async () => {
 		pageLoader(SelectPage);
 	})
-	.add(/^form\/HtmlField$/, async (route) => {
+	.add(/^form\/HtmlField$/, async () => {
 		pageLoader(HtmlFieldPage);
 	})
-	.add(/^form\/ChecksAndRadios$/, async (route) => {
+	.add(/^form\/ChecksAndRadios$/, async () => {
 		pageLoader(ChecksAndRadios);
 	})
-	.add(/^form\/ContainerField$/, async (route) => {
+	.add(/^form\/ContainerField$/, async () => {
 		pageLoader(ContainerFieldPage);
 	})
-	.add(/^form\/MapField$/, async (route) => {
+	.add(/^form\/MapField$/, async () => {
 		pageLoader(MapFieldPage);
 	})
-	.add(/^form\/ArrayField$/, async (route) => {
+	.add(/^form\/ArrayField$/, async () => {
 		pageLoader(ArrayFieldPage);
 	})
-	.add(/^form\/ChipsField$/, async (route) => {
+	.add(/^form\/ChipsField$/, async () => {
 		pageLoader(ChipsFieldPage);
 	})
-	.add(/^form\/DisplayField$/, async (route) => {
+	.add(/^form\/DisplayField$/, async () => {
 		pageLoader(DisplayFieldPage);
 	})
 	.add(/^table$/, () => {

@@ -121,7 +121,7 @@ export class Layout extends Page {
 			p("Use the 'border-top', 'border-right', 'border-bottom' and 'border-left' css class to apply the standard border."),
 
 			h2("flow"),
-			p("Typically used in form layouts. Items are next eachother and move to the next row when there's no space left. When no width is given items will get 100% width."),
+			p("The default for the Form and FieldSet component. Items are next eachother and move to the next row when there's no space left. When no width is given items will get 100% width."),
 
 			h2("print"),
 

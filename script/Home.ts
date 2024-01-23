@@ -8,13 +8,17 @@ export class Home extends Page {
 
 		this.items.add(
 
-			p("Welcome to the <a href=\"https://www.group-office.com/\">Group-Office</a> " +
-				"User Interface Documentation website. " +
-				"GOUI is written in <a href=\"https://www.typescriptlang.org/\">TypeScript</a> and " +
-				"<a href=\"https://sass-lang.com/\">SASS</a> to produce beautiful and efficient" +
-				" HTML and CSS. <br>All available components are shown on this website. You can find the source on GitHub to " +
-				"help you get started. Because all code is written in TypeScript with documentation your TypeScript editor will " +
-				"help you with coding by providing intelligent suggestions."
+			p("Welcome to the GOUI (<a href=\"https://www.group-office.com/\">Group-Office</a> " +
+				"User Interface) Documentation website. " +
+				"Developed using <a href=\"https://www.typescriptlang.org/\">TypeScript</a> and " +
+				"<a href=\"https://sass-lang.com/\">SASS</a>, GOUI aims to create stunning and efficient " +
+				"HTML and CSS interfaces.<br><br>" +
+
+
+				"On this website, you'll find an extensive collection of available components. The complete " +
+				"source code is hosted on <a href=\"https://github.com/intermesh/goui\">GitHub</a>, which can be accessed to kickstart your development process. " +
+				"With comprehensive TypeScript documentation, your coding experience will be greatly enhanced " +
+				"through intelligent suggestions from your TypeScript editor."
 			),
 
 
@@ -33,21 +37,23 @@ export class Home extends Page {
 			h2("Group-Office"),
 
 			p(
-				"GOUI is created to replace the ExtJS 3.4 framework used in " +
-				"<a href=\"https://www.group-office.com/\">Group-Office</a>.<br>" +
-				"But it's not made only for Group-Office. It's standalone and can be " +
-				"used in any Javascript / TypeScript project."
+				"GOUI was specifically designed to replace the outdated ExtJS 3.4 framework utilized in " +
+				"<a href=\"https://www.group-office.com/\">Group-Office</a>. " +
+				"However, it is not limited to Group-Office alone. This versatile framework can be seamlessly " +
+				"integrated into any JavaScript or TypeScript project."
 			),
 
 
 			h2("Efficient architecture"),
 
 			p(
-				"GOUI is very efficient because it's output is pure Javascript and CSS. If possible we use pure HTML and " +
-				"CSS to put the browser to work to render components. If that's impossible then Javascript will be used. " +
-				"Applications are written in pure TypeScript so there's no need for parsing any templates. " +
-				"It goes straight from Javascript to the DOM.<br>" +
-				"We use Emcascript 6 modules that can be lazy loaded to keep memory usage low and performance high."
+				"GOUI boasts a highly efficient architecture, utilizing pure JavaScript and CSS for rendering. " +
+				"Whenever possible, pure HTML and CSS are leveraged, allowing the browser to efficiently render " +
+				"components. In cases where this is not feasible, JavaScript is employed. Additionally, applications " +
+				"are developed entirely in TypeScript, eliminating the need for parsing templates. This streamlined " +
+				"approach enables seamless integration from JavaScript to the DOM.<br><br>" +
+				"Our implementation incorporates ECMAScript 6 modules, which can be lazily loaded to optimize memory " +
+				"usage and maximize performance."
 			),
 
 			btn({
