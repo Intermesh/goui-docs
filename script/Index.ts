@@ -216,13 +216,13 @@ router
 		/**
 		 * Use hbox layout to put menu and section side by side
 		 */
-		root.cls = 'vbox';
+		// root.cls = 'vbox';
 		root.items.add(
 
 			header,
 			comp({
-				cls: "hbox",
-				flex: 1
+				cls: "hbox main-container",
+				// flex: 1
 			},
 				comp({cls: "side-bar"}, new MainMenu()),
 				// splitter({
@@ -230,7 +230,7 @@ router
 				// }),
 				comp({
 					flex: 1,
-					cls: "scroll main"
+					cls: "main"
 				},
 					main
 
