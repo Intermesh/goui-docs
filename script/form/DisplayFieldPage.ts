@@ -42,13 +42,13 @@ export class DisplayFieldPage extends Page {
 
 					},
 
-					comp({cls: "hbox gap"},
-
+					comp({cls: "flow"},
 						displayfield({
 							icon: "person",
 							name: "nameDisplay",
 							label: "Name",
-							value: "Don Doe"
+							value: "Don Doe",
+							flex: "1"
 						}),
 
 						textfield({
@@ -60,11 +60,13 @@ export class DisplayFieldPage extends Page {
 									const form = field.findAncestorByType(GouiForm)!;
 									form.findField("nameDisplay")!.value = newValue;
 								}
-							}
-						})
+							},
+							flex: "1",
+						}),
 					),
 
-					comp({cls: "hbox gap"},
+
+					comp({cls: "flow"},
 						displayfield({
 
 							icon: "today",
@@ -73,10 +75,13 @@ export class DisplayFieldPage extends Page {
 							renderer: (v, field) => {
 								return (new DateTime(v)).format(Format.dateFormat)
 							},
-							value: (new DateTime()).format("Y-m-d") // server typically sends in another format
+							value: (new DateTime()).format("Y-m-d"), // server typically sends in another format,
+							flex: "1",
 						}),
 
 						datefield({
+
+							flex: "1",
 							name: "today",
 							label: "Date",
 							value: (new DateTime()).format("Y-m-d"),
@@ -88,6 +93,7 @@ export class DisplayFieldPage extends Page {
 							}
 						})
 					)
+
 				),
 
 				tbar({cls: "bottom"},
