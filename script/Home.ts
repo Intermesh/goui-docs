@@ -1,5 +1,5 @@
 import {Page} from "./Page.js";
-import {btn, code, h2, p} from "@intermesh/goui";
+import {a, btn, code, comp, h2, img, p} from "@intermesh/goui";
 
 export class Home extends Page {
 	constructor() {
@@ -15,6 +15,19 @@ export class Home extends Page {
 				" HTML and CSS. <br>All available components are shown on this website. You can find the source on GitHub to " +
 				"help you get started. Because all code is written in TypeScript with documentation your TypeScript editor will " +
 				"help you with coding by providing intelligent suggestions."
+			),
+
+
+			a({
+				target: "_blank,",
+				href: "resources/goui-calendar.png"
+			}, img({
+					style: {
+						maxWidth: "100%"
+					},
+					src: "resources/goui-calendar.png",
+					alt: "GOUI Calendar"
+				})
 			),
 
 			h2("Group-Office"),
