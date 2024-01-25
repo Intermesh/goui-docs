@@ -35,21 +35,22 @@ export class Form extends Page {
 				legend: "Example form"
 				},
 
-				textfield({
-					flex: 2,
-					name: "name",
-					label: t("Name"),
-					required: true
-				}),
+				comp({cls: "group"},
+					textfield({
+						name: "firstName",
+						label: "First name"
+					}),
 
-				combobox({
-					width: 200,
-					dataSource: demoDataSource,
-					label: t("Book"),
-					name: "bookId",
-					filterName: "name",
-					required: true
-				}),
+					textfield({
+						name: "middleName",
+						label: "First name"
+					}),
+
+					textfield({
+						name: "lastName",
+						label: "Last name"
+					})
+				),
 
 				combobox({
 					dataSource: demoDataSource,
