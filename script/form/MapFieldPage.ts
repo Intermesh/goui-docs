@@ -47,7 +47,7 @@ export class MapFieldPage extends Page {
 						name: "mapfield",
 						buildField: () => {
 							const field = containerfield({
-									cls: "hbox gap",
+									cls: "group",
 								},
 
 								select({

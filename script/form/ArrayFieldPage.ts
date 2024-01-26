@@ -53,7 +53,7 @@ export class ArrayFieldPage extends Page {
 						 */
 						buildField: () => {
 							const field = containerfield({
-									cls: "hbox gap",
+									cls: "group",
 								},
 
 								select({
