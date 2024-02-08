@@ -14,7 +14,7 @@
     "build:clean": "rm -rf ./dist/*",
     "build:sass": "npx sass --style=compressed ./style:./dist",
     "build:ts": "npx esbuild ./script/Index.ts --minify --bundle --sourcemap --format=esm --target=es2018 --outdir=dist",
-    "build:tsc": "npx tsc"
+    "build:tsc": "npx tsc --noEmit"
   },
   "dependencies": {
     "@intermesh/goui": "latest"

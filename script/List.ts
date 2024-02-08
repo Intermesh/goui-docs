@@ -8,7 +8,7 @@ export class List extends Page {
 		this.title = "List";
 		this.sourceURL = "List.ts";
 
-		const s = store({items: this.generateStoreData()});
+		const s = store({data: this.generateStoreData()});
 
 
 		this.items.add(

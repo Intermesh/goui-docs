@@ -1,17 +1,5 @@
 import {Page} from "../Page.js";
-import {
-	btn,
-	checkbox, checkboxgroup, comp, DateField, datefield, DateInterval, DateTime, durationfield,
-	fieldset,
-	form,
-	Form as GouiForm,
-	numberfield,
-	p, radio,
-	tbar,
-	TextField,
-	textfield, timefield,
-	Window
-} from "@intermesh/goui";
+import {btn, checkbox, checkboxgroup, fieldset, form, p, radio, tbar, Window} from "@intermesh/goui";
 
 
 export class ChecksAndRadios extends Page {

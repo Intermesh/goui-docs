@@ -23,8 +23,6 @@ export class Form extends Page {
 		super();
 		this.title = "Form";
 
-		const mainMenu = new MainMenu();
-
 		const components = (new MainMenu).data.find(c => c.href=="#component")!.children!,
 			formComponents = components.find(c => c.href == "#form")!.children!
 

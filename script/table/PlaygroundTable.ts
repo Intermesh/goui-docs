@@ -18,7 +18,7 @@ export class PlaygroundTable extends Table {
 
 		super(
 			store({
-				items: records,
+				data: records,
 				sort: [{property: "number", isAscending: true}]
 			}),
 
