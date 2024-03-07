@@ -1,7 +1,7 @@
 import {Page} from "../Page.js";
 import {
 	btn,
-	checkbox, comp, DateField, datefield, DateInterval, DateTime, durationfield,
+	checkbox, comp, DateField, datefield, DateInterval, daterangefield, DateTime, durationfield,
 	fieldset,
 	form,
 	Form as GouiForm,
@@ -73,6 +73,12 @@ export class DateTimePage extends Page {
 						min: (new DateTime()).addYears(-2).format("Y-m-d"),
 						max: (new DateTime()).addDays(-1).format("Y-m-d"),
 						hint: "Select a date in the past 2 years"
+					}),
+
+
+					daterangefield({
+						label: "Range",
+						name:"daterange"
 					}),
 
 
