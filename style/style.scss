@@ -15,7 +15,7 @@ body {
 	}
 
 	> header {
-		background-color: var(--bg-header);
+		background-color: var(--bg-main);
 		color: white;
 		align-items: center;
 
@@ -58,10 +58,10 @@ body {
 }
 
 a {
-	color: var(--c-primary);
+	color: var(--c-main);
 
 	&:visited {
-		color: var(--c-secondary);
+		color: var(--c-primary);
 	}
 }
 
