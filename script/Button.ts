@@ -233,7 +233,7 @@ export class Button extends Page {
 							handler: this.onClick,
 							menu: menu({},
 								btn({
-									html: "Test 1.1",
+									text: "Test 1.1",
 									handler: this.onClick,
 								}),
 
@@ -252,7 +252,8 @@ export class Button extends Page {
 									)
 								}),
 								btn({
-									text: "Test 2.3"
+									text: "Test 2.3",
+									handler: this.onClick,
 								})
 							)
 						}),
@@ -296,7 +297,6 @@ export class Button extends Page {
 				btn({
 					icon: "menu",
 					menu: menu({
-							expandLeft: true,
 						},
 						btn({
 							text: "Item 1"
