@@ -2,33 +2,21 @@ import {Page} from "../Page.js";
 import {
 	autocomplete,
 	btn,
-	checkbox,
 	colorfield,
 	column,
 	combobox,
-	comp,
 	datasourcestore,
-	DateField,
-	datefield,
-	DateInterval,
 	DateTime,
-	durationfield,
 	Field,
 	fieldset,
 	form,
-	Form as GouiForm,
 	list,
 	listfield,
-	numberfield,
 	p,
-	recurrencefield,
 	select,
 	store,
 	table,
 	tbar,
-	TextField,
-	textfield,
-	timefield,
 	Window
 } from "@intermesh/goui";
 import {demoDataSource, DemoEntity} from "../DemoDataSource";
@@ -180,14 +168,6 @@ export class SelectPage extends Page {
 						}
 					}),
 
-					recurrencefield({
-						label: "Recurrence",
-						name: "recurrence",
-						value: {
-							count: 5,
-							frequency: "yearly"
-						}
-					}),
 
 					listfield({
 						label: "Listfield",
