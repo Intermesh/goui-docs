@@ -67,15 +67,21 @@ export class SelectPage extends Page {
 					select({
 						label: "Select",
 						name: "select",
+						value: 1,
 						options: [
+
 							{
-								value: "1",
+								value: 1,
 								name: "Option 1"
 							},
 							{
-								value: "2",
+								value: 2,
 								name: "Option 2"
-							}
+							},
+							{
+								value: null,
+								name: "Set null"
+							},
 						]
 					}),
 
