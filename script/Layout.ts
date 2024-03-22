@@ -69,6 +69,18 @@ export class Layout extends Page {
 				})
 			),
 
+			h2("Surface color"),
+
+			p("Use these classes to distinct different surfaces in the application"),
+
+			comp({cls: "card"},
+				comp({cls: "bg-lowest pad", text: ".bg-lowest"}),
+				comp({cls: "bg-low pad", text: ".bg-low"}),
+				comp({cls: "bg-mid pad", text: ".bg-mid"}),
+				comp({cls: "bg-high pad", text: ".bg-high"}),
+				comp({cls: "bg-highest pad", text: ".bg-highest"})
+			),
+
 			h2("Splitter"),
 
 			p("A Splitter Component can be used for resizing panels on the desktop. Try resizing the panels."),
@@ -136,7 +148,10 @@ export class Layout extends Page {
 				handler: (button, ev) => {
 					button.previousSibling()!.print();
 				}
-			})
+			}),
+
+
+
 		)
 	}
 }
