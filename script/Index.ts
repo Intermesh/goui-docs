@@ -1,4 +1,4 @@
-import {a, btn, cards, comp, Component, h2, img, Menu, menu, radio, root, router} from "@intermesh/goui";
+import {a, btn, cards, comp, Component, h2, img, Menu, menu, radio, root, router, Observable} from "@intermesh/goui";
 import {Button} from "./Button.js";
 
 import {Window} from "./Window.js";
@@ -34,6 +34,8 @@ import {DatePickerPage} from "./DatePickerPage";
  * Create main card panel for displaying SPA pages
  */
 const main = cards({cls: "main", flex: 1});
+
+// Observable.DEBUG = true;
 
 const logo = img({
 	style: {width: "66px", height: "56px", padding: "8px 8px 8px 18px", verticalAlign: "middle"},

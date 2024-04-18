@@ -137,6 +137,7 @@ export class ChipsFieldPage extends Page {
 						}),
 						label: "Autocomplete with multi select",
 						name: "acChipsMultiSelect",
+						value: ["Test 2", "Test 4"],
 						chipRenderer: async (chip, value) => {
 							chip.text = value;
 						},
