@@ -1,7 +1,7 @@
 import {Page} from "../Page.js";
 import {
 	btn,
-	checkbox,
+	checkbox, Field,
 	fieldset,
 	form,
 	Form as GouiForm,
@@ -103,7 +103,8 @@ export class NumberFieldPage extends Page {
 								tf.buttons = checked ? [btn({
 									icon: "clear",
 									handler: (clearBtn) => {
-										clearBtn.findAncestorByType(TextField)!.reset();
+										const field = clearBtn.findAncestorByType(Field)!;
+										field.reset();
 									}
 								})] : undefined
 							}

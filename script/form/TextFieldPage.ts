@@ -5,7 +5,7 @@ import {
 	fieldset,
 	form,
 	Form as GouiForm,
-	p,
+	p, t,
 	tbar,
 	textarea,
 	TextField,
@@ -98,6 +98,16 @@ export class TextFieldPage extends Page {
 
 					checkbox({
 
+						label: "Hint",
+						listeners: {
+							change: (field, checked) => {
+								tf.hint = checked ? t("Please enter something useful") : undefined;
+							}
+						}
+					}),
+
+					checkbox({
+
 						label: "Button",
 						listeners: {
 							change: (field, checked) => {
@@ -118,7 +128,8 @@ export class TextFieldPage extends Page {
 
 					textarea({
 						label: "Text area",
-						name: "textarea"
+						name: "textarea",
+						height: 160
 					}),
 				),
 
