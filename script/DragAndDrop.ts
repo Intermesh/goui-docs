@@ -149,9 +149,7 @@ export class DragAndDrop extends Page {
 				}
 			}),
 
-			draggable: true,
-			dropBetween: true,
-			dropOn: false,
+			sortable: true,
 
 			columns: [
 
@@ -172,30 +170,6 @@ export class DragAndDrop extends Page {
 			],
 
 			listeners: {
-
-				drop:(list, e, dropRow, dropIndex, dropPos, dragData) => {
-					const store = dragData.cmp.store;
-
-					// remove the dragged record from the store
-					store.removeAt(dragData.storeIndex);
-					if(dragData.storeIndex < dropIndex) {
-						// if inserting in the same store we need to substract 1 from the index as we took one off.
-						dropIndex--;
-					}
-
-					//add the record to the new position
-					switch(dropPos) {
-							case "before":
-							// reorder in the tree where it's dropped
-							store.insert(dropIndex, dragData.record);
-							break;
-
-						case "after":
-							store.insert(dropIndex + 1, dragData.record);
-							break;
-					}
-				},
-
 				render: sender => {
 					sender.store.load();
 				}
