@@ -90,6 +90,20 @@ export class ChecksAndRadios extends Page {
 							]
 						}
 					),
+
+
+					radio({
+							label: "Radio with type='list'",
+							type: "list",
+							name: "radio-button",
+							value: "option1",
+							options: [
+								{text: "Radio 1", value: "option1", icon: "star"},
+								{text: "Radio 2", value: "option2", icon: "folder"},
+								{text: "Radio 3", value: "option3", icon: "archive"}
+							]
+						}
+					),
 				),
 
 				tbar({cls: "bottom"},
