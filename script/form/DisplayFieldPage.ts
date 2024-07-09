@@ -1,10 +1,10 @@
 import {Page} from "../Page.js";
 import {
 	btn,
-	checkbox, comp, DateField, datefield, DateInterval, DateTime, displayfield, durationfield,
+	checkbox, comp, DateField, datefield, DateInterval, DateTime, DisplayField, displayfield, durationfield,
 	fieldset,
 	form,
-	Form as GouiForm, Format,
+	Form as GouiForm, Format, h2, h3,
 	numberfield,
 	p,
 	tbar,
@@ -93,6 +93,36 @@ export class DisplayFieldPage extends Page {
 							}
 						})
 					)
+
+				),
+
+				h3("Display field with icon renderer"),
+
+				comp({cls: "hbox"},
+					checkbox({
+						flex: 1,
+						name: "icon",
+						label: "Toggle icon",
+						value: true,
+						type: "switch",
+						listeners: {
+							change:(field, newValue, oldValue) => {
+
+								const displayField = field.nextSibling() as DisplayField;
+								displayField.value = newValue ? 'check_circle' : 'warning';
+							}
+						},
+					}),
+					displayfield({
+						flex: 1,
+						escapeValue: false,
+						name: "icon",
+						value: 'check_circle',
+						renderer: (v, field) => {
+							return `<i class="icon">${v}</i>`;
+						}
+					}),
+
 
 				),
 
