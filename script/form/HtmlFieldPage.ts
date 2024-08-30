@@ -115,7 +115,7 @@ export class HtmlFieldPage extends Page {
 									handler: (clearBtn) => {
 										clearBtn.findAncestorByType(HtmlField)!.reset();
 									}
-								})] : undefined
+								})] : []
 							}
 						}
 					}),

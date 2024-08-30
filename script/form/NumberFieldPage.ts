@@ -106,7 +106,7 @@ export class NumberFieldPage extends Page {
 										const field = clearBtn.findAncestorByType(Field)!;
 										field.reset();
 									}
-								})] : undefined
+								})] : []
 							}
 						}
 					})

@@ -17,7 +17,7 @@ import {
 
 export class ArrayFieldPage extends Page {
 
-	private arrayField: ArrayField;
+	private arrayField;
 
 
 	constructor() {

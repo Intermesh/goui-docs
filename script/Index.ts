@@ -1,4 +1,4 @@
-import {a, btn, cards, comp, Component, h2, img, Menu, menu, radio, root, router, Observable} from "@intermesh/goui";
+import {a, btn, cards, comp, Component, h2, img, Menu, menu, radio, root, router, Button as GouiButton} from "@intermesh/goui";
 import {Button} from "./Button.js";
 
 import {Window} from "./Window.js";
@@ -29,6 +29,7 @@ import {DisplayFieldPage} from "./form/DisplayFieldPage";
 import {Form} from "./Form";
 import {GetStarted} from "./GetStarted";
 import {DatePickerPage} from "./DatePickerPage";
+import "./OverrideTest";
 
 /**
  * Create main card panel for displaying SPA pages

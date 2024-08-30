@@ -116,7 +116,7 @@ export class TextFieldPage extends Page {
 									handler: (clearBtn) => {
 										clearBtn.findAncestorByType(TextField)!.reset();
 									}
-								})] : undefined
+								})] : []
 							}
 						}
 					}),
