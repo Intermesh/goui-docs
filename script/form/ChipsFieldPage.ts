@@ -71,7 +71,7 @@ export class ChipsFieldPage extends Page {
 						label: "Autocomplete single select",
 						name: "acChips",
 						chipRenderer: async (chip, value) => {
-							chip.items.get(0)!.text = value.name;
+							chip.text = value.name;
 						},
 						pickerRecordToValue(field, record): any {
 							return {
@@ -139,7 +139,7 @@ export class ChipsFieldPage extends Page {
 						name: "acChipsMultiSelect",
 						value: ["Test 2", "Test 4"],
 						chipRenderer: async (chip, value) => {
-							chip.items.get(0)!.text = value;
+							chip.text = value;
 						},
 						pickerRecordToValue(field, record): any {
 							return record.name;
