@@ -1,5 +1,5 @@
 import {Page} from "./Page.js";
-import {btn, comp, fieldset, form, h2, htmlfield, t, tbar, textfield, win, Window as GouiWindow} from "@intermesh/goui";
+import {btn, comp, fieldset, form, h2, htmlfield, t, tbar, textfield, win, Window as GouiWindow} from "@intermesh/goui"
 
 export class Window extends Page {
 	sourceURL = "Window.ts";

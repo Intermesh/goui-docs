@@ -19,7 +19,7 @@ import {
 	tbar,
 	Window
 } from "@intermesh/goui";
-import {demoDataSource, DemoEntity} from "../DemoDataSource";
+import {demoDataSource, DemoEntity} from "../DemoDataSource.js"
 
 
 export class SelectPage extends Page {

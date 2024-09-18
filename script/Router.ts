@@ -12,7 +12,7 @@ import {
 	table,
 	textfield
 } from "@intermesh/goui";
-import {demoDataSource, DemoEntity} from "./DemoDataSource";
+import {demoDataSource, DemoEntity} from "./DemoDataSource.js"
 
 
 export class Router extends Page {

@@ -1,5 +1,5 @@
 import {Page} from "./Page.js";
-import {cardmenu, cards, comp, datepicker, p} from "@intermesh/goui";
+import {cardmenu, cards, comp, datepicker, p} from "@intermesh/goui"
 
 export class DatePickerPage extends Page {
 	constructor() {

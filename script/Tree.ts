@@ -1,6 +1,6 @@
-import {Page} from "./Page";
-import {h2, tree, TreeRecord} from "@intermesh/goui";
-import {demoDataSource} from "./DemoDataSource";
+import {Page} from "./Page.js"
+import {h2, tree, TreeRecord} from "@intermesh/goui"
+import {demoDataSource} from "./DemoDataSource.js"
 
 export class Tree extends Page {
 	constructor() {

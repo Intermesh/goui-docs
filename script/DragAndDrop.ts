@@ -1,6 +1,6 @@
 import {Page} from "./Page.js";
-import {btn, column, comp, datasourcestore, datecolumn, h2, splitter, table, tree} from "@intermesh/goui";
-import {demoDataSource, DemoEntity} from "./DemoDataSource";
+import {btn, column, comp, datasourcestore, datecolumn, h2, splitter, table, tree} from "@intermesh/goui"
+import {demoDataSource, DemoEntity} from "./DemoDataSource.js"
 
 type TreeRecord = {
 	id?: string,

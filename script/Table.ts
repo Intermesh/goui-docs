@@ -13,7 +13,7 @@ import {
 } from "@intermesh/goui";
 import {PlaygroundTablePanel} from "./table/PlayGroundTablePanel.js";
 import {PagingTable} from "./table/PagingTable.js";
-import {DemoDataSource, demoDataSource, DemoEntity} from "./DemoDataSource";
+import {DemoDataSource, demoDataSource, DemoEntity} from "./DemoDataSource.js"
 
 export class Table extends Page {
 

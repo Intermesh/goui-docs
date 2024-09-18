@@ -1,5 +1,5 @@
 import {Page} from "./Page.js";
-import {a, btn, code, comp, h2, img, p} from "@intermesh/goui";
+import {a, btn, code, comp, h2, img, p} from "@intermesh/goui"
 
 export class Home extends Page {
 	constructor() {

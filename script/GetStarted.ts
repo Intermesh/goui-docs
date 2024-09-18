@@ -1,5 +1,5 @@
 import {Page} from "./Page.js";
-import {btn, comp, h2, p, splitter} from "@intermesh/goui";
+import {btn, comp, h2, p, splitter} from "@intermesh/goui"
 
 export class GetStarted extends Page {
 	constructor() {

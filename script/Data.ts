@@ -12,8 +12,8 @@ import {
 	table,
 	textfield
 } from "@intermesh/goui";
-import {demoDataSource, DemoEntity} from "./DemoDataSource";
-import {RestApiExample} from "./RestApiExample";
+import {demoDataSource, DemoEntity} from "./DemoDataSource.js"
+import {RestApiExample} from "./RestApiExample.js"
 
 
 export class Data extends Page {

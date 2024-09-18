@@ -1,4 +1,4 @@
-import {btn, comp, Component, mstbar, ObjectUtil, searchbtn, tbar} from "@intermesh/goui";
+import {btn, comp, Component, mstbar, ObjectUtil, searchbtn, tbar} from "@intermesh/goui"
 import {PlaygroundTable} from "./PlaygroundTable.js";
 
 

@@ -1,5 +1,5 @@
 import {Page} from "./Page.js";
-import {btn, DateTime, h2, list, p, store, StoreRecord} from "@intermesh/goui";
+import {btn, DateTime, h2, list, p, store, StoreRecord} from "@intermesh/goui"
 
 export class List extends Page {
 	constructor() {

@@ -1,4 +1,4 @@
-import {a, btn, cards, comp, Component, h2, img, Menu, menu, radio, root, router, Button as GouiButton} from "@intermesh/goui";
+import {a, btn, cards, comp, Component, h2, img, Menu, menu, radio, root, router, Button as GouiButton} from "@intermesh/goui"
 import {Button} from "./Button.js";
 
 import {Window} from "./Window.js";
@@ -12,24 +12,24 @@ import {Tree} from "./Tree.js";
 import {Component as ComponentPage} from "./Component.js";
 import {Data} from "./Data.js";
 import {Table} from "./Table.js";
-import {DragAndDrop} from "./DragAndDrop";
-import {Router} from "./Router";
-import {MainMenu} from "./MainMenu";
-import {TextFieldPage} from "./form/TextFieldPage";
-import {NumberFieldPage} from "./form/NumberFieldPage";
-import {DateTimePage} from "./form/DateTimePage";
-import {SelectPage} from "./form/SelectPage";
-import {HtmlFieldPage} from "./form/HtmlFieldPage";
-import {ChecksAndRadios} from "./form/ChecksAndRadios";
-import {ContainerFieldPage} from "./form/ContainerFieldPage";
-import {MapFieldPage} from "./form/MapFieldPage";
-import {ArrayFieldPage} from "./form/ArrayFieldPage";
-import {ChipsFieldPage} from "./form/ChipsFieldPage";
-import {DisplayFieldPage} from "./form/DisplayFieldPage";
-import {Form} from "./Form";
-import {GetStarted} from "./GetStarted";
-import {DatePickerPage} from "./DatePickerPage";
-import "./OverrideTest";
+import {DragAndDrop} from "./DragAndDrop.js"
+import {Router} from "./Router.js"
+import {MainMenu} from "./MainMenu.js"
+import {TextFieldPage} from "./form/TextFieldPage.js"
+import {NumberFieldPage} from "./form/NumberFieldPage.js"
+import {DateTimePage} from "./form/DateTimePage.js"
+import {SelectPage} from "./form/SelectPage.js"
+import {HtmlFieldPage} from "./form/HtmlFieldPage.js"
+import {ChecksAndRadios} from "./form/ChecksAndRadios.js"
+import {ContainerFieldPage} from "./form/ContainerFieldPage.js"
+import {MapFieldPage} from "./form/MapFieldPage.js"
+import {ArrayFieldPage} from "./form/ArrayFieldPage.js"
+import {ChipsFieldPage} from "./form/ChipsFieldPage.js"
+import {DisplayFieldPage} from "./form/DisplayFieldPage.js"
+import {Form} from "./Form.js"
+import {GetStarted} from "./GetStarted.js"
+import {DatePickerPage} from "./DatePickerPage.js"
+import "./OverrideTest.js"
 
 /**
  * Create main card panel for displaying SPA pages

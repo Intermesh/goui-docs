@@ -1,4 +1,4 @@
-import {column, datecolumn, DateTime, store, StoreRecord, Table} from "@intermesh/goui";
+import {column, datecolumn, DateTime, store, StoreRecord, Table} from "@intermesh/goui"
 
 export class PlaygroundTable extends Table {
 

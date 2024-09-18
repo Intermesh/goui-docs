@@ -15,8 +15,8 @@ import {
 	tree,
 	Tree
 } from "@intermesh/goui";
-import {MainMenu} from "./MainMenu";
-import {demoDataSource} from "./DemoDataSource";
+import {MainMenu} from "./MainMenu.js"
+import {demoDataSource} from "./DemoDataSource.js"
 
 export class Form extends Page {
 	constructor() {

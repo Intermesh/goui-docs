@@ -1,5 +1,5 @@
-import {Tree} from "@intermesh/goui";
-import {router} from "@intermesh/goui";
+import {Tree} from "@intermesh/goui"
+import {router} from "@intermesh/goui"
 
 
 export class MainMenu extends Tree {

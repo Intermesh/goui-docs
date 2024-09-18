@@ -1,5 +1,5 @@
 import {Page} from "./Page.js";
-import {p} from "@intermesh/goui";
+import {p} from "@intermesh/goui"
 
 export class NotFound extends Page {
 	constructor() {

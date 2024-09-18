@@ -1,4 +1,4 @@
-import {btn, Button, comp, Component, h1, p} from "@intermesh/goui";
+import {btn, Button, comp, Component, h1, p} from "@intermesh/goui"
 
 export class Page extends Component {
 

@@ -1,6 +1,6 @@
 import {Page} from "./Page.js";
-import {code, comp, fieldset, h1, h2, p, textfield, tree} from "@intermesh/goui";
-import {MainMenu} from "./MainMenu";
+import {code, comp, fieldset, h1, h2, p, textfield, tree} from "@intermesh/goui"
+import {MainMenu} from "./MainMenu.js"
 
 export class Component extends Page {
 	constructor() {

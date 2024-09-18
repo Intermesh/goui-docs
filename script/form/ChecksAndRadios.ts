@@ -1,5 +1,5 @@
 import {Page} from "../Page.js";
-import {btn, checkbox, checkboxgroup, fieldset, form, p, radio, tbar, Window} from "@intermesh/goui";
+import {btn, checkbox, checkboxgroup, fieldset, form, p, radio, tbar, Window} from "@intermesh/goui"
 
 
 export class ChecksAndRadios extends Page {

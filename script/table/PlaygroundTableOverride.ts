@@ -1,5 +1,5 @@
 import {PlaygroundTable} from "./PlaygroundTable.js";
-import {FunctionUtil} from "@intermesh/goui";
+import {FunctionUtil} from "@intermesh/goui"
 
 /**
  * Example on how to override a component by extending the render function

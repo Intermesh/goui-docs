@@ -15,7 +15,7 @@ import {
 	tbar,
 	Window
 } from "@intermesh/goui";
-import {demoDataSource} from "../DemoDataSource";
+import {demoDataSource} from "../DemoDataSource.js"
 
 
 export class ChipsFieldPage extends Page {

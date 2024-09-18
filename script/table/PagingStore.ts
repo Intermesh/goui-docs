@@ -1,4 +1,4 @@
-import {DateTime, Store} from "@intermesh/goui";
+import {DateTime, Store} from "@intermesh/goui"
 
 interface DemoStoreRecord {
 	number: number,
