@@ -73,7 +73,6 @@ export class PagingTable extends Component {
 							void table.store.load();
 						}
 					},
-					cls: "frame",
 					columns: [
 						column({
 							header: "ID",
