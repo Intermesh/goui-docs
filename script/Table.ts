@@ -2,7 +2,7 @@ import {Page} from "./Page.js";
 import {
 	btn,
 	checkboxselectcolumn,
-	column,
+	column, comp,
 	datasourcestore,
 	datecolumn,
 	h2,
@@ -30,7 +30,7 @@ export class Table extends Page {
 
 			new PagingTable(),
 
-			h2("Checkbox selection and button in row"),
+			h2("Checkbox selection and button in sticky columns"),
 
 			this.createTable(),
 
@@ -41,7 +41,10 @@ export class Table extends Page {
 	}
 
 	private createTable() {
-		return table({
+		return comp({
+			cls: "frame scroll",
+			height: 300
+		},table({
 			fitParent: true,
 			store: datasourcestore<DemoDataSource, DemoEntity & {selected:boolean}>({
 				dataSource: demoDataSource,
@@ -62,7 +65,8 @@ export class Table extends Page {
 
 			columns: [
 				checkboxselectcolumn({
-					id: "selected"
+					id: "selected",
+					sticky: true
 				}),
 
 				column({
@@ -79,7 +83,8 @@ export class Table extends Page {
 					header: "Name",
 					id: "name",
 					sortable: true,
-					resizable: true
+					resizable: true,
+					width: 300
 				}),
 
 				// datecolumns have a standard width
@@ -91,7 +96,8 @@ export class Table extends Page {
 
 				column({
 					id: "more",
-					width: 56,
+					width: 30,
+					sticky: true,
 					renderer: (columnValue, record, td, table1, storeIndex) => {
 						return btn({
 							icon: "more_vert",
@@ -126,6 +132,7 @@ export class Table extends Page {
 				}
 			}
 		})
+		);
 	}
 
 	private createGroupedTable() {

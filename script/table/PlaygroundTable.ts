@@ -28,7 +28,7 @@ export class PlaygroundTable extends Table {
 					id: "number",
 					sortable: true,
 					resizable: true,
-					width: 100,
+					width: 70,
 					align: "right"
 				}),
 
