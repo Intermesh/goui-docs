@@ -172,6 +172,21 @@ export class Window extends Page {
 						GouiWindow.alert("OK!", "Your answer") :
 						GouiWindow.alert("STOP!", "Your answer");
 				}
+			}),
+
+
+			btn({
+				text: "Error dialog",
+				handler: async () => {
+						try {
+							// @ts-ignore
+							this.causeAnError();
+						}
+						catch(e) {
+							GouiWindow.error(e);
+						}
+
+				}
 			})
 		)
 	}
