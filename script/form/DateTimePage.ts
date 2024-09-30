@@ -45,11 +45,17 @@ export class DateTimePage extends Page {
 					datefield({
 						label: "Date",
 						name: "date",
+						value: (new DateTime()).format("Y-m-d"),
 						defaultTime: (new DateTime()).format("H:00"),
 						min: (new DateTime()).addYears(-2).format("Y-m-d"),
 						max: (new DateTime()).addDays(-1).format("Y-m-d"),
 						hint: "Select a date in the past 2 years",
-						width: 240
+						width: 240,
+						listeners: {
+							change:(field, newValue, oldValue) => {
+								console.log("datefield change", newValue, oldValue)
+							}
+						}
 					}),
 
 					checkbox({
