@@ -122,8 +122,8 @@ export class ArrayFieldPage extends Page {
 					name: "sortablearrayfield",
 					listeners: {
 						render: comp => {
-							const sortable = new Sortable(comp.el, ".group");
-							sortable.on("sort", (fromIndex, toIndex) => {
+							const sortable = new Sortable(comp, ".group");
+							sortable.on("sort", (field, fromIndex, toIndex) => {
 								comp.value = ArrayUtil.move(comp.value, fromIndex, toIndex);
 							})
 						}
