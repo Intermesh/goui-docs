@@ -123,7 +123,7 @@ export class ArrayFieldPage extends Page {
 					listeners: {
 						render: comp => {
 							const sortable = new Sortable(comp, ".group");
-							sortable.on("sort", (field, fromIndex, toIndex) => {
+							sortable.on("sort", (field,toIndex , fromIndex, droppedOn, fromComp) => {
 								comp.value = ArrayUtil.move(comp.value, fromIndex, toIndex);
 							})
 						}

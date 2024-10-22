@@ -1,5 +1,17 @@
 import {Page} from "./Page.js";
-import {btn, column, comp, datasourcestore, datecolumn, h2, splitter, table, tree} from "@intermesh/goui"
+import {
+	btn,
+	column,
+	comp,
+	datasourcestore,
+	datecolumn,
+	h2, List,
+	Sortable,
+	splitter,
+	table,
+	Tree,
+	tree
+} from "@intermesh/goui"
 import {demoDataSource, DemoEntity} from "./DemoDataSource.js"
 
 type TreeRecord = {
@@ -104,34 +116,18 @@ export class DragAndDrop extends Page {
 			dropBetween: true,
 			dropOn: true,
 			listeners: {
-				drop: (tree, e, dropRow, dropIndex,  dropPos, dragData) => {
 
-					const store = dragData.cmp.store;
+				drop: (toComp, toIndex,fromIndex, droppedOn, fromComp) => {
 
-					// remove the dragged record from the store
-					store.removeAt(dragData.storeIndex);
-					if(store == dragData.dropTree.store && dragData.storeIndex < dropIndex) {
-						// if inserting in the same store we need to substract 1 from the index as we took one off.
-						dropIndex--;
-					}
-
-					//add the record to the new position
-					switch(dropPos) {
-						case "on":
-							// put it inside the dropped node at the end
-							dragData.childrenTree.store.add(dragData.record);
-							break;
-
-						case "before":
-							// reorder in the tree where it's dropped
-							dragData.dropTree.store.insert(dropIndex, dragData.record);
-							break;
-
-						case "after":
-							dragData.dropTree.store.insert(dropIndex + 1, dragData.record);
-							break;
+					if(fromComp != toComp) {
+						const record = (fromComp as Tree).store.get(fromIndex)!;
+						(fromComp as List).store.removeAt(fromIndex);
+						toComp.store.insert(toIndex, record)
+					} else {
+						toComp.store.move(fromIndex, toIndex);
 					}
 				}
+
 			}
 		});
 	}
@@ -149,7 +145,9 @@ export class DragAndDrop extends Page {
 				}
 			}),
 
-			sortable: true,
+			dropBetween: true,
+			dropOn: false,
+			draggable: true,
 
 			columns: [
 
@@ -171,7 +169,12 @@ export class DragAndDrop extends Page {
 
 			listeners: {
 				render: sender => {
-					sender.store.load();
+					void sender.store.load();
+				},
+				drop: (toComp, toIndex,fromIndex, droppedOn, fromComp) => {
+
+					toComp.store.move(fromIndex, toIndex);
+
 				}
 			}
 		})
@@ -189,7 +192,7 @@ export class DragAndDrop extends Page {
 					limit: 10
 				}
 			}),
-
+			sortableGroup: "gridtotree",
 			draggable: true,
 			dropBetween: false,
 			dropOn: false,
@@ -230,15 +233,26 @@ export class DragAndDrop extends Page {
 		const dsTree = tree(
 
 			{
+				sortableGroup: "gridtotree",
+				draggable: true,
+				dropOn: true,
+				dropBetween: false,
 				width: 180,
 				listeners: {
-					drop: (tree, e, dropRow, dropIndex, dropPos, dragData) => {
+					drop: (toComponent, toIndex, fromIndex, droppedOn, fromComp) =>{
 
-						const dropRecord = dragData.dropTree.store.get(dropIndex);
+						const fromRecord = (fromComp as Tree).store.get(fromIndex)!,
+							toRecord = toComponent.store.get(toIndex)!;
 
-						void demoDataSource.update(dragData.record.id, {
-							parentId: dropRecord.id
+						void demoDataSource.update(fromRecord.id!, {
+							parentId: toRecord.id
 						});
+					},
+					dropallowed: (toComponent, toIndex, fromIndex, droppedOn, fromComp) => {
+						const toRecord = toComponent.store.get(toIndex)!;
+
+						// disallow drops on nodes with 10 just because we can :)
+						return toRecord.text.indexOf("10") == -1;
 					},
 					// We populate the tree directly from a datasource on the beforeexpand event. This also fires on render for the root nodes.
 					beforeexpand: (tree1, childrenTree, record, storeIndex) => {
@@ -271,9 +285,7 @@ export class DragAndDrop extends Page {
 						//cancel the expand action. We will call it when data has been fetched.
 						return false;
 					},
-				},
-				draggable: true,
-				dropOn: true
+				}
 			}
 		);
 
