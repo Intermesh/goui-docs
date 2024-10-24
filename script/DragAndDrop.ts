@@ -7,7 +7,7 @@ import {
 	datecolumn,
 	h2, List,
 	Sortable,
-	splitter,
+	splitter, Table,
 	table,
 	Tree,
 	tree
@@ -196,6 +196,9 @@ export class DragAndDrop extends Page {
 			draggable: true,
 			dropBetween: false,
 			dropOn: false,
+			rowSelectionConfig: {
+				multiSelect:true
+			},
 
 			columns: [
 
@@ -241,11 +244,20 @@ export class DragAndDrop extends Page {
 				listeners: {
 					drop: (toComponent, toIndex, fromIndex, droppedOn, fromComp) =>{
 
-						const fromRecord = (fromComp as Tree).store.get(fromIndex)!,
-							toRecord = toComponent.store.get(toIndex)!;
+						let fromRecords: any[] = [];
 
-						void demoDataSource.update(fromRecord.id!, {
-							parentId: toRecord.id
+						const toRecord = toComponent.store.get(toIndex)!;
+
+						if(fromComp instanceof Tree) {
+							fromRecords =[fromComp.store.get(fromIndex)];
+						} else if (fromComp instanceof Table) {
+							fromRecords = fromComp.rowSelection!.selected.map(index => fromComp.store.get(index)!);
+							fromComp.rowSelection!.clear();
+						}
+						fromRecords.forEach(fromRecord => {
+							void demoDataSource.update(fromRecord.id!, {
+								parentId: toRecord.id
+							});
 						});
 					},
 					dropallowed: (toComponent, toIndex, fromIndex, droppedOn, fromComp) => {
