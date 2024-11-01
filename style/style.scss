@@ -1,4 +1,4 @@
-@import '../node_modules/@intermesh/goui/style/_config.scss';
+@use '../node_modules/@intermesh/goui/style/_config.scss';
 
 html {
 	height: 100%;
@@ -45,7 +45,7 @@ body {
 		margin-top: 80px;
 		padding: 8px;
 		text-align: center;
-		border-top: 1px solid $colorBorder;
+		border-top: 1px solid config.$colorBorder;
 		//color: white;
 		p {
 			font-size: 80%;
@@ -79,7 +79,7 @@ a {
 
 ul.goui-tree.main-menu, menu.demo {
 	//height: 100%;
-
+	font-weight: 600;
 	list-style: none;
 	padding: 8px;
 
@@ -95,7 +95,7 @@ ul.goui-tree.main-menu, menu.demo {
 	.node i.icon {
 		display:none;
 	}
-	font-weight: 600;
+
 	a {
 		line-height: 32px;
 	}
