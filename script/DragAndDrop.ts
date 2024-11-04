@@ -242,18 +242,15 @@ export class DragAndDrop extends Page {
 				dropBetween: false,
 				width: 180,
 				listeners: {
-					drop: (toComponent, toIndex, fromIndex, droppedOn, fromComp) =>{
+					drop: (toComponent, toIndex, fromIndex, droppedOn, fromComp, dragData) =>{
 
-						let fromRecords: any[] = [];
+						const selectedRowIndexes = dragData.selectedRowIndexes as number[], fromList = fromComp as List,
+							fromRecords = selectedRowIndexes.map(index => fromList.store.get(index)!);
 
 						const toRecord = toComponent.store.get(toIndex)!;
 
-						if(fromComp instanceof Tree) {
-							fromRecords =[fromComp.store.get(fromIndex)];
-						} else if (fromComp instanceof Table) {
-							fromRecords = fromComp.rowSelection!.selected.map(index => fromComp.store.get(index)!);
-							fromComp.rowSelection!.clear();
-						}
+						fromList.rowSelection!.clear();
+
 						fromRecords.forEach(fromRecord => {
 							void demoDataSource.update(fromRecord.id!, {
 								parentId: toRecord.id
