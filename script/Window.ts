@@ -74,7 +74,7 @@ export class Window extends Page {
 
 						comp({
 							cls: "pad",
-							text: "I'm a draggable window. Drag me with the header or resize me on the bottom right."
+							text: "I'm a draggable window. Drag me with the header or resize me on the edges or corners."
 						})
 					).show();
 				}
