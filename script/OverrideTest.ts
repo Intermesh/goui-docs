@@ -9,10 +9,13 @@ const origRender = Button.prototype.render, origOnAdded = Button.prototype.onAdd
 
 Button.prototype.onAdded = function (index:number) {
 	origOnAdded.call(this, index);
-	console.warn("Button is added to parent", this);
+	//console.warn("Button is added to parent", this);
 }
 
 Button.prototype.render = function (parentEl, insertBefore) {
-	console.warn("Button is rendered", this);
+
+	this.on("click", () => {
+		console.warn("Override click handler called", this);
+	})
 	return origRender.call(this, parentEl, insertBefore);
 }
