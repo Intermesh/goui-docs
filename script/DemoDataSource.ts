@@ -1,16 +1,16 @@
 import {
-    AbstractDataSource,
-    ArrayUtil,
-    BaseEntity,
-    browserStoreConnection,
-    Changes,
-    CommitResponse,
-    DateTime,
-    EntityID,
-    GetResponse,
-    QueryParams,
-    QueryResponse,
-    SetRequest
+	AbstractDataSource,
+	ArrayUtil,
+	BaseEntity,
+	browserStoreConnection,
+	Changes,
+	CommitResponse,
+	DateTime,
+	EntityID,
+	GetResponse, MergeResponse,
+	QueryParams,
+	QueryResponse,
+	SetRequest
 } from "@intermesh/goui";
 
 const data: Record<EntityID, DemoEntity> = {};
@@ -146,6 +146,10 @@ export class DemoDataSource extends AbstractDataSource<DemoEntity> {
 			newState: "1",
 			oldState: "1"
 		});
+	}
+
+	protected internalMerge(ids: EntityID[]): Promise<MergeResponse<DemoEntity>> {
+		throw "notimplemented";
 	}
 
 }
