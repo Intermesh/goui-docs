@@ -94,7 +94,12 @@ export class DateTimePage extends Page {
 					timefield({
 						name: "time",
 						label: "Time",
-						value: "22:15"
+						value: "22:15",
+						listeners: {
+							change:(field, newValue, oldValue) => {
+								console.log("timefield change", newValue, oldValue)
+							}
+						}
 					}),
 
 					comp(), //for breaking to next line
