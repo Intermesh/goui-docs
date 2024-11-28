@@ -53,7 +53,9 @@ export class PlaygroundTable extends Table {
 		this.itemId = "table";
 		// this.cls = "fit";
 
-		this.rowSelectionConfig = true;
+		this.rowSelectionConfig = {
+			multiSelect: true
+		};
 
 		// this.on("navigate",(table, rowIndex, record) => {
 		// 	Window.alert("Selected", "You navigated to " + record.number + ". Press 'Escape' to close me and navigate the grid with the arrow keys.");
