@@ -10,7 +10,7 @@ import {
 	select,
 	tbar,
 	textfield,
-	Window
+	Window, Form, ContainerFieldValue
 } from "@intermesh/goui";
 
 
@@ -18,6 +18,7 @@ export class ArrayFieldPage extends Page {
 
 	private arrayField;
 	private sortableArrayField;
+	private form: Form<ContainerFieldValue>;
 
 
 	constructor() {
@@ -28,7 +29,7 @@ export class ArrayFieldPage extends Page {
 
 
 		this.items.add(
-			form({
+			this.form = form({
 					itemId: "form",
 					title: "Form",
 					cls: "scroll fit",
@@ -44,6 +45,7 @@ export class ArrayFieldPage extends Page {
 				fieldset({
 
 					},
+
 
 					this.arrayField = arrayfield({
 						name: "arrayfield",
@@ -229,8 +231,106 @@ export class ArrayFieldPage extends Page {
 					
 					btn({
 						cls: "primary",
-						html: "Save",
+						text: "Save",
 						type: "submit"
+					}),
+
+					btn({
+						text: "Reset",
+						type: "reset"
+					}),
+
+					btn({
+						text: "Clear",
+						type: "button",
+						handler: () => {
+							this.form.clear();
+						}
+					}),
+
+
+					btn({
+						text: "Load",
+						handler: () => {
+							const dataSets = [
+								{
+									"set": "set1",
+									"arrayfield": [
+										{
+											"type": "work",
+											"email": "john@work1.com"
+										},
+										{
+											"type": "home",
+											"email": "john@home1.com"
+										}
+									],
+									"sortablearrayfield": [
+										{
+											"type": "work",
+											"email": "john@work1.com"
+										},
+										{
+											"type": "home",
+											"email": "john@home1.com"
+										},
+										{
+											"type": "home",
+											"email": "foo@home1.com"
+										},
+										{
+											"type": "home",
+											"email": "bar@home1.com"
+										}
+									]
+								},
+								{
+									"set": "set2",
+
+									// this will empty the field
+									"arrayfield": [
+									],
+									"sortablearrayfield": [
+										{
+											"type": "work",
+											"email": "john@work2.com"
+										},
+										{
+											"type": "home",
+											"email": "john@home2.com"
+										},
+										{
+											"type": "home",
+											"email": "foo@home2.com"
+										},
+									]
+								},
+								{
+									"set": "set3",
+
+									// omitting it will reset the field to the value that was used to generate it.
+									// "arrayfield": [
+									//
+									// ],
+									"sortablearrayfield": [
+										{
+											"type": "work",
+											"email": "john@work3.com"
+										},
+										{
+											"type": "home",
+											"email": "john@home3.com"
+										},
+										{
+											"type": "home",
+											"email": "bar@home3.com"
+										}
+									]
+								}
+							]
+
+							this.form.value = dataSets[Math.floor(Math.random() * 3)];
+						}
 					})
 				)
 			)
