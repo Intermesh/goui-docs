@@ -54,7 +54,12 @@ export class PlaygroundTable extends Table {
 		// this.cls = "fit";
 
 		this.rowSelectionConfig = {
-			multiSelect: true
+			multiSelect: true,
+			listeners: {
+				selectionchange: (r, rows) => {
+					console.log(rows)
+				}
+			}
 		};
 
 		// this.on("navigate",(table, rowIndex, record) => {
