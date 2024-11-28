@@ -10,11 +10,13 @@
     "start": "concurrently --kill-others \"npm run start:serve\"  \"npm run start:sass\"",
     "start:serve": "npx esbuild ./script/Index.ts --bundle --serve=8081 --servedir=.  --outdir=dist --sourcemap --format=esm --target=es2018",
     "start:sass": "npx sass --watch ./style:./dist",
+
     "build": "npm run build:clean && npm run build:sass && npm run build:ts",
     "build:clean": "rm -rf ./dist/*",
     "build:sass": "npx sass --style=compressed ./style:./dist",
     "build:ts": "npx esbuild ./script/Index.ts --minify --bundle --sourcemap --format=esm --target=es2018 --outdir=dist",
-    "build:tsc": "npx tsc --noEmit"
+
+    "test:tsc": "npx tsc --noEmit"
   },
   "dependencies": {
     "@intermesh/goui": "latest"

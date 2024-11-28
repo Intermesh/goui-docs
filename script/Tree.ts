@@ -1,5 +1,5 @@
 import {Page} from "./Page.js"
-import {h2, tree, TreeRecord} from "@intermesh/goui"
+import {h2, List, tree, TreeRecord, Tree as TreeComp} from "@intermesh/goui"
 import {demoDataSource} from "./DemoDataSource.js"
 
 export class Tree extends Page {
@@ -53,44 +53,12 @@ export class Tree extends Page {
 			}
 		];
 
-
 		const demoTree = tree({
 			data: treeData,
-			draggable: true,
-			dropBetween: true,
-			dropOn: true,
 			listeners: {
 				rowclick: (list, storeIndex, row, ev) => {
 					const record = list.store.get(storeIndex);
 					console.log(list, storeIndex, row,ev, record);
-				},
-				drop: (tree, e, dropRow, dropIndex,  dropPos, dragData) => {
-
-					const store = dragData.cmp.store;
-
-					// remove the dragged record from the store
-					store.removeAt(dragData.storeIndex);
-					if(store == dragData.dropTree.store && dragData.storeIndex < dropIndex) {
-						// if inserting in the same store we need to substract 1 from the index as we took one off.
-						dropIndex--;
-					}
-
-					//add the record to the new position
-					switch(dropPos) {
-						case "on":
-							// put it inside the dropped node at the end
-							dragData.childrenTree.store.add(dragData.record);
-						break;
-
-						case "before":
-							// reorder in the tree where it's dropped
-							dragData.dropTree.store.insert(dropIndex, dragData.record);
-							break;
-
-						case "after":
-							dragData.dropTree.store.insert(dropIndex + 1, dragData.record);
-							break;
-					}
 				}
 			}
 		});

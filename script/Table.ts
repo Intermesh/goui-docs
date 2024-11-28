@@ -159,7 +159,7 @@ export class Table extends Page {
 				multiSelect: true,
 				listeners: {
 					selectionchange: rowSelect => {
-						console.log("selectionchange", rowSelect.selected);
+						console.log("selectionchange", rowSelect.getSelected());
 					}
 				}
 			},

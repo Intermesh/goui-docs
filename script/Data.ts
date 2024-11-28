@@ -56,7 +56,7 @@ export class Data extends Page {
 				disabled: true,
 				handler: async (form) => {
 					const entity = form.value as DemoEntity;
-					await demoDataSource.update(this.table.store.get(this.table.rowSelection!.selected[0])!.id, entity);
+					await demoDataSource.update(this.table.rowSelection!.getSelected()[0].record.id, entity);
 
 					Notifier.success("The record was updated. The change is immediately updated in the list.");
 				}

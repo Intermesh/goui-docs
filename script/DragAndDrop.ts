@@ -5,9 +5,9 @@ import {
 	comp,
 	datasourcestore,
 	datecolumn,
-	h2, List,
+	h2, List, SelectedRow,
 	Sortable,
-	splitter, Table,
+	splitter, Store, Table,
 	table,
 	Tree,
 	tree
@@ -244,8 +244,8 @@ export class DragAndDrop extends Page {
 				listeners: {
 					drop: (toComponent, toIndex, fromIndex, droppedOn, fromComp, dragData) =>{
 
-						const selectedRowIndexes = dragData.selectedRowIndexes as number[], fromList = fromComp as List,
-							fromRecords = selectedRowIndexes.map(index => fromList.store.get(index)!);
+						const selectedRowIndexes = dragData.selectedRowIndexes as SelectedRow<Store>[], fromList = fromComp as List,
+							fromRecords = selectedRowIndexes.map(row => row.record);
 
 						const toRecord = toComponent.store.get(toIndex)!;
 
