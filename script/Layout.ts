@@ -1,5 +1,5 @@
 import {Page} from "./Page.js";
-import {btn, comp, h2, p, splitter} from "@intermesh/goui"
+import {btn, comp, h2, h3, p, splitter} from "@intermesh/goui"
 
 export class Layout extends Page {
 	constructor() {
@@ -85,12 +85,16 @@ export class Layout extends Page {
 
 			p("A Splitter Component can be used for resizing panels on the desktop. Try resizing the panels."),
 
+			h3("Width"),
+
+
 			comp({
 					cls: "hbox gap",
 				},
 				comp({
 					itemId: "left",
-					width: 100,
+					width: 120,
+					minWidth: 60,
 					cls: "pad",
 					html: "Left",
 					style: {border: "1px dashed red"}
@@ -102,6 +106,7 @@ export class Layout extends Page {
 
 				comp({
 					flex: 1,
+					minWidth: 60,
 					cls: "pad",
 					html: "Center",
 					style: {border: "1px dashed blue"}
@@ -113,9 +118,53 @@ export class Layout extends Page {
 
 				comp({
 					itemId: "right",
-					width: 100,
+					width: 120,
+					minWidth: 60,
 					cls: "pad",
 					html: "Right",
+					style: {border: "1px dashed green"}
+				})
+			),
+
+			h3("Height"),
+
+
+			comp({
+					cls: "vbox gap",
+					height: 400,
+				},
+				comp({
+					itemId: "top",
+					height: 100,
+					minHeight: 30,
+					cls: "pad",
+					html: "Top",
+					style: {border: "1px dashed red"}
+				}),
+
+
+				splitter({
+					resizeComponentPredicate: "top" //finds it by itemId
+				}),
+
+				comp({
+					flex: 1,
+					minHeight: 60,
+					cls: "pad",
+					html: "Middle",
+					style: {border: "1px dashed blue"}
+				}),
+
+				splitter({
+					resizeComponentPredicate: "bottom" //finds it by itemId
+				}),
+
+				comp({
+					itemId: "bottom",
+					height: 100,
+					minHeight: 60,
+					cls: "pad",
+					html: "Bottom",
 					style: {border: "1px dashed green"}
 				})
 			),
