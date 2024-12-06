@@ -26,15 +26,15 @@ export class Table extends Page {
 			p("Table's support sorting, keyboard navigation and (multi) row selection. " +
 				"Right click the headers to enable or disable columns."),
 
-			new PlaygroundTablePanel(),
-
-			new PagingTable(),
-
-			h2("Checkbox selection and button in sticky columns"),
-
-			this.createTable(),
-
-			h2("Grouped"),
+			// new PlaygroundTablePanel(),
+			//
+			// new PagingTable(),
+			//
+			// h2("Checkbox selection and button in sticky columns"),
+			//
+			// this.createTable(),
+			//
+			// h2("Grouped"),
 
 			this.createGroupedTable()
 		);
@@ -127,6 +127,8 @@ export class Table extends Page {
 
 				},
 
+
+
 				render: sender => {
 					sender.store.load();
 				}
@@ -204,6 +206,7 @@ export class Table extends Page {
 				navigate: (list, storeIndex) => {
 					console.log(list.store.get(storeIndex)!.createdAt);
 				},
+
 
 				render: sender => {
 					sender.store.load();

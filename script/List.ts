@@ -1,5 +1,6 @@
 import {Page} from "./Page.js";
-import {btn, DateTime, h2, list, p, store, StoreRecord} from "@intermesh/goui"
+import {btn, datasourcestore, DateTime, h2, list, Notifier, p, store, StoreRecord} from "@intermesh/goui"
+import {demoDataSource} from "./DemoDataSource";
 
 export class List extends Page {
 	constructor() {
@@ -30,7 +31,44 @@ export class List extends Page {
 					s.loadData(this.generateStoreData(), false);
 
 				}
-			})
+			}),
+
+			h2("Datasource store with grouping"),
+
+
+			list({
+				store: datasourcestore({
+					dataSource: demoDataSource,
+					queryParams: {
+						filter: {
+							parentId: undefined
+						},
+						limit: 20
+					},
+					sort: [{
+						isAscending: true,
+						property: "group"
+					}, {
+						isAscending: true,
+						property: "name"
+					}]
+				}),
+				renderer: record => {
+					return record.name;
+				},
+				groupBy: "group",
+				groupByRenderer: (groupBy, record, list1) => {
+					return `<strong>${groupBy}</strong>`;
+				},
+				listeners: {
+					render: (l) => {
+						l.store.load();
+					},
+					rowclick: (list1, storeIndex, row, ev) => {
+						Notifier.success(list1.store.get(storeIndex)!.name);
+					}
+				}
+			}),
 		)
 	}
 

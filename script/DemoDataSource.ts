@@ -17,7 +17,7 @@ const data: Record<EntityID, DemoEntity> = {};
 
 
 const groups = [];
-for (let i = 0; i < 50; i++) {
+for (let i = 0; i < 10; i++) {
 	groups.push("Group " + i);
 }
 
@@ -28,7 +28,7 @@ for (let i = 1; i <= max; i++) {
 		id: i + "",
 		parentId: i < topLevel ? undefined : (Math.floor(Math.random() * (max-topLevel)) + 1) + "",
 		name: "Test " + i,
-		group: groups[Math.floor(Math.random() * 50)],
+		group: groups[Math.floor(Math.random() * 10)],
 		createdAt: (new DateTime()).addDays(Math.ceil(Math.random() * -365)).format('c')
 	};
 
