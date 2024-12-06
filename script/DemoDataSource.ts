@@ -101,7 +101,7 @@ export class DemoDataSource extends AbstractDataSource<DemoEntity> {
 		const sorted = params.sort ? ArrayUtil.multiSort(d, params.sort) : d;
 
 		if (params.filter) {
-			//dummy filter that matches propery names
+			//dummy filter that matches property names
 			sorted.forEach((e) => {
 				let pass = true;
 				for (let filterName in params.filter) {

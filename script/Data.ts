@@ -12,7 +12,7 @@ import {
 	table,
 	textfield
 } from "@intermesh/goui";
-import {demoDataSource, DemoEntity} from "./DemoDataSource.js"
+import {DemoDataSource, demoDataSource, DemoEntity} from "./DemoDataSource.js"
 import {RestApiExample} from "./RestApiExample.js"
 
 
@@ -40,8 +40,10 @@ export class Data extends Page {
 				"The example below demonstrates this with a table and a form. When you save the form the table store acts on the" +
 				" data source's change event."),
 
+			p("This example code also demonstrates how to load async data along with the store using relations and the buildRecord property"),
+
 			comp({cls: "hbox gap"},
-				comp({width: 300, cls: "frame"}, this.table),
+				comp({flex: 2, cls: "frame scroll"}, this.table),
 				this.form
 			),
 
@@ -81,13 +83,37 @@ export class Data extends Page {
 			// Create a data source store that gets its data from a DataSource.
 			// This store listens for changes on the DataSource.
 			fitParent: true,
-			store: datasourcestore({
+			store: datasourcestore<DemoDataSource, DemoEntity & {async: number}>({
 				dataSource: demoDataSource,
 				queryParams: {
-					filter: {
-						parentId: undefined
-					},
 					limit: 10
+				},
+				sort: [{
+					isAscending: false,
+					property:"parentId"
+				}],
+
+				// You can define relations to other data sources. They will be resolved on load and before rendering.
+				relations: {
+					parent:{
+						dataSource: demoDataSource,
+						path: "parentId"
+					}
+				},
+
+				// Other async operations that's resolved on store load and before rendering can be done
+				// by providing a buildRecord function
+				buildRecord: async (entity) => {
+
+					return new Promise(resolve => {
+						const r = entity as DemoEntity & {async: number};
+
+						// for demo a random number with a settimeout to make it async
+						setTimeout(() => {
+							r.async = Math.floor(Math.random() * 10)
+							resolve(r);
+						})
+					})
 				}
 			}),
 			rowSelectionConfig: {
@@ -103,13 +129,31 @@ export class Data extends Page {
 				column({
 					header: "Name",
 					id: "name",
-					resizable: true
+					resizable: true,
+					width: 100
 				}),
+
+				column({
+					id: "parent",
+					header: "Parent",
+					property: "parent/name", // A JSON pointer path can be set in the property
+					width: 100,
+					align: "left"
+				}),
+
+				column({
+					header: "Random async",
+					id: "async",
+					resizable: true,
+					align: "right",
+					width: 50
+				}),
+
 				datecolumn({
 					header: "Created At",
 					id: "createdAt",
 					sortable: true
-				})
+				}),
 			],
 			listeners: {
 
