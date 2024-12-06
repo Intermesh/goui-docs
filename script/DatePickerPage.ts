@@ -1,5 +1,5 @@
 import {Page} from "./Page.js";
-import {cardmenu, cards, comp, datepicker, p} from "@intermesh/goui"
+import {cardmenu, cards, comp, datepicker, DateTime, h3, monthpicker, p, weekpicker} from "@intermesh/goui"
 
 export class DatePickerPage extends Page {
 	constructor() {
@@ -8,7 +8,18 @@ export class DatePickerPage extends Page {
 		this.sourceURL = './DatePickerPage.ts';
 
 		this.items.add(
-			datepicker()
+			h3("Date picker"),
+			datepicker(),
+
+			h3("Month picker"),
+			monthpicker({
+				value: new DateTime()
+			}),
+
+			h3("Week picker"),
+			weekpicker({
+				value: new DateTime()
+			}),
 		);
 	}
 }
