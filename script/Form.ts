@@ -1,13 +1,13 @@
 import {Page} from "./Page.js";
 import {
-	a,
+	a, btn,
 	code,
 	ComboBox,
 	combobox,
 	comp,
 	datefield,
 	fieldset,
-	h1,
+	h1, htmlfield,
 	img,
 	p,
 	t,
@@ -82,6 +82,20 @@ export class Form extends Page {
 					name: "completedAt"
 				}),
 			),
+
+			fieldset({
+
+			},
+
+				comp({cls: "group"},
+					btn({icon: "add"}),
+					htmlfield({
+						flex: 1
+					}),
+					btn({icon: "send"}),
+					)
+
+				),
 
 			p("Forms can handle complex object structures using Container and Array type fields. They don't submit in " +
 				"the traditional way but return a Javascript Object that can be sent using an XHR or fetch API request. " +
