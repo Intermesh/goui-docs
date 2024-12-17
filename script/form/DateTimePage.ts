@@ -75,7 +75,7 @@ export class DateTimePage extends Page {
 						name: "datetime",
 						withTime: true,
 						defaultTime: "13:00",
-						value: (new DateTime()).format("Y-m-dT:H:i"),
+						value: (new DateTime()).format("Y-m-dTH:i"),
 						min: (new DateTime()).addYears(-2).format("Y-m-d"),
 						max: (new DateTime()).addDays(-1).format("Y-m-d"),
 						hint: "Select a date in the past 2 years"
