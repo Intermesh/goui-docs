@@ -1,5 +1,5 @@
 import {Page} from "../Page.js";
-import {btn, checkbox, checkboxgroup, fieldset, form, p, radio, tbar, Window} from "@intermesh/goui"
+import {btn, checkbox, checkboxgroup, fieldset, Form, form, p, radio, tbar, Window} from "@intermesh/goui"
 
 
 export class ChecksAndRadios extends Page {
@@ -82,11 +82,11 @@ export class ChecksAndRadios extends Page {
 							label: "Radio with type='box'",
 							type: "box",
 							name: "radio-box",
-							value: "option1",
+							value: 1,
 							options: [
-								{text: "Option 1", value: "option1"},
-								{text: "Option 2", value: "option2"},
-								{text: "Option 3", value: "option3"}
+								{text: "Option 1", value: 1},
+								{text: "Option 2", value: 2},
+								{text: "Null", value: null},
 							]
 						}
 					),
@@ -108,11 +108,31 @@ export class ChecksAndRadios extends Page {
 
 				tbar({cls: "bottom"},
 
+					btn({
+						text: "Load",
+						handler: (b) => {
+
+							b.findAncestorByType(Form)!.value = {
+								"checkbox": true,
+								"cbAgree": true,
+								"cbSwitch": true,
+								"cbButton": true,
+								"option1": true,
+								"option2": true,
+								"option3": true,
+								"radio-button": "option2",
+								"radio-box": null
+							};
+
+							
+						}
+					}),
+
 					"->",
 					
 					btn({
 						cls: "primary",
-						html: "Save",
+						text: "Save",
 						type: "submit"
 					})
 				)
