@@ -1,5 +1,13 @@
 import {Page} from "./Page.js"
-import {h2, List, tree, TreeRecord, Tree as TreeComp} from "@intermesh/goui"
+import {
+	h2,
+	TreeRecord,
+	Tree as TreeComp,
+	TreeStore,
+	tree,
+	treestore, btn, treecolumn,
+
+} from "@intermesh/goui"
 import {demoDataSource} from "./DemoDataSource.js"
 
 export class Tree extends Page {
@@ -12,24 +20,40 @@ export class Tree extends Page {
 		const treeData: TreeRecord[] = [
 			{
 				id: "1",
+				icon: "star",
 				text: "Node 1",
 				children: [
 					{
+						icon: "folder",
 						id: "1.1",
 						text: "Node 1.1",
-						children: [],
+						expanded: true,
+						children: [{
+							icon: "csv",
+							id: "1.1.1",
+							text: "Node 1.1.1",
+							children: []
+						},{
+							icon: "csv",
+							id: "1.1.2",
+							text: "Node 1.1.2",
+							children: []
+						}],
 					},
 					{
+						icon: "folder",
 						id: "1.2",
 						text: "Node 1.2",
 						children: []
 					},
 					{
+						icon: "folder",
 						id: "1.3",
 						text: "Node 1.3",
 						children: []
 					},
 					{
+						icon: "folder",
 						id: "1.4",
 						text: "Node 1.4",
 						children: []
@@ -38,13 +62,17 @@ export class Tree extends Page {
 			}, {
 				id: "2",
 				text: "Node 2",
+				icon: "folder",
+				// expanded: true,
 				children: [
 					{
+						icon: "folder",
 						id: "2.1",
 						text: "Node 2.1",
 						children: []
 					},
 					{
+						icon: "folder",
 						id: "2.2",
 						text: "Node 2.2",
 						children: []
@@ -54,14 +82,37 @@ export class Tree extends Page {
 		];
 
 		const demoTree = tree({
-			data: treeData,
-			listeners: {
-				rowclick: (list, storeIndex, row, ev) => {
-					const record = list.store.get(storeIndex);
-					console.log(list, storeIndex, row,ev, record);
+
+			nodeProvider: () => {
+				return treeData;
+			},
+			rowSelectionConfig: {
+				multiSelect: true,
+				listeners: {
+					selectionchange: sel => {
+						// debugger;
+						console.log(sel.getSelected())
+					},
+					rowselect: (s, r) => {
+						// debugger;
+						// console.log("rowselect", r.id)
+					},
+					beforerowdeselect: (s, r) => {
+						// debugger;
+						// console.log("rowdeselect", r.id)
+					}
 				}
+			},
+			listeners: {
+				// rowclick: (list, storeIndex, row, ev) => {
+				// 	const record = list.store.get(storeIndex);
+				// 	console.log(list, storeIndex, row,ev, record);
+				// }
 			}
 		});
+
+
+
 
 
 		/**
@@ -69,46 +120,39 @@ export class Tree extends Page {
 		 */
 		const dsTree = tree(
 			{
+				columns: [
+					treecolumn({
+						id: "text",
+						defaultIcon: "folder"
+					})
+				],
+				nodeProvider:   async (record) : Promise<TreeRecord[]> => {
+					const q = await demoDataSource.query({filter: {parentId: record ? record.id: undefined}});
+					const getResponse = await demoDataSource.get(q.ids)
+					//at the root of the tree record is undefined
+					return Promise.all(getResponse.list.map(async (e) => {
+						return {
+							id: e.id + "",
+							text: e.name,
+							// set to empty array if it has no children. Then the tree knows it's a leaf.
+							// this is very inefficient but works for the demo :)
+							children: (await demoDataSource.query({filter: {parentId: e.id}, limit: 1})).ids.length ? undefined : []
+						}
+					}))
+				},
 				draggable: true,
 				dropOn: true,
 				listeners: {
-					// We populate the tree directly from a datasource on the beforeexpand event. This also fires on render for the root nodes.
-					beforeexpand: (tree1, childrenTree, record, storeIndex) => {
+					drop: (toComponent, toIndex, fromIndex, droppedOn, fromComp, dragDataSet) => {
 
-						// we already loaded the store
-						if(childrenTree.store.loaded) {
+						if(fromComp != toComponent	) {
 							return;
 						}
+						const draggedRecord = (fromComp as TreeComp).store.get(fromIndex)!,
+							droppedOnRecord = toComponent.store.get(toIndex)!;
 
-						// Get the data
-						demoDataSource.get().then(getResponse => {
-							//at the root of the tree record is undefined
-							const parentId = record ? record.id : undefined,
-								data = getResponse.list.filter(value => value.parentId == parentId)
-									.map(e => {
-										return {
-											id: e.id + "",
-											text: e.name,
-											// set to empty array if it has no children. Then the tree knows it's a leaf.
-											children: getResponse.list.find(value => value.parentId == e.id) ? undefined : []
-										}
-									});
-
-							childrenTree.store.loadData(data, false);
-
-							// retry expand
-							childrenTree.expand();
-						})
-
-						//cancel the expand action. We will call it when data has been fetched.
-						return false;
-					},
-
-					drop: (list, e, dropRow, dropIndex, position, dragData) => {
-						const dropRecord = dragData.dropTree.store.get(dropIndex);
-
-						demoDataSource.update(dragData.record.id,{
-							parentId: dropRecord.id
+						demoDataSource.update(draggedRecord.id!,{
+							parentId: droppedOnRecord.id
 						});
 					}
 				}
@@ -117,6 +161,7 @@ export class Tree extends Page {
 
 		// when the data source changes reload the tree
 		demoDataSource.on("change", () => {
+
 			dsTree.reload();
 		});
 
@@ -128,6 +173,12 @@ export class Tree extends Page {
 			this.createCheckTree(),
 
 			h2("Tree using datasource"),
+			btn({
+				icon: "refresh",
+				handler: () => {
+					dsTree.reload();
+				}
+			}),
 
 			dsTree
 		)
@@ -189,10 +240,10 @@ export class Tree extends Page {
 
 
 		return tree({
-			data: treeData,
+			nodeProvider: () => treeData,
 			listeners: {
-				checkchange:(tree1, childrenTree, record, storeIndex, checked) => {
-					console.log(record, checked, tree1.data);
+				checkchange:(tree1, record, storeIndex, checked) => {
+					console.log(record, checked, tree1);
 				}
 			}
 		});

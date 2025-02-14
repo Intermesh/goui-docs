@@ -10,15 +10,11 @@ import {
 	splitter, Store, Table,
 	table,
 	Tree,
-	tree
+	tree,
+	TreeRecord
 } from "@intermesh/goui"
 import {demoDataSource, DemoEntity} from "./DemoDataSource.js"
 
-type TreeRecord = {
-	id?: string,
-	text: string
-	children?: TreeRecord[]
-}
 
 export class DragAndDrop extends Page {
 	sourceURL = "DragAndDrop.ts";
@@ -69,7 +65,7 @@ export class DragAndDrop extends Page {
 
 	private createSortingTree() {
 		return tree({
-			data: [
+			nodeProvider: () => [
 				{
 					id: "1",
 					text: "Node 1",
@@ -236,20 +232,40 @@ export class DragAndDrop extends Page {
 		const dsTree = tree(
 
 			{
+				nodeProvider:  async (record) : Promise<TreeRecord[]> => {
+					const q = await demoDataSource.query({filter: {parentId: record ? record.id: undefined}});
+					const getResponse = await demoDataSource.get(q.ids)
+					//at the root of the tree record is undefined
+					return Promise.all(getResponse.list.map(async (e) => {
+						return {
+							id: e.id + "",
+							text: e.name,
+							// set to empty array if it has no children. Then the tree knows it's a leaf.
+							// this is very inefficient but works for the demo :)
+							children: (await demoDataSource.query({filter: {parentId: e.id}, limit: 1})).ids.length ? undefined : []
+						}
+					}))
+				},
+
+				rowSelectionConfig: {
+					multiSelect:true
+				},
 				sortableGroup: "gridtotree",
 				draggable: true,
 				dropOn: true,
 				dropBetween: false,
 				width: 180,
 				listeners: {
-					drop: (toComponent, toIndex, fromIndex, droppedOn, fromComp, dragData) =>{
+					drop: (toComponent, toIndex, fromIndex, droppedOn, fromComp, dragData) => {
 
-						const selectedRowIndexes = dragData.selectedRowIndexes as SelectedRow<Store>[], fromList = fromComp as List,
+						const selectedRowIndexes = dragData.selectedRowIndexes as SelectedRow<Store>[],
 							fromRecords = selectedRowIndexes.map(row => row.record);
 
 						const toRecord = toComponent.store.get(toIndex)!;
 
-						fromList.rowSelection!.clear();
+						if(fromComp instanceof List && fromComp.rowSelection) {
+							fromComp.rowSelection!.clear();
+						}
 
 						fromRecords.forEach(fromRecord => {
 							void demoDataSource.update(fromRecord.id!, {
@@ -257,43 +273,13 @@ export class DragAndDrop extends Page {
 							});
 						});
 					},
-					dropallowed: (toComponent, toIndex, fromIndex, droppedOn, fromComp) => {
-						const toRecord = toComponent.store.get(toIndex)!;
+					// dropallowed: (toComponent, toIndex, fromIndex, droppedOn, fromComp) => {
+					// 	const toRecord = toComponent.store.get(toIndex)!;
+					//
+					// 	// disallow drops on nodes with 10 just because we can :)
+					// 	return toRecord.text.indexOf("10") == -1;
+					// },
 
-						// disallow drops on nodes with 10 just because we can :)
-						return toRecord.text.indexOf("10") == -1;
-					},
-					// We populate the tree directly from a datasource on the beforeexpand event. This also fires on render for the root nodes.
-					beforeexpand: (tree1, childrenTree, record, storeIndex) => {
-
-						// we already fetched the nodes
-						if(childrenTree.store.loaded) {
-							return;
-						}
-
-						// Get the data
-						demoDataSource.get().then(getResponse => {
-							//at the root of the tree record is undefined
-							const parentId = record ? record.id : undefined,
-								data = getResponse.list.filter(value => value.parentId == parentId)
-									.map(e => {
-										return {
-											id: e.id + "",
-											text: e.name,
-											// set to empty array if it has no children. Then the tree knows it's a leaf.
-											children: getResponse.list.find(value => value.parentId == e.id) ? undefined : []
-										}
-									});
-
-							childrenTree.store.loadData(data, false);
-
-							// retry expand
-							childrenTree.expand();
-						})
-
-						//cancel the expand action. We will call it when data has been fetched.
-						return false;
-					},
 				}
 			}
 		);

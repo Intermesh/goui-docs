@@ -7,8 +7,6 @@ export class Component extends Page {
 		super();
 		this.title = "Component";
 
-		const components = (new MainMenu).data.find(c => c.href=="#component")!.children
-
 		this.items.add(
 			p("The Component class is the base of all components. All components extend this class. <br />" +
 				"Components are mostly created with a create function. For example a 'Table' is created with 'table()'. " +
@@ -44,8 +42,7 @@ export class Component extends Page {
 			h2("Components"),
 
 			tree({
-				cls: "no-icons",
-				data: components
+				nodeProvider: () => MainMenu.components
 			})
 		)
 	}

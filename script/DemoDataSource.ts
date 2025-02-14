@@ -92,7 +92,7 @@ export class DemoDataSource extends AbstractDataSource<DemoEntity> {
 		return Promise.resolve({});
 	}
 
-	protected internalQuery(params: QueryParams): Promise<QueryResponse> {
+	protected internalQuery(params: QueryParams): Promise<QueryResponse<DemoEntity>> {
 		// this Demo store returns the 10 Demo id's
 		let ids: EntityID[] = [];
 
