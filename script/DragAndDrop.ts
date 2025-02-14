@@ -110,7 +110,7 @@ export class DragAndDrop extends Page {
 			],
 			draggable: true,
 			dropBetween: true,
-			dropOn: true,
+			dropOn: false,
 			listeners: {
 
 				drop: (toComp, toIndex,fromIndex, droppedOn, fromComp) => {
@@ -273,12 +273,12 @@ export class DragAndDrop extends Page {
 							});
 						});
 					},
-					// dropallowed: (toComponent, toIndex, fromIndex, droppedOn, fromComp) => {
-					// 	const toRecord = toComponent.store.get(toIndex)!;
-					//
-					// 	// disallow drops on nodes with 10 just because we can :)
-					// 	return toRecord.text.indexOf("10") == -1;
-					// },
+					dropallowed: (toComponent, toIndex, fromIndex, droppedOn, fromComp) => {
+						const toRecord = toComponent.store.get(toIndex)!;
+
+						// disallow drops on nodes with 10 just because we can :)
+						return toRecord.text.indexOf("10") == -1;
+					},
 
 				}
 			}
