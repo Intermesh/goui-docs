@@ -3,9 +3,8 @@ import {
 	h2,
 	TreeRecord,
 	Tree as TreeComp,
-	TreeStore,
 	tree,
-	treestore, btn, treecolumn,
+	btn, treecolumn, datecolumn,
 
 } from "@intermesh/goui"
 import {demoDataSource} from "./DemoDataSource.js"
@@ -122,18 +121,27 @@ export class Tree extends Page {
 			{
 				columns: [
 					treecolumn({
-						id: "text",
-						defaultIcon: "folder"
-					})
+						id: "name",
+						header: "Name",
+						defaultIcon: "folder",
+						sortable: true
+					}),
+					datecolumn({
+						header: "Created At",
+						id: "createdAt",
+						sortable: true
+					}),
 				],
-				nodeProvider:   async (record) : Promise<TreeRecord[]> => {
-					const q = await demoDataSource.query({filter: {parentId: record ? record.id: undefined}});
+				nodeProvider:   async (record, store) : Promise<TreeRecord[]> => {
+
+					const q = await demoDataSource.query({filter: {parentId: record ? record.id: undefined}, sort: store.sort});
 					const getResponse = await demoDataSource.get(q.ids)
 					//at the root of the tree record is undefined
 					return Promise.all(getResponse.list.map(async (e) => {
 						return {
 							id: e.id + "",
-							text: e.name,
+							name: e.name,
+							createdAt: e.createdAt,
 							// set to empty array if it has no children. Then the tree knows it's a leaf.
 							// this is very inefficient but works for the demo :)
 							children: (await demoDataSource.query({filter: {parentId: e.id}, limit: 1})).ids.length ? undefined : []
@@ -162,7 +170,7 @@ export class Tree extends Page {
 		// when the data source changes reload the tree
 		demoDataSource.on("change", () => {
 
-			dsTree.reload();
+			dsTree.store.reload();
 		});
 
 		this.items.add(
@@ -172,11 +180,11 @@ export class Tree extends Page {
 			h2("Checkbox tree"),
 			this.createCheckTree(),
 
-			h2("Tree using datasource"),
+			h2("Tree table using datasource"),
 			btn({
 				icon: "refresh",
 				handler: () => {
-					dsTree.reload();
+					dsTree.store.reload();
 				}
 			}),
 

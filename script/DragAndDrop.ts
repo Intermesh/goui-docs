@@ -286,8 +286,7 @@ export class DragAndDrop extends Page {
 
 		// when the data source changes reload the tree
 		demoDataSource.on("change", () => {
-
-			dsTree.reload();
+			void dsTree.store.reload();
 		});
 
 		return dsTree;

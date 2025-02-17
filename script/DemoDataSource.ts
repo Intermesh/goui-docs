@@ -81,7 +81,7 @@ export class DemoDataSource extends AbstractDataSource<DemoEntity> {
 		};
 
 		ids.forEach((id) => {
-			ret.list.push(data[id]);
+			ret.list.push(structuredClone(data[id]));
 		})
 
 		return Promise.resolve(ret);
