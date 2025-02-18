@@ -103,7 +103,7 @@ export class Window extends Page {
 							},
 
 							fieldset({
-									cls: "scroll flow",
+									cls: "scroll vbox gap",
 									flex: 1
 								},
 
@@ -115,6 +115,7 @@ export class Window extends Page {
 								}),
 
 								htmlfield({
+									flex: 1,
 									name: "body",
 									label: t("Body")
 								})
