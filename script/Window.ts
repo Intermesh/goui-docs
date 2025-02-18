@@ -86,8 +86,8 @@ export class Window extends Page {
 					win({
 							title: "Dialog with form",
 							draggable: true,
-							width: 600,
-							height: 400,
+							width: 900,
+							height: 600,
 							closable: true,
 							maximizable: true,
 							resizable: true,
