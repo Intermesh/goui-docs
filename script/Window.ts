@@ -214,6 +214,16 @@ export class Window extends Page {
 			{email: "john@foo.org"} ,
 			{email: "jane@foo.org"},
 			{email: "alfred@foo.org"},
+			{email: "ben@foo.org"},
+			{email: "cindy@foo.org"},
+			{email: "daryl@foo.org"},
+			{email: "edward@foo.org"},
+			{email: "ferdinand@foo.org"},
+			{email: "gina@foo.org"},
+			{email: "hilbert@foo.org"},
+			{email: "ian@foo.org"},
+			{email: "kramer@foo.org"},
+			{email: "louis@foo.org"},
 		];
 
 		return autocompletechips({
