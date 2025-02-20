@@ -134,17 +134,36 @@ export class Tree extends Page {
 				],
 				nodeProvider:   async (record, store) : Promise<TreeRecord[]> => {
 
-					const q = await demoDataSource.query({filter: {parentId: record ? record.id: undefined}, sort: store.sort});
-					const getResponse = await demoDataSource.get(q.ids)
+					let childIds;
+					if(record) {
+						// We already fetched the childIds in its parent. See below
+						childIds = record.childIds;
+					} else {
+						// When there's no record we're fetching the root of the tree
+						const q = await demoDataSource.query({
+							filter: {parentId: null},
+							sort: store.sort
+						});
+
+						childIds = q.ids;
+					}
+
+					const getResponse = await demoDataSource.get(childIds)
 					//at the root of the tree record is undefined
 					return Promise.all(getResponse.list.map(async (e) => {
+						// prefetch child id's so the Tree component knows if this node has children
+						const childIds = (await demoDataSource.query({filter: {parentId: e.id}})).ids;
+
 						return {
 							id: e.id + "",
 							name: e.name,
 							createdAt: e.createdAt,
-							// set to empty array if it has no children. Then the tree knows it's a leaf.
-							// this is very inefficient but works for the demo :)
-							children: (await demoDataSource.query({filter: {parentId: e.id}, limit: 1})).ids.length ? undefined : []
+
+							// Store the child id's in the node record so we can use it when it's expanded
+							childIds,
+
+							// Set to empty array if it has no children. Then the Tree component knows it's a leaf and won't present an expand arrow
+							children: childIds.length ? undefined : []
 						}
 					}))
 				},

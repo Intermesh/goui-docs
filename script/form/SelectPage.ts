@@ -160,7 +160,7 @@ export class SelectPage extends Page {
 								comp.list.groupBy = "group";
 								comp.list.store.queryParams = {
 									filter: {
-										parentId: undefined
+										parentId: null
 									}
 								};
 								comp.list.store.sort = [{

@@ -26,7 +26,7 @@ const max = 200, topLevel = Math.floor(max*0.1);
 for (let i = 1; i <= max; i++) {
 	let demo: DemoEntity = {
 		id: i + "",
-		parentId: i < topLevel ? undefined : (Math.floor(Math.random() * (max-topLevel)) + 1) + "",
+		parentId: i < topLevel ? null : (Math.floor(Math.random() * (max-topLevel)) + 1) + "",
 		name: "Test " + i,
 		group: groups[Math.floor(Math.random() * 10)],
 		createdAt: (new DateTime()).addDays(Math.ceil(Math.random() * -365)).format('c')
@@ -156,7 +156,7 @@ export class DemoDataSource extends AbstractDataSource<DemoEntity> {
 
 export interface DemoEntity extends BaseEntity {
 	name: string,
-	parentId?: string,
+	parentId: string | null,
 	createdAt: string,
 	group: string
 }

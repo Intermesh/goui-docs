@@ -41,7 +41,7 @@ export class List extends Page {
 					dataSource: demoDataSource,
 					queryParams: {
 						filter: {
-							parentId: undefined
+							parentId: null
 						},
 						limit: 20
 					},

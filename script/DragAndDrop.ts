@@ -10,7 +10,7 @@ import {
 	splitter, Store, Table,
 	table,
 	Tree,
-	tree,
+	tree, treecolumn,
 	TreeRecord
 } from "@intermesh/goui"
 import {demoDataSource, DemoEntity} from "./DemoDataSource.js"
@@ -40,14 +40,16 @@ export class DragAndDrop extends Page {
 			this.createSortingTree(),
 
 			h2("From table to tree"),
+			// btn({
+			// 	text: "Refresh",
+			// 	icon: "refresh",
+			// 	handler: () => {
+			// 		tree.store.reload();
+			// 	}
+			//
+			// }) ,
 			comp({cls: "hbox"},
-				// btn({
-				// 	icon: "refresh",
-				// 	handler: () => {
-				// 		tree.reload();
-				// 	}
-				//
-				// }) ,
+
 				tree,
 
 				splitter({
@@ -135,7 +137,7 @@ export class DragAndDrop extends Page {
 				dataSource: demoDataSource,
 				queryParams: {
 					filter: {
-						parentId: undefined
+						parentId: null
 					},
 					limit: 10
 				}
@@ -183,7 +185,7 @@ export class DragAndDrop extends Page {
 				dataSource: demoDataSource,
 				queryParams: {
 					filter: {
-						parentId: undefined
+						parentId: null
 					},
 					limit: 10
 				}
@@ -232,17 +234,46 @@ export class DragAndDrop extends Page {
 		const dsTree = tree(
 
 			{
-				nodeProvider:  async (record) : Promise<TreeRecord[]> => {
-					const q = await demoDataSource.query({filter: {parentId: record ? record.id: undefined}});
-					const getResponse = await demoDataSource.get(q.ids)
+				columns: [
+					treecolumn({
+						id: "name",
+						header: "Name",
+						defaultIcon: "folder",
+						sortable: true
+					}),
+					],
+				nodeProvider:   async (record, store) : Promise<TreeRecord[]> => {
+
+					let childIds;
+					if(record) {
+						// We already fetched the childIds in its parent. See below
+						childIds = record.childIds;
+					} else {
+						// When there's no record we're fetching the root of the tree
+						const q = await demoDataSource.query({
+							filter: {parentId: null},
+							sort: store.sort
+						});
+
+						childIds = q.ids;
+					}
+
+					const getResponse = await demoDataSource.get(childIds)
 					//at the root of the tree record is undefined
 					return Promise.all(getResponse.list.map(async (e) => {
+						// prefetch child id's so the Tree component knows if this node has children
+						const childIds = (await demoDataSource.query({filter: {parentId: e.id}})).ids;
+
 						return {
 							id: e.id + "",
-							text: e.name,
-							// set to empty array if it has no children. Then the tree knows it's a leaf.
-							// this is very inefficient but works for the demo :)
-							children: (await demoDataSource.query({filter: {parentId: e.id}, limit: 1})).ids.length ? undefined : []
+							name: e.name,
+							createdAt: e.createdAt,
+
+							// Store the child id's in the node record so we can use it when it's expanded
+							childIds,
+
+							// Set to empty array if it has no children. Then the Tree component knows it's a leaf and won't present an expand arrow
+							children: childIds.length ? undefined : []
 						}
 					}))
 				},
@@ -254,7 +285,7 @@ export class DragAndDrop extends Page {
 				draggable: true,
 				dropOn: true,
 				dropBetween: false,
-				width: 180,
+				width: 240,
 				listeners: {
 					drop: (toComponent, toIndex, fromIndex, droppedOn, fromComp, dragData) => {
 
@@ -277,7 +308,7 @@ export class DragAndDrop extends Page {
 						const toRecord = toComponent.store.get(toIndex)!;
 
 						// disallow drops on nodes with 10 just because we can :)
-						return toRecord.text.indexOf("10") == -1;
+						return toRecord.name.indexOf("10") == -1;
 					},
 
 				}
