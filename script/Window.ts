@@ -1,5 +1,18 @@
 import {Page} from "./Page.js";
-import {btn, comp, fieldset, form, h2, htmlfield, t, tbar, textfield, win, Window as GouiWindow} from "@intermesh/goui"
+import {
+	autocompletechips,
+	btn, column,
+	comp,
+	fieldset,
+	form,
+	h2,
+	htmlfield, store,
+	t, table,
+	tbar,
+	textfield,
+	win,
+	Window as GouiWindow
+} from "@intermesh/goui"
 
 export class Window extends Page {
 	sourceURL = "Window.ts";
@@ -114,6 +127,8 @@ export class Window extends Page {
 
 								}),
 
+								this.createToField(),
+
 								htmlfield({
 									flex: 1,
 									name: "body",
@@ -190,5 +205,63 @@ export class Window extends Page {
 				}
 			})
 		)
+	}
+
+	private createToField() {
+
+		const autocompleteRecords = [
+			{email: "john@example.org"},
+			{email: "john@foo.org"} ,
+			{email: "jane@foo.org"},
+			{email: "alfred@foo.org"},
+		];
+
+		return autocompletechips({
+			label: "To",
+			name: "to",
+			listeners: {
+				autocomplete: (field, input) => {
+					//clone the array for filtering
+					const filtered = structuredClone(autocompleteRecords).filter((r:any) => {
+						return !input || r.email.toLowerCase().indexOf(input.toLowerCase()) === 0;
+					});
+
+					//simple local filter on the store
+					field.list.store.loadData(filtered, false);
+				}
+			},
+
+			chipRenderer: (chip, value) => {
+				chip.text = value;
+			},
+
+			textInputToValue: async (text: string) :Promise<any> => {
+				return text;
+			},
+			pickerRecordToValue(field, record): any {
+				return record.email;
+			},
+
+			// dropdown list can be a table or list component
+			list: table({
+				fitParent: true,
+				headers: false,
+				store: store({
+					data: autocompleteRecords,
+					sort: [{
+						property: "email",
+						isAscending: true
+					}]
+				}),
+				columns: [
+					column({
+						header: "E-mail",
+						id: "email",
+						sortable: true,
+						resizable: true
+					})
+				]
+			})
+		});
 	}
 }
