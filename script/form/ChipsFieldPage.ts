@@ -73,6 +73,10 @@ export class ChipsFieldPage extends Page {
 						chipRenderer: async (chip, value) => {
 							chip.text = value.name;
 						},
+
+						textInputToValue: async (text: string) :Promise<any> => {
+							return {name: text};
+						},
 						pickerRecordToValue(field, record): any {
 							return {
 								id: record.id,
