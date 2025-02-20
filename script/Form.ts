@@ -23,10 +23,6 @@ export class Form extends Page {
 		super();
 		this.title = "Form";
 
-		const components = (new MainMenu).data.find(c => c.href=="#component")!.children!,
-			formComponents = components.find(c => c.href == "#form")!.children!
-
-
 		this.items.add(
 
 			form({},
@@ -113,7 +109,7 @@ export class Form extends Page {
 
 			tree({
 				cls: "main-menu",
-				data: formComponents
+				nodeProvider: () => MainMenu.formComponents
 			})
 
 
