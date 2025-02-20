@@ -32,7 +32,7 @@ export class Table extends Page {
 
 			h2("Checkbox selection and button in sticky columns"),
 
-			this.createTable(),
+			this.createCheckboxSelectionTable(),
 
 			h2("Grouped"),
 
@@ -40,7 +40,7 @@ export class Table extends Page {
 		);
 	}
 
-	private createTable() {
+	private createCheckboxSelectionTable() {
 		return comp({
 			cls: "frame scroll",
 			height: 300
@@ -50,7 +50,7 @@ export class Table extends Page {
 				dataSource: demoDataSource,
 				queryParams: {
 					filter: {
-						parentId: undefined
+						parentId: null
 					},
 					limit: 10
 				},
@@ -144,7 +144,7 @@ export class Table extends Page {
 				dataSource: demoDataSource,
 				queryParams: {
 					filter: {
-						parentId: undefined
+						parentId: null
 					},
 					limit: 20
 				},
