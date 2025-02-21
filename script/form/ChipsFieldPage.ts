@@ -16,6 +16,7 @@ import {
 	Window
 } from "@intermesh/goui";
 import {demoDataSource} from "../DemoDataSource.js"
+import {RecipientsField} from "../components/RecipientsField";
 
 
 export class ChipsFieldPage extends Page {
@@ -60,6 +61,8 @@ export class ChipsFieldPage extends Page {
 				fieldset({
 
 					},
+
+					new RecipientsField(),
 
 					chips({
 						name: "fruits",

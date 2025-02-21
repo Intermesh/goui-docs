@@ -13,6 +13,7 @@ import {
 	win,
 	Window as GouiWindow
 } from "@intermesh/goui"
+import {RecipientsField} from "./components/RecipientsField";
 
 export class Window extends Page {
 	sourceURL = "Window.ts";
@@ -127,7 +128,7 @@ export class Window extends Page {
 
 								}),
 
-								this.createToField(),
+								new RecipientsField(),
 
 								htmlfield({
 									flex: 1,
@@ -205,73 +206,5 @@ export class Window extends Page {
 				}
 			})
 		)
-	}
-
-	private createToField() {
-
-		const autocompleteRecords = [
-			{email: "john@example.org"},
-			{email: "john@foo.org"} ,
-			{email: "jane@foo.org"},
-			{email: "alfred@foo.org"},
-			{email: "ben@foo.org"},
-			{email: "cindy@foo.org"},
-			{email: "daryl@foo.org"},
-			{email: "edward@foo.org"},
-			{email: "ferdinand@foo.org"},
-			{email: "gina@foo.org"},
-			{email: "hilbert@foo.org"},
-			{email: "ian@foo.org"},
-			{email: "kramer@foo.org"},
-			{email: "louis@foo.org"},
-		];
-
-		return autocompletechips({
-			label: "To",
-			name: "to",
-			listeners: {
-				autocomplete: (field, input) => {
-					//clone the array for filtering
-					const filtered = structuredClone(autocompleteRecords).filter((r:any) => {
-						return !input || r.email.toLowerCase().indexOf(input.toLowerCase()) === 0;
-					});
-
-					//simple local filter on the store
-					field.list.store.loadData(filtered, false);
-				}
-			},
-
-			chipRenderer: (chip, value) => {
-				chip.text = value;
-			},
-
-			textInputToValue: async (text: string) :Promise<any> => {
-				return text;
-			},
-			pickerRecordToValue(field, record): any {
-				return record.email;
-			},
-
-			// dropdown list can be a table or list component
-			list: table({
-				fitParent: true,
-				headers: false,
-				store: store({
-					data: autocompleteRecords,
-					sort: [{
-						property: "email",
-						isAscending: true
-					}]
-				}),
-				columns: [
-					column({
-						header: "E-mail",
-						id: "email",
-						sortable: true,
-						resizable: true
-					})
-				]
-			})
-		});
 	}
 }
