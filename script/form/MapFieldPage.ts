@@ -52,7 +52,7 @@ export class MapFieldPage extends Page {
 
 								select({
 									name: "type",
-									width: 100,
+									width: 140,
 									label: "Type",
 									options: [
 										{

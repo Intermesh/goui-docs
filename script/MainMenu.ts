@@ -131,15 +131,9 @@ export class MainMenu extends Tree {
 
 		this.cls = "no-row-lines main-menu";
 
-
-
-		// this.on("rowclick", (list, storeIndex, row, ev) => {
-		// 	const record = list.store.get(storeIndex)!;
-		// 	if(record.children) {
-		// 		router.goto(record.children[0].id);
-		// 	} else {
-		// 		router.goto(record.id);
-		// 	}
-		// })
+		this.on("rowclick", (list, storeIndex, row, ev) => {
+			const record = list.store.get(storeIndex)!;
+			void this.expand(record);
+		})
 	}
 }

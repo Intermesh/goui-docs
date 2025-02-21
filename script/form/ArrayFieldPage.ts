@@ -60,7 +60,7 @@ export class ArrayFieldPage extends Page {
 
 								select({
 									name: "type",
-									width: 100,
+									width: 140,
 									label: "Type",
 									options: [
 										{
@@ -114,99 +114,95 @@ export class ArrayFieldPage extends Page {
 								});
 							}
 						})
-					)
-				),
+					),
 
-
-
-
-				this.sortableArrayField = arrayfield({
-					name: "sortablearrayfield",
-					listeners: {
-						render: comp => {
-							const sortable = new Sortable(comp, ".group");
-							sortable.on("sort", (field,toIndex , fromIndex, droppedOn, fromComp) => {
-								comp.value = ArrayUtil.move(comp.value, fromIndex, toIndex);
-							})
-						}
-					},
-					/**
-					 * This function is called to create form fields for each array item.
-					 * Typically, a container field will be used.
-					 */
-					buildField: () => {
-						const field = containerfield({
-								cls: "group",
-							},
-
-							select({
-								name: "type",
-								width: 100,
-								label: "Type",
-								options: [
-									{
-										value: "work",
-										name: "Work"
-									},
-									{
-										value: "home",
-										name: "Home"
-									}
-								]
-							}),
-							textfield({
-								flex: 1,
-								label: "E-mail",
-								name: "email",
-							}),
-
-							btn({
-								icon: "delete",
-								title: "Delete",
-								handler: (btn) => {
-									field.remove();
-								}
-							}),
-
-							btn({
-								cls: "handle",
-								icon: "drag_handle",
-								title: "Sort",
-								listeners: {
-									render: comp => {
-										comp.el.addEventListener("mousedown", () => {
-											const row = comp.findAncestorByType(ContainerField)!
-											row.el.draggable = true;
-										})
-
-										comp.el.addEventListener("mouseup", () => {
-											const row = comp.findAncestorByType(ContainerField)!
-											row.el.draggable = false;
-										})
-									}
-								}
-							})
-
-						);
-
-						return field;
-					},
-					value: [
-						{
-							type: "work",
-							email: "john@work.com"
+					this.sortableArrayField = arrayfield({
+						name: "sortablearrayfield",
+						listeners: {
+							render: comp => {
+								const sortable = new Sortable(comp, ".group");
+								sortable.on("sort", (field, toIndex, fromIndex, droppedOn, fromComp) => {
+									comp.value = ArrayUtil.move(comp.value, fromIndex, toIndex);
+								})
+							}
 						},
-						{
-							type: "home",
-							email: "john@home.com"
-						},{
-							type: "home",
-							email: "foo@home.com"
-						},{
-							type: "home",
-							email: "bar@home.com"
-						}]
-				}),
+						/**
+						 * This function is called to create form fields for each array item.
+						 * Typically, a container field will be used.
+						 */
+						buildField: () => {
+							const field = containerfield({
+									cls: "group",
+								},
+
+								select({
+									name: "type",
+									width: 140,
+									label: "Type",
+									options: [
+										{
+											value: "work",
+											name: "Work"
+										},
+										{
+											value: "home",
+											name: "Home"
+										}
+									]
+								}),
+								textfield({
+									flex: 1,
+									label: "E-mail",
+									name: "email",
+								}),
+
+								btn({
+									icon: "delete",
+									title: "Delete",
+									handler: (btn) => {
+										field.remove();
+									}
+								}),
+
+								btn({
+									cls: "handle",
+									icon: "drag_handle",
+									title: "Sort",
+									listeners: {
+										render: comp => {
+											comp.el.addEventListener("mousedown", () => {
+												const row = comp.findAncestorByType(ContainerField)!
+												row.el.draggable = true;
+											})
+
+											comp.el.addEventListener("mouseup", () => {
+												const row = comp.findAncestorByType(ContainerField)!
+												row.el.draggable = false;
+											})
+										}
+									}
+								})
+							);
+
+							return field;
+						},
+						value: [
+							{
+								type: "work",
+								email: "john@work.com"
+							},
+							{
+								type: "home",
+								email: "john@home.com"
+							}, {
+								type: "home",
+								email: "foo@home.com"
+							}, {
+								type: "home",
+								email: "bar@home.com"
+							}]
+					})
+				),
 				tbar({},
 					'->',
 					btn({
