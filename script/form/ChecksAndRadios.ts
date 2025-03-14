@@ -1,5 +1,5 @@
 import {Page} from "../Page.js";
-import {btn, checkbox, checkboxgroup, fieldset, Form, form, p, radio, tbar, Window} from "@intermesh/goui"
+import {btn, checkbox, checkboxgroup, comp, fieldset, Form, form, p, radio, tbar, Window} from "@intermesh/goui"
 
 
 export class ChecksAndRadios extends Page {
@@ -55,6 +55,9 @@ export class ChecksAndRadios extends Page {
 						required: true,
 					}),
 
+
+
+
 					checkboxgroup({
 						label: "Group",
 						options: [
@@ -64,6 +67,11 @@ export class ChecksAndRadios extends Page {
 						]
 					}),
 
+					comp({cls: "group"},
+						checkbox({icon: "star", label: "Checkbox 1", name: "option1", value: true, type:"button"}),
+						checkbox({icon: "email",label: "Checkbox 2", name: "option2", type:"button"})
+					),
+
 
 					radio({
 							label: "Radio with type='button'",
@@ -71,7 +79,7 @@ export class ChecksAndRadios extends Page {
 							name: "radio-button",
 							value: "option1",
 							options: [
-								{text: "Radio 1", value: "option1"},
+								{icon: "star", text: "Radio 1", value: "option1"},
 								{text: "Radio 2", value: "option2"},
 								{text: "Radio 3", value: "option3"}
 							]
