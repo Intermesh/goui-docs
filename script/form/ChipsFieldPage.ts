@@ -153,7 +153,7 @@ export class ChipsFieldPage extends Page {
 						},
 						listeners: {
 							autocomplete: (field, input) => {
-								field.list.store.queryParams = {filter: {name: input}};
+								field.list.store.setFilter("autocomplete", {name: input});
 								void field.list.store.load();
 							}
 						}
