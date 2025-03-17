@@ -42,7 +42,7 @@ export class Table extends Page {
 
 	private createCheckboxSelectionTable() {
 		return comp({
-			cls: "frame scroll",
+			cls: "border scroll",
 			height: 300
 		},table({
 			fitParent: true,

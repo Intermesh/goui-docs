@@ -199,6 +199,7 @@ export class SelectPage extends Page {
 
 
 					colorfield({
+						width: 100,
 						label: "Color",
 						name: "color",
 						value: "2196F3"

@@ -42,6 +42,7 @@ export class Component extends Page {
 			h2("Components"),
 
 			tree({
+				fitParent: true,
 				nodeProvider: () => MainMenu.components
 			})
 		)

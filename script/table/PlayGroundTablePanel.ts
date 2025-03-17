@@ -45,7 +45,7 @@ export class PlaygroundTablePanel extends Component {
 			comp({cls: "pad"}, // needed to properly align with toolbar
 
 				comp({
-						cls: "frame scroll",
+						cls: "border scroll",
 						height: 300
 					},
 					playgroundTable
