@@ -25,6 +25,9 @@ interface User extends BaseEntity {
 
 // there should be only one unique instance of each data source in the whole application
 const userDS = new RestDataSource<User>("https://reqres.in/api/users", "users");
+userDS.baseRequestOptions = {
+	headers: {"x-api-key": "reqres-free-v1"}
+};
 
 export class RestApiExample extends Component {
 	constructor() {
