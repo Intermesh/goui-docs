@@ -24,7 +24,7 @@ export class Table extends Page {
 
 		this.items.add(
 			p("Table's support sorting, keyboard navigation and (multi) row selection. " +
-				"Right click the headers to enable or disable columns."),
+				"Right click the headers to enable or disable columns. You can also reorder columns using drag and drop."),
 
 			new PlaygroundTablePanel(),
 

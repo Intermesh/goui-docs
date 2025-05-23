@@ -12,8 +12,7 @@ export class Home extends Page {
 				"User Interface) Documentation website. " +
 				"Developed using <a href=\"https://www.typescriptlang.org/\">TypeScript</a> and " +
 				"<a href=\"https://sass-lang.com/\">SASS</a>, GOUI aims to create stunning and efficient " +
-				"HTML and CSS interfaces.<br><br>" +
-
+				"web applications.<br><br>" +
 
 				"On this website, you'll find an extensive collection of available components. The complete " +
 				"source code is hosted on <a href=\"https://github.com/intermesh/goui\">GitHub</a>, which can be accessed to kickstart your development process. " +
@@ -47,13 +46,11 @@ export class Home extends Page {
 			h2("Efficient architecture"),
 
 			p(
-				"GOUI boasts a highly efficient architecture, utilizing pure JavaScript and CSS for rendering. " +
+				"GOUI has a highly efficient architecture, utilizing pure JavaScript and CSS for rendering. " +
 				"Whenever possible, pure HTML and CSS are leveraged, allowing the browser to efficiently render " +
 				"components. In cases where this is not feasible, JavaScript is employed. Additionally, applications " +
-				"are developed entirely in TypeScript, eliminating the need for parsing templates. This streamlined " +
-				"approach enables seamless integration from JavaScript to the DOM.<br><br>" +
-				"Our implementation incorporates ECMAScript 6 modules, which can be lazily loaded to optimize memory " +
-				"usage and maximize performance."
+				"are developed entirely in TypeScript, eliminating the need for parsing templates. The component generator are " +
+				"designed to make the code very structured and readable."
 			),
 
 			btn({

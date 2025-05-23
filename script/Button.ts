@@ -11,7 +11,9 @@ import {
 	Notifier,
 	p,
 	root, t,
-	tbar
+	tbar,
+	h3,
+	collapsebtn
 } from "@intermesh/goui"
 import {Page} from "./Page.js";
 
@@ -386,8 +388,33 @@ export class Button extends Page {
 						})
 					}
 				}
-			})
+			}),
+
+			h2("Collapsible button"),
+
+			this.createCollapsibleCard()
+
 		)
+
+	}
+
+
+	private createCollapsibleCard() {
+		const body = comp({
+			cls: "pad",
+			text: "Click the button in the toolbar to collapse and expand this body."
+		})
+
+		return comp({cls: "card"},
+			tbar({},
+				h3("Collapsible card"),
+				"->",
+				collapsebtn({
+					collapseEl: body
+				})
+			),
+			body
+		);
 	}
 
 	private onClick(btn: Btn) {
