@@ -36,7 +36,7 @@ export class Home extends Page {
 			h2("Group-Office"),
 
 			p(
-				"GOUI was specifically designed to replace the outdated ExtJS 3.4 framework utilized in " +
+				"GOUI was designed to replace the outdated ExtJS 3.4 framework utilized in " +
 				"<a href=\"https://www.group-office.com/\">Group-Office</a>. " +
 				"However, it is not limited to Group-Office alone. This versatile framework can be seamlessly " +
 				"integrated into any JavaScript or TypeScript project."
