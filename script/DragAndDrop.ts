@@ -53,7 +53,7 @@ export class DragAndDrop extends Page {
 				tree,
 
 				splitter({
-					resizeComponentPredicate: tree
+					resizeComponent: tree
 				}),
 
 				comp({cls: "pad scroll", flex: 1},

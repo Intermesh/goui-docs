@@ -101,7 +101,7 @@ export class Layout extends Page {
 				}),
 
 				splitter({
-					resizeComponentPredicate: "left" //finds it by itemId
+					resizeComponent: s => s.previousSibling()!
 				}),
 
 				comp({
@@ -113,7 +113,7 @@ export class Layout extends Page {
 				}),
 
 				splitter({
-					resizeComponentPredicate: "right" //finds it by itemId
+					resizeComponent: s => s.nextSibling()!
 				}),
 
 				comp({
@@ -144,7 +144,7 @@ export class Layout extends Page {
 
 
 				splitter({
-					resizeComponentPredicate: "top" //finds it by itemId
+					resizeComponent: s => s.previousSibling()!
 				}),
 
 				comp({
@@ -156,7 +156,7 @@ export class Layout extends Page {
 				}),
 
 				splitter({
-					resizeComponentPredicate: "bottom" //finds it by itemId
+					resizeComponent: s => s.nextSibling()!
 				}),
 
 				comp({
