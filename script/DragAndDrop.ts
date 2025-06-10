@@ -149,6 +149,15 @@ export class DragAndDrop extends Page {
 
 			columns: [
 
+				column({
+					header: "ID",
+					id: "id",
+					sortable: true,
+					resizable: true,
+					width: 70,
+					align: "right"
+				}),
+
 				// Omitting width will auto size this to fill the width
 				column({
 					header: "Name",
@@ -190,6 +199,7 @@ export class DragAndDrop extends Page {
 					limit: 10
 				}
 			}),
+
 			sortableGroup: "gridtotree",
 			draggable: true,
 			dropBetween: false,
@@ -199,6 +209,8 @@ export class DragAndDrop extends Page {
 			},
 
 			columns: [
+
+
 
 				// Omitting width will auto size this to fill the width
 				column({

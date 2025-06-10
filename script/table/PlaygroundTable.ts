@@ -12,6 +12,7 @@ export class PlaygroundTable extends Table {
 			records.push({
 				number: i,
 				description: "Test " + i,
+				createdBy: "John " + i,
 				createdAt: (new DateTime()).addDays(Math.ceil(Math.random() * -365)).format("c")
 			});
 		}
@@ -38,6 +39,14 @@ export class PlaygroundTable extends Table {
 					id: "description",
 					sortable: true,
 					resizable: true
+				}),
+
+				column({
+					header: "Created By",
+					id: "createdBy",
+					sortable: true,
+					resizable: true,
+					hidden: true
 				}),
 
 				// datecolumns have a standard width
