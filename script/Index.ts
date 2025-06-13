@@ -30,6 +30,7 @@ import {Form} from "./Form.js"
 import {GetStarted} from "./GetStarted.js"
 import {DatePickerPage} from "./DatePickerPage.js"
 import "./OverrideTest.js"
+import {TooltipPage} from "./TooltipPage";
 
 /**
  * Create main card panel for displaying SPA pages
@@ -212,6 +213,9 @@ router
 	})
 	.add(/^datepicker$/, () => {
 		pageLoader(DatePickerPage);
+	})
+	.add(/^tooltip$/, () => {
+		pageLoader(TooltipPage);
 	})
 	.add(() => {
 		pageLoader(NotFound);

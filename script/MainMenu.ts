@@ -92,6 +92,10 @@ export class MainMenu extends Tree {
 			href: "#datepicker",
 			children: []
 		}, {
+			text: "Tooltip",
+			href: "#tooltip",
+			children: []
+		}, {
 			text: "Form",
 			href: "#form",
 			children:  MainMenu.formComponents
