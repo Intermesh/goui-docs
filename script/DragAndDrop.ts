@@ -5,7 +5,7 @@ import {
 	comp,
 	datasourcestore,
 	datecolumn,
-	h2, List, SelectedRow,
+	h2, List, p, SelectedRow,
 	Sortable,
 	splitter, Store, Table,
 	table,
@@ -35,19 +35,10 @@ export class DragAndDrop extends Page {
 
 			this.createSortTable(),
 
-			h2("Tree sorting and moving"),
+			h2("Table and tree"),
 
-			this.createSortingTree(),
+			p("You can move nodes in the tree and from the table to the tree"),
 
-			h2("From table to tree"),
-			// btn({
-			// 	text: "Refresh",
-			// 	icon: "refresh",
-			// 	handler: () => {
-			// 		tree.store.reload();
-			// 	}
-			//
-			// }) ,
 			comp({cls: "hbox"},
 
 				tree,
@@ -65,70 +56,65 @@ export class DragAndDrop extends Page {
 		)
 	}
 
-	private createSortingTree() {
-		return tree({
-			nodeProvider: () => [
-				{
-					id: "1",
-					text: "Node 1",
-					children: [
-						{
-							id: "1.1",
-							text: "Node 1.1",
-							children: []
-						},
-						{
-							id: "1.2",
-							text: "Node 1.2",
-							children: []
-						},
-						{
-							id: "1.3",
-							text: "Node 1.3",
-							children: []
-						},
-						{
-							id: "1.4",
-							text: "Node 1.4",
-							children: []
-						}
-					]
-				}, {
-					id: "2",
-					text: "Node 2",
-					children: [
-						{
-							id: "2.1",
-							text: "Node 2.1",
-							children: []
-						},
-						{
-							id: "2.2",
-							text: "Node 2.2",
-							children: []
-						}
-					]
-				}
-			],
-			draggable: true,
-			dropBetween: true,
-			dropOn: false,
-			listeners: {
-
-				drop: ({target, toIndex, fromIndex, fromComp}) => {
-
-					if(fromComp != target) {
-						const record = (fromComp as Tree).store.get(fromIndex)!;
-						(fromComp as List).store.removeAt(fromIndex);
-						target.store.insert(toIndex, record)
-					} else {
-						target.store.move(fromIndex, toIndex);
-					}
-				}
-
-			}
-		});
-	}
+	// private createSortingTree() {
+	// 	const treeData = [
+	// 		{
+	// 			id: "1",
+	// 			text: "Node 1",
+	// 			children: [
+	// 				{
+	// 					id: "1.1",
+	// 					text: "Node 1.1",
+	// 					children: []
+	// 				},
+	// 				{
+	// 					id: "1.2",
+	// 					text: "Node 1.2",
+	// 					children: []
+	// 				},
+	// 				{
+	// 					id: "1.3",
+	// 					text: "Node 1.3",
+	// 					children: []
+	// 				},
+	// 				{
+	// 					id: "1.4",
+	// 					text: "Node 1.4",
+	// 					children: []
+	// 				}
+	// 			]
+	// 		}, {
+	// 			id: "2",
+	// 			text: "Node 2",
+	// 			children: [
+	// 				{
+	// 					id: "2.1",
+	// 					text: "Node 2.1",
+	// 					children: []
+	// 				},
+	// 				{
+	// 					id: "2.2",
+	// 					text: "Node 2.2",
+	// 					children: []
+	// 				}
+	// 			]
+	// 		}
+	// 	];
+	// 	return tree({
+	// 		nodeProvider: () => treeData,
+	// 		draggable: true,
+	// 		dropBetween: true,
+	// 		dropOn: false,
+	// 		listeners: {
+	//
+	// 			drop: ({target, toIndex, fromIndex}) => {
+	// 				target.store.move(fromIndex, toIndex);
+	// 				console.log(target.store);
+	// 			}
+	//
+	// 		}
+	// 	});
+	// }
 
 	private createSortTable() {
 		return table({
@@ -297,15 +283,15 @@ export class DragAndDrop extends Page {
 				dropBetween: false,
 				width: 240,
 				listeners: {
-					drop: ({target, toIndex, fromIndex, droppedOn, fromComp, dragDataSet}) => {
+					drop: ({target, toIndex, fromIndex, droppedOn, source, dragDataSet}) => {
 
 						const selectedRowIndexes = dragDataSet.selectedRowIndexes as SelectedRow<Store>[],
 							fromRecords = selectedRowIndexes.map(row => row.record);
 
 						const toRecord = target.store.get(toIndex)!;
 
-						if(fromComp instanceof List && fromComp.rowSelection) {
-							fromComp.rowSelection!.clear();
+						if(source instanceof List && source.rowSelection) {
+							source.rowSelection!.clear();
 						}
 
 						fromRecords.forEach(fromRecord => {

@@ -35,8 +35,9 @@ export class TooltipPage extends Page {
 						const btnCmp = target;
 						tooltip({
 							listeners: {
-								render: ({target}) => {
-									target.el.addEventListener("click", () => {
+								render: (ev) => {
+
+									ev.target.el.addEventListener("click", () => {
 										btnCmp.remove();
 									})
 								}

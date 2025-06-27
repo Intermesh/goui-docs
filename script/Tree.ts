@@ -151,12 +151,12 @@ export class Tree extends Page {
 				draggable: true,
 				dropOn: true,
 				listeners: {
-					drop: ({target, toIndex, fromIndex, droppedOn, fromComp, dragDataSet}) => {
+					drop: ({target, toIndex, fromIndex, droppedOn, source, dragDataSet}) => {
 
-						if(fromComp != target	) {
+						if(source != target	) {
 							return;
 						}
-						const draggedRecord = (fromComp as TreeComp).store.get(fromIndex)!,
+						const draggedRecord = (source as TreeComp).store.get(fromIndex)!,
 							droppedOnRecord = target.store.get(toIndex)!;
 
 						demoDataSource.update(draggedRecord.id!,{
