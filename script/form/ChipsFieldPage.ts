@@ -87,7 +87,7 @@ export class ChipsFieldPage extends Page {
 							};
 						},
 						listeners: {
-							autocomplete: (field, input) => {
+							autocomplete: ({target, input}) => {
 								//clone the array for filtering
 								const filtered = structuredClone(autocompleteRecords).filter((r:AutoCompleteRecord) => {
 									// console.warn(r.description, text, r.description.indexOf(text))
@@ -95,7 +95,7 @@ export class ChipsFieldPage extends Page {
 								});
 
 								//simple local filter on the store
-								field.list.store.loadData(filtered, false);
+								target.list.store.loadData(filtered, false);
 							}
 						},
 
@@ -152,9 +152,9 @@ export class ChipsFieldPage extends Page {
 							return record.name;
 						},
 						listeners: {
-							autocomplete: (field, input) => {
-								field.list.store.setFilter("autocomplete", {name: input});
-								void field.list.store.load();
+							autocomplete: ({target, input}) => {
+								target.list.store.setFilter("autocomplete", {name: input});
+								void target.list.store.load();
 							}
 						}
 					})

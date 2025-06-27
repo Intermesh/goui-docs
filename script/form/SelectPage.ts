@@ -113,15 +113,15 @@ export class SelectPage extends Page {
 						],
 						listeners: {
 
-							autocomplete: (field, text) => {
+							autocomplete: ({target, input}) => {
 								//clone the array for filtering
 								const filtered = autocompleteRecords.filter((r:AutoCompleteRecord) => {
 									// console.warn(r.description, text, r.description.indexOf(text))
-									return !text || r.description.toLowerCase().indexOf(text.toLowerCase()) === 0;
+									return !input || r.description.toLowerCase().indexOf(input.toLowerCase()) === 0;
 								});
 
 								//simple local filter on the store
-								field.list.store.loadData(filtered, false)
+								target.list.store.loadData(filtered, false)
 							}
 						},
 
@@ -155,15 +155,15 @@ export class SelectPage extends Page {
 						dataSource: demoDataSource,
 						hint: "A combo box is an extension of an autocompletefield and simplifies the creation of a combo box",
 						listeners: {
-							render:comp => {
+							render:({target}) => {
 								//group the list by the group column
-								comp.list.groupBy = "group";
-								comp.list.store.queryParams = {
+								target.list.groupBy = "group";
+								target.list.store.queryParams = {
 									filter: {
 										parentId: null
 									}
 								};
-								comp.list.store.sort = [{
+								target.list.store.sort = [{
 									isAscending: true,
 									property: "group"
 								}, {

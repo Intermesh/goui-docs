@@ -72,12 +72,12 @@ export class PagingTable extends Component {
 						}
 					}),
 					listeners: {
-						render: table => {
+						render: ({target}) => {
 							// register the parent element to load store on scroll down
-							table.store.addScrollLoader(table.parent!.el);
+							target.store.addScrollLoader(target.parent!.el);
 
 							// load the store initially
-							void table.store.load();
+							void target.store.load();
 						}
 					},
 					columns: [

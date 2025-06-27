@@ -137,8 +137,8 @@ export class MainMenu extends Tree {
 
 		this.cls = "no-row-lines main-menu";
 
-		this.on("rowclick", (list, storeIndex, row, ev) => {
-			const record = list.store.get(storeIndex)!;
+		this.on("rowclick", ({target, storeIndex}) => {
+			const record = target.store.get(storeIndex)!;
 			void this.expand(record);
 		})
 	}

@@ -4,7 +4,7 @@ import {
 	BaseEntity,
 	browserStoreConnection,
 	Changes,
-	CommitResponse,
+	CommitResponse, DataSourceEventMap,
 	DateTime,
 	EntityID,
 	GetResponse, MergeResponse,
@@ -38,7 +38,7 @@ for (let i = 1; i <= max; i++) {
 /**
  * This Demo data source fill itself with 10 Demo records
  */
-export class DemoDataSource extends AbstractDataSource<DemoEntity> {
+export class DemoDataSource extends AbstractDataSource<DemoEntity, DataSourceEventMap> {
 
 	/**
 	 * Don't store it in the browser storage

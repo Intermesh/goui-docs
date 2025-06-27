@@ -14,12 +14,12 @@ root.items.add(btn({
 			}),
 			// store: store(),
 			listeners: {
-				render: table => {
+				render: ({target}) => {
 					// register the parent element to load store on scroll down
 					// table.store.addScrollLoader(table.parent!.el);
 
 					// load the store initially
-					void table.store.load();
+					void target.store.load();
 				}
 			},
 			columns: [

@@ -73,10 +73,11 @@ export class RestApiExample extends Component {
 					})
 				],
 				listeners: {
-					render: comp => {
-						comp.store.load();
+					render: ({target}) => {
+						void target.store.load();
 					},
-					rowdblclick: async (list, storeIndex, row, ev) => {
+					rowdblclick: async ( {target, storeIndex}) => {
+						const list = target;
 						const dlg = win({
 								title: "Edit",
 								modal: true
@@ -84,13 +85,13 @@ export class RestApiExample extends Component {
 							datasourceform({
 									dataSource: userDS,
 									listeners: {
-										render: comp => {
+										render: ({target}) => {
 											// load the selected user on render
-											comp.load(list.store.get(storeIndex)!.id);
+											target.load(list.store.get(storeIndex)!.id);
 										},
-										submit: (form1, handlerResponse) => {
+										submit: () => {
 											// close window on submit
-											(form1.parent as Window).close();
+											dlg.close();
 										}
 									}
 								},

@@ -115,14 +115,14 @@ export class DragAndDrop extends Page {
 			dropOn: false,
 			listeners: {
 
-				drop: (toComp, toIndex,fromIndex, droppedOn, fromComp) => {
+				drop: ({target, toIndex, fromIndex, fromComp}) => {
 
-					if(fromComp != toComp) {
+					if(fromComp != target) {
 						const record = (fromComp as Tree).store.get(fromIndex)!;
 						(fromComp as List).store.removeAt(fromIndex);
-						toComp.store.insert(toIndex, record)
+						target.store.insert(toIndex, record)
 					} else {
-						toComp.store.move(fromIndex, toIndex);
+						target.store.move(fromIndex, toIndex);
 					}
 				}
 
@@ -175,13 +175,11 @@ export class DragAndDrop extends Page {
 			],
 
 			listeners: {
-				render: sender => {
-					void sender.store.load();
+				render: ({target}) => {
+					void target.store.load();
 				},
-				drop: (toComp, toIndex,fromIndex, droppedOn, fromComp) => {
-
-					toComp.store.move(fromIndex, toIndex);
-
+				drop: ({target, toIndex, fromIndex}) => {
+					target.store.move(fromIndex, toIndex);
 				}
 			}
 		})
@@ -235,8 +233,8 @@ export class DragAndDrop extends Page {
 				// 	return false;
 				// },
 
-				render: sender => {
-					sender.store.load();
+				render: ({target}) => {
+					target.store.load();
 				}
 			}
 		})
@@ -299,12 +297,12 @@ export class DragAndDrop extends Page {
 				dropBetween: false,
 				width: 240,
 				listeners: {
-					drop: (toComponent, toIndex, fromIndex, droppedOn, fromComp, dragData) => {
+					drop: ({target, toIndex, fromIndex, droppedOn, fromComp, dragDataSet}) => {
 
-						const selectedRowIndexes = dragData.selectedRowIndexes as SelectedRow<Store>[],
+						const selectedRowIndexes = dragDataSet.selectedRowIndexes as SelectedRow<Store>[],
 							fromRecords = selectedRowIndexes.map(row => row.record);
 
-						const toRecord = toComponent.store.get(toIndex)!;
+						const toRecord = target.store.get(toIndex)!;
 
 						if(fromComp instanceof List && fromComp.rowSelection) {
 							fromComp.rowSelection!.clear();
@@ -316,8 +314,8 @@ export class DragAndDrop extends Page {
 							});
 						});
 					},
-					dropallowed: (toComponent, toIndex, fromIndex, droppedOn, fromComp) => {
-						const toRecord = toComponent.store.get(toIndex)!;
+					dropallowed: ({target, toIndex}) => {
+						const toRecord = target.store.get(toIndex)!;
 
 						// disallow drops on nodes with 10 just because we can :)
 						return toRecord.name.indexOf("10") == -1;

@@ -55,63 +55,56 @@ export class TextFieldPage extends Page {
 
 					tf,
 
-
 					checkbox({
-
 						label: "Disabled",
 						listeners: {
-							change: (field, checked) => {
-								tf.disabled = checked;
+							change: ({newValue}) => {
+								tf.disabled = newValue;
 							}
 						}
 					}),
 
 					checkbox({
-
 						label: "Required",
 						listeners: {
-							change: (field, checked) => {
-								tf.required = checked;
+							change: ({newValue}) => {
+								tf.required = newValue;
 							}
 						}
 					}),
 
 					checkbox({
-
 						label: "Read only",
 						listeners: {
-							change: (field, checked) => {
-								tf.readOnly = checked;
+							change: ({newValue}) => {
+								tf.readOnly = newValue;
 							}
 						}
 					}),
 
 					checkbox({
-
 						label: "Leading icon",
 						listeners: {
-							change: (field, checked) => {
-								tf.icon = checked ? "favorite" : undefined;
+							change: ({newValue}) => {
+								tf.icon = newValue ? "favorite" : undefined;
 							}
 						}
 					}),
 
 					checkbox({
-
 						label: "Hint",
 						listeners: {
-							change: (field, checked) => {
-								tf.hint = checked ? t("Please enter something useful") : undefined;
+							change: ({newValue}) => {
+								tf.hint = newValue ? t("Please enter something useful") : undefined;
 							}
 						}
 					}),
 
 					checkbox({
-
 						label: "Button",
 						listeners: {
-							change: (field, checked) => {
-								tf.buttons = checked ? [btn({
+							change: ({newValue}) => {
+								tf.buttons = newValue ? [btn({
 									icon: "clear",
 									handler: (clearBtn) => {
 										clearBtn.findAncestorByType(TextField)!.reset();

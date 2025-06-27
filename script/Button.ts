@@ -285,10 +285,9 @@ export class Button extends Page {
 					text: "Color",
 					menu: menu({}, colorpicker({
 						listeners: {
-							select: (colorPicker, color) => {
-								const menu = (colorPicker.parent as Menu);
-								menu.parent!.el.style.color = "#" + color;
-								menu.hide();
+							select: ({target, color}) => {
+								target.parent!.el.style.color = "#" + color;
+								target.hide();
 							}
 						}
 					}))
@@ -358,8 +357,8 @@ export class Button extends Page {
 				height: 100,
 				cls: "frame pad",
 				listeners: {
-					render:comp1 => {
-						comp1.el.addEventListener("contextmenu", ev => {
+					render: ({target}) => {
+						target.el.addEventListener("contextmenu", ev => {
 
 							ev.preventDefault();
 

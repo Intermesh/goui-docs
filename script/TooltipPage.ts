@@ -16,9 +16,9 @@ export class TooltipPage extends Page {
 				cls: "filled",
 				text: "I have a tooltip",
 				listeners: {
-					render: cmp => {
+					render: ({target}) => {
 						tooltip({
-							target: cmp.el,
+							target: target.el,
 							text: "Hello I am the tooltip!"
 						})
 					}
@@ -31,11 +31,12 @@ export class TooltipPage extends Page {
 				cls: "filled",
 				text: "I have a tooltip",
 				listeners: {
-					render: btnCmp => {
+					render: ({target}) => {
+						const btnCmp = target;
 						tooltip({
 							listeners: {
-								render: cmp => {
-									cmp.el.addEventListener("click", () => {
+								render: ({target}) => {
+									target.el.addEventListener("click", () => {
 										btnCmp.remove();
 									})
 								}

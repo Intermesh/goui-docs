@@ -46,17 +46,15 @@ export class RecipientsField extends AutocompleteChips {
 
 		this.label = "To";
 		this.name = "to";
-		this.on("autocomplete", (field, input) => {
+		this.on("autocomplete", ({target, input}) => {
 			//clone the array for filtering
 			const filtered = structuredClone(autocompleteRecords).filter((r:any) => {
 				return !input || r.email.toLowerCase().indexOf(input.toLowerCase()) === 0;
 			});
 
 			//simple local filter on the store
-			field.list.store.loadData(filtered, false);
+			target.list.store.loadData(filtered, false);
 		});
-
-
 
 		this.chipRenderer = (chip, value) => {
 			chip.text = value;

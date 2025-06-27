@@ -52,7 +52,7 @@ export class DateTimePage extends Page {
 						hint: "Select a date in the past 2 years",
 						width: 240,
 						listeners: {
-							change:(field, newValue, oldValue) => {
+							change:({newValue, oldValue}) => {
 								console.log("datefield change", newValue, oldValue)
 							}
 						}
@@ -62,10 +62,10 @@ export class DateTimePage extends Page {
 						width: 160,
 						label: "With time",
 						listeners: {
-							change: (cb, newVal) => {
-								const df = cb.previousSibling() as DateField;
+							change: ({target, newValue}) => {
+								const df = target.previousSibling() as DateField;
 
-								df.withTime = newVal
+								df.withTime = newValue
 							}
 						}
 					}),
@@ -96,7 +96,7 @@ export class DateTimePage extends Page {
 						label: "Time",
 						value: "22:15",
 						listeners: {
-							change:(field, newValue, oldValue) => {
+							change:({newValue, oldValue}) => {
 								console.log("timefield change", newValue, oldValue)
 							}
 						}

@@ -19,7 +19,7 @@ export class PlaygroundTablePanel extends Component {
 
 				searchbtn({
 					listeners: {
-						input: (searchBtn, text) => {
+						input: ({text}) => {
 
 							const filtered = records.filter((r) => {
 								return !text || r.description.toLowerCase().indexOf(text.toLowerCase()) === 0;

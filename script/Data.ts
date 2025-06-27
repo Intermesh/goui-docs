@@ -157,15 +157,15 @@ export class Data extends Page {
 			],
 			listeners: {
 
-				navigate: (list, storeIndex) => {
+				navigate: ({target, storeIndex}) => {
 					//problem is that record is a reference in the store and the reload won't update
-					const record = list.store.get(storeIndex)!;
+					const record = target.store.get(storeIndex)!;
 					this.form.value = record;
 					this.form.disabled = false;
 				},
 
-				render: comp1 => {
-					void comp1.store.load();
+				render: ({target}) => {
+					void target.store.load();
 				},
 
 

@@ -1,4 +1,4 @@
-import {a, btn, cards, comp, Component, h2, img, Menu, menu, radio, root, router, Button as GouiButton} from "@intermesh/goui"
+import {a, btn, cards, comp, Component, h2, img, Menu, menu, radio, root, router} from "@intermesh/goui"
 import {Button} from "./Button.js";
 
 import {Window} from "./Window.js";
@@ -92,12 +92,12 @@ const header = comp({
 							{text: "Dark", value: "dark"}
 						],
 						listeners: {
-							change: (field, newValue, _oldValue) => {
+							change: ({target, newValue}, ) => {
 								root.el.classList.toggle("dark", newValue == "dark");
 								root.el.classList.toggle("light", newValue == "light");
 								root.el.classList.toggle("system", newValue == "system");
 
-								field.findAncestorByType(Menu)!.close();
+								target.findAncestorByType(Menu)!.close();
 							}
 						}
 					})
@@ -112,9 +112,9 @@ const header = comp({
  * To make it memory efficient we will instantiate page components on demand when the router navigates.
  * @param cmp
  */
-const pageLoader = (cmp: typeof Component) => {
+const pageLoader = <T extends new (...args: any) => any>(cmp: T) : T  => {
 	const id = router.getPath() || "home";
-	let page = main.findItem(id) as Component | undefined;
+	let page = main.findItem(id) as any;
 	if (!page) {
 		page = new cmp;
 		page.id = id;
@@ -249,8 +249,8 @@ router
 			comp({
 				cls: "overlay",
 				listeners: {
-					render: overlay => {
-						overlay.el.addEventListener("click", () => {
+					render: ({target}) => {
+						target.el.addEventListener("click", () => {
 							root.el.classList.remove("open-menu");
 						})
 					}
@@ -258,6 +258,5 @@ router
 			})
 		)
 	});
-
 
 

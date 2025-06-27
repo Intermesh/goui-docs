@@ -88,31 +88,12 @@ export class Tree extends Page {
 			rowSelectionConfig: {
 				multiSelect: true,
 				listeners: {
-					selectionchange: sel => {
-						// debugger;
-						console.log(sel.getSelected())
-					},
-					rowselect: (s, r) => {
-						// debugger;
-						// console.log("rowselect", r.id)
-					},
-					beforerowdeselect: (s, r) => {
-						// debugger;
-						// console.log("rowdeselect", r.id)
+					selectionchange: ({target}) => {
+						console.log(target.getSelected())
 					}
 				}
-			},
-			listeners: {
-				// rowclick: (list, storeIndex, row, ev) => {
-				// 	const record = list.store.get(storeIndex);
-				// 	console.log(list, storeIndex, row,ev, record);
-				// }
 			}
 		});
-
-
-
-
 
 		/**
 		 * Tree that pulls data out of a datasource
@@ -170,13 +151,13 @@ export class Tree extends Page {
 				draggable: true,
 				dropOn: true,
 				listeners: {
-					drop: (toComponent, toIndex, fromIndex, droppedOn, fromComp, dragDataSet) => {
+					drop: ({target, toIndex, fromIndex, droppedOn, fromComp, dragDataSet}) => {
 
-						if(fromComp != toComponent	) {
+						if(fromComp != target	) {
 							return;
 						}
 						const draggedRecord = (fromComp as TreeComp).store.get(fromIndex)!,
-							droppedOnRecord = toComponent.store.get(toIndex)!;
+							droppedOnRecord = target.store.get(toIndex)!;
 
 						demoDataSource.update(draggedRecord.id!,{
 							parentId: droppedOnRecord.id
@@ -269,8 +250,8 @@ export class Tree extends Page {
 		return tree({
 			nodeProvider: () => treeData,
 			listeners: {
-				checkchange:(tree1, record, storeIndex, checked) => {
-					console.log(record, checked, tree1);
+				checkchange:(ev) => {
+					console.log(ev);
 				}
 			}
 		});

@@ -18,7 +18,7 @@ export class ArrayFieldPage extends Page {
 
 	private arrayField;
 	private sortableArrayField;
-	private form: Form<ContainerFieldValue>;
+	private form: Form;
 
 
 	constructor() {
@@ -119,10 +119,10 @@ export class ArrayFieldPage extends Page {
 					this.sortableArrayField = arrayfield({
 						name: "sortablearrayfield",
 						listeners: {
-							render: comp => {
-								const sortable = new Sortable(comp, ".group");
-								sortable.on("sort", (field, toIndex, fromIndex, droppedOn, fromComp) => {
-									comp.value = ArrayUtil.move(comp.value, fromIndex, toIndex);
+							render: ({target}) => {
+								const sortable = new Sortable(target, ".group");
+								sortable.on("sort", ({toIndex, fromIndex}) => {
+									target.value = ArrayUtil.move(target.value, fromIndex, toIndex);
 								})
 							}
 						},
@@ -169,14 +169,14 @@ export class ArrayFieldPage extends Page {
 									icon: "drag_handle",
 									title: "Sort",
 									listeners: {
-										render: comp => {
-											comp.el.addEventListener("mousedown", () => {
-												const row = comp.findAncestorByType(ContainerField)!
+										render: ({target}) => {
+											target.el.addEventListener("mousedown", () => {
+												const row = target.findAncestorByType(ContainerField)!
 												row.el.draggable = true;
 											})
 
-											comp.el.addEventListener("mouseup", () => {
-												const row = comp.findAncestorByType(ContainerField)!
+											target.el.addEventListener("mouseup", () => {
+												const row = target.findAncestorByType(ContainerField)!
 												row.el.draggable = false;
 											})
 										}

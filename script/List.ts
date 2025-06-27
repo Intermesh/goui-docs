@@ -61,11 +61,11 @@ export class List extends Page {
 					return `<strong>${groupBy}</strong>`;
 				},
 				listeners: {
-					render: (l) => {
-						l.store.load();
+					render: ({target}) => {
+						target.store.load();
 					},
-					rowclick: (list1, storeIndex, row, ev) => {
-						Notifier.success(list1.store.get(storeIndex)!.name);
+					rowclick: ({target, storeIndex}) => {
+						Notifier.success(target.store.get(storeIndex)!.name);
 					}
 				}
 			}),

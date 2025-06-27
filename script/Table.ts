@@ -122,15 +122,12 @@ export class Table extends Page {
 			],
 
 			listeners: {
-				navigate: (list, storeIndex) => {
-					console.log(list.store.get(storeIndex)!.createdAt);
-
+				navigate: ({target, storeIndex}) => {
+					console.log(target.store.get(storeIndex)!.createdAt);
 				},
 
-
-
-				render: sender => {
-					sender.store.load();
+				render: ({target}) => {
+					target.store.load();
 				}
 			}
 		})
@@ -160,8 +157,8 @@ export class Table extends Page {
 			rowSelectionConfig: {
 				multiSelect: true,
 				listeners: {
-					selectionchange: rowSelect => {
-						console.log("selectionchange", rowSelect.getSelected());
+					selectionchange: ({target}) => {
+						console.log("selectionchange", target.getSelected());
 					}
 				}
 			},
@@ -203,13 +200,12 @@ export class Table extends Page {
 
 			listeners: {
 
-				navigate: (list, storeIndex) => {
-					console.log(list.store.get(storeIndex)!.createdAt);
+				navigate: ({target, storeIndex}) => {
+					console.log(target.store.get(storeIndex)!.createdAt);
 				},
 
-
-				render: sender => {
-					sender.store.load();
+				render: ({target}) => {
+					void target.store.load();
 				}
 
 			},

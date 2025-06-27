@@ -16,7 +16,6 @@ for (let i = 1; i <= 100; i++) {
 	});
 }
 
-
 export class PagingStore extends Store<DemoStoreRecord> {
 	hasNext(): boolean {
 		return this.pos < 90;

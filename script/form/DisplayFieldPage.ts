@@ -56,8 +56,8 @@ export class DisplayFieldPage extends Page {
 							label: "Name",
 							value: "Don Doe",
 							listeners: {
-								change:(field, newValue, oldValue) => {
-									const form = field.findAncestorByType(GouiForm)!;
+								change:({target, newValue}) => {
+									const form = target.findAncestorByType(GouiForm)!;
 									form.findField("nameDisplay")!.value = newValue;
 								}
 							},
@@ -86,8 +86,8 @@ export class DisplayFieldPage extends Page {
 							label: "Date",
 							value: (new DateTime()).format("Y-m-d"),
 							listeners: {
-								change:(field, newValue, oldValue) => {
-									const form = field.findAncestorByType(GouiForm)!
+								change:({target, newValue}) => {
+									const form = target.findAncestorByType(GouiForm)!
 									form.findField("todayDisplay")!.value = newValue;
 								}
 							}
@@ -106,9 +106,9 @@ export class DisplayFieldPage extends Page {
 						value: true,
 						type: "switch",
 						listeners: {
-							change:(field, newValue, oldValue) => {
+							change:({target, newValue}) => {
 
-								const displayField = field.nextSibling() as DisplayField;
+								const displayField = target.nextSibling() as DisplayField;
 								displayField.value = newValue ? 'check_circle' : 'warning';
 							}
 						},

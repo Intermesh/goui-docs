@@ -58,8 +58,8 @@ export class HtmlFieldPage extends Page {
 
 						label: "Add frame for hint",
 						listeners: {
-							change: (field, checked) => {
-								tf.cls = checked ? "frame-hint" : "";
+							change: ({newValue}) => {
+								tf.cls = newValue ? "frame-hint" : "";
 							}
 						}
 					}),
@@ -69,8 +69,8 @@ export class HtmlFieldPage extends Page {
 
 						label: "Disabled",
 						listeners: {
-							change: (field, checked) => {
-								tf.disabled = checked;
+							change: ({newValue}) => {
+								tf.disabled = newValue;
 							}
 						}
 					}),
@@ -79,8 +79,8 @@ export class HtmlFieldPage extends Page {
 
 						label: "Required",
 						listeners: {
-							change: (field, checked) => {
-								tf.required = checked;
+							change: ({newValue}) => {
+								tf.required = newValue;
 							}
 						}
 					}),
@@ -89,8 +89,8 @@ export class HtmlFieldPage extends Page {
 
 						label: "Read only",
 						listeners: {
-							change: (field, checked) => {
-								tf.readOnly = checked;
+							change: ({newValue}) => {
+								tf.readOnly = newValue;
 							}
 						}
 					}),
@@ -99,8 +99,8 @@ export class HtmlFieldPage extends Page {
 
 						label: "Leading icon",
 						listeners: {
-							change: (field, checked) => {
-								tf.icon = checked ? "favorite" : undefined;
+							change: ({newValue}) => {
+								tf.icon = newValue ? "favorite" : undefined;
 							}
 						}
 					}),
@@ -109,8 +109,8 @@ export class HtmlFieldPage extends Page {
 
 						label: "Button",
 						listeners: {
-							change: (field, checked) => {
-								tf.buttons = checked ? [btn({
+							change: ({newValue}) => {
+								tf.buttons = newValue ? [btn({
 									icon: "clear",
 									handler: (clearBtn) => {
 										clearBtn.findAncestorByType(HtmlField)!.reset();

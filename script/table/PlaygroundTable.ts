@@ -65,8 +65,8 @@ export class PlaygroundTable extends Table {
 		this.rowSelectionConfig = {
 			multiSelect: true,
 			listeners: {
-				selectionchange: (r, rows) => {
-					console.log(rows)
+				selectionchange: (ev) => {
+					console.log(ev)
 				}
 			}
 		};
