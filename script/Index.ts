@@ -1,4 +1,18 @@
-import {a, btn, cards, comp, Component, h2, img, Menu, menu, radio, root, router} from "@intermesh/goui"
+import {
+	a,
+	btn,
+	cards,
+	comp,
+	Component,
+	ComponentEventMap,
+	h2,
+	img,
+	Menu,
+	menu,
+	radio,
+	root,
+	router
+} from "@intermesh/goui"
 import {Button} from "./Button.js";
 
 import {Window} from "./Window.js";
@@ -112,9 +126,9 @@ const header = comp({
  * To make it memory efficient we will instantiate page components on demand when the router navigates.
  * @param cmp
  */
-const pageLoader = <T extends new (...args: any) => any>(cmp: T) : T  => {
+const pageLoader = (cmp: typeof Component<any>)   => {
 	const id = router.getPath() || "home";
-	let page = main.findItem(id) as any;
+	let page = main.findItem(id);
 	if (!page) {
 		page = new cmp;
 		page.id = id;
@@ -232,6 +246,12 @@ router
 			comp({
 				cls: "hbox main-container",
 				// flex: 1
+				listeners: {
+					focus: ev => {
+
+					}
+				}
+
 			},
 				comp({cls: "side-bar"}, new MainMenu()),
 				// splitter({
