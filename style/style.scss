@@ -189,4 +189,14 @@ code {
 
 
 
-
+menu.demo {
+	width: 20rem;
+	li {
+		list-style: none;
+		padding: 0;
+		button {
+			width: 100%;
+			text-align: left;
+		}
+	}
+}

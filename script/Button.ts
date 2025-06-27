@@ -2,18 +2,18 @@ import {
 	btn,
 	Button as Btn,
 	checkbox,
+	collapsebtn,
 	colorpicker,
 	comp,
 	h2,
+	h3,
 	hr,
-	Menu,
 	menu,
 	Notifier,
 	p,
-	root, t,
-	tbar,
-	h3,
-	collapsebtn
+	root,
+	t,
+	tbar
 } from "@intermesh/goui"
 import {Page} from "./Page.js";
 
@@ -283,14 +283,17 @@ export class Button extends Page {
 
 				btn({
 					text: "Color",
-					menu: menu({}, colorpicker({
-						listeners: {
-							select: ({target, color}) => {
-								target.parent!.el.style.color = "#" + color;
-								target.hide();
+					menu: menu({},
+						colorpicker({
+							listeners: {
+								select: ({target, color}) => {
+									const btn = target.findAncestorByType(Btn)!;
+									btn.el.style.color = "#" + color;
+									target.parent!.hide();
+								}
 							}
-						}
-					}))
+						})
+					)
 				}),
 
 				"->",
