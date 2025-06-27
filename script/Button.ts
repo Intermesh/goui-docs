@@ -36,7 +36,42 @@ export class Button extends Page {
 				btn({
 					text: "Basic",
 					handler: this.onClick
-				}),
+				})
+					.on("click", () => {
+						console.log("buffered");
+					}, {buffer: 1000})
+					.on("click", () => {
+						const c = comp({
+							hidden: true
+						});
+
+						root.items.add(c);
+
+						let bufferedFire = 0;
+						c.on("show", () => {
+
+							bufferedFire++;
+							console.log(bufferedFire);
+
+						}, {buffer: 1000});
+
+						c.show();
+						c.hide();
+						c.show();
+						c.hide();
+						c.show();
+						c.hide();
+
+						setTimeout(() => {
+
+							console.log(bufferedFire, 1);
+							c.show();
+
+							console.log(bufferedFire, 2);
+
+						}, 1001);
+					})
+				,
 
 				btn({
 					text: "Primary",
