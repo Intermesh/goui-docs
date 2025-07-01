@@ -2,10 +2,10 @@ import {Page} from "./Page.js";
 import {
 	btn,
 	column,
-	comp,
+	comp, DataSourceStore,
 	datasourcestore,
 	datecolumn,
-	h2, List, p, SelectedRow,
+	h2, List, Listener, ListEventMap, p, SelectedRow,
 	Sortable,
 	splitter, Store, Table,
 	table,
@@ -13,7 +13,7 @@ import {
 	tree, treecolumn,
 	TreeRecord
 } from "@intermesh/goui"
-import {demoDataSource, DemoEntity} from "./DemoDataSource.js"
+import {DemoDataSource, demoDataSource, DemoEntity} from "./DemoDataSource.js"
 
 
 export class DragAndDrop extends Page {
@@ -34,6 +34,10 @@ export class DragAndDrop extends Page {
 			h2("Table sorting"),
 
 			this.createSortTable(),
+			
+			h2("List to list"),
+			
+			this.createListToList(),
 
 			h2("Table and tree"),
 
@@ -332,5 +336,80 @@ export class DragAndDrop extends Page {
 		}
 
 		return rec;
+	}
+
+	/**
+	* Generates two lists next to eachother where you can drag items from one list ot the other,
+	 */
+	private createListToList() {
+		const onDrop: Listener<Table, ListEventMap['drop']> = ({target, source, toIndex, fromIndex}) => {
+			const sourceStore = (source as Table<DataSourceStore<DemoDataSource>>).store;
+			const record = sourceStore.removeAt(fromIndex);
+			if(record) {
+				target.store.insert(toIndex, record)
+			}
+		};
+
+		return comp({cls: "hbox gap"},
+			comp({flex: 1},
+				h2("List 1"),
+				table({
+					reorderColumns: false,
+					id: "drop-list-1",
+					sortableGroup: "list",
+					draggable: true,
+					dropBetween: true,
+					dropOn: true,
+					store: datasourcestore({
+						dataSource: demoDataSource,
+						queryParams: {
+							filter: {
+								parentId: null
+							}
+						}
+					}),
+					columns: [
+						column({
+							header: "Name",
+							id: "name"
+						})
+					],
+					listeners: {
+						render: ({target}) => {
+							void target.store.load();
+						},
+						drop: onDrop
+					}
+				})
+			),
+			comp({flex: 1},
+				h2("List 2"),
+				table({
+					reorderColumns: false,
+					id: "drop-list-2",
+					sortableGroup: "list",
+					draggable: true,
+					dropBetween: true,
+					dropOn: true,
+					store: datasourcestore({
+						dataSource: demoDataSource,
+						queryParams: {
+							filter: {
+								parentId: null
+							},
+						}
+					}),
+					columns: [
+						column({
+							header: "Name",
+							id: "name"
+						})
+					],
+					listeners: {
+						drop: onDrop
+					}
+				})
+			)
+		)
 	}
 }
