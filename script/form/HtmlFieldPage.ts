@@ -1,14 +1,14 @@
 import {Page} from "../Page.js";
 import {
 	btn,
-	checkbox, Field,
+	checkbox,
 	fieldset,
 	form,
-	Form as GouiForm, HtmlField, htmlfield,
+	HtmlField,
+	htmlfield,
 	p,
 	tbar,
 	textarea,
-	TextField,
 	textfield,
 	Window
 } from "@intermesh/goui";
@@ -26,6 +26,10 @@ export class HtmlFieldPage extends Page {
 		const tf = htmlfield({
 			label: "Html",
 			name: "html",
+			value: `
+<div>Checkout the text editor in GOUI</div>
+<div>Resize the image by dragging the edges:</div>
+<div><img src="resources/goui-calendar.png"></div>`,
 			hint: "Attach files by dropping or pasting them"
 		});
 
