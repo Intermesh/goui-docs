@@ -102,6 +102,18 @@ export class DateTimePage extends Page {
 						}
 					}),
 
+					timefield({
+						name: "12htime",
+						label: "Time (12h)",
+						value: "22:15",
+						twelveHour: true,
+						listeners: {
+							change:({newValue, oldValue}) => {
+								console.log("timefield change", newValue, oldValue)
+							}
+						}
+					}),
+
 					comp(), //for breaking to next line
 
 					durationfield({
