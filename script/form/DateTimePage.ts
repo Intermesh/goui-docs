@@ -9,8 +9,8 @@ import {
 	p,
 	tbar,
 	TextField,
-	textfield, timefield,
-	Window
+	datetimefield, timefield,
+	Window, DateTimeField, radio, TimeField, hr
 } from "@intermesh/goui";
 
 
@@ -46,11 +46,21 @@ export class DateTimePage extends Page {
 						label: "Date",
 						name: "date",
 						value: (new DateTime()).format("Y-m-d"),
+						min: (new DateTime()).addYears(-2),
+						max: (new DateTime()).addDays(-1),
+						hint: "Select a date in the past 2 years"
+					}),
+
+					hr(),
+
+					datetimefield({
+						label: "Date & time",
+						name: "datetime",
+						value: (new DateTime()).format("Y-m-d"),
 						defaultTime: (new DateTime()).format("H:00"),
-						min: (new DateTime()).addYears(-2).format("Y-m-d"),
-						max: (new DateTime()).addDays(-1).format("Y-m-d"),
+						min: (new DateTime()).addYears(-2).setHours(13,0),
+						max: (new DateTime()).addDays(-1).setHours(13,0),
 						hint: "Select a date in the past 2 years",
-						width: 240,
 						listeners: {
 							change:({newValue, oldValue}) => {
 								console.log("datefield change", newValue, oldValue)
@@ -59,36 +69,19 @@ export class DateTimePage extends Page {
 					}),
 
 					checkbox({
-						width: 160,
 						label: "With time",
+						value: true,
 						listeners: {
 							change: ({target, newValue}) => {
-								const df = target.previousSibling() as DateField;
-
+								const df = target.previousSibling() as DateTimeField;
 								df.withTime = newValue
 							}
 						}
 					}),
 
-					datefield({
-						label: "Date & time",
-						name: "datetime",
-						withTime: true,
-						defaultTime: "13:00",
-						value: (new DateTime()).format("Y-m-dTH:i"),
-						min: (new DateTime()).addYears(-2).format("Y-m-d"),
-						max: (new DateTime()).addDays(-1).format("Y-m-d"),
-						hint: "Select a date in the past 2 years"
-					}),
 
 
-					daterangefield({
-						label: "Range",
-						name:"daterange"
-					}),
-
-
-					comp(), //for breaking to next line
+					hr(), //for breaking to next line
 
 
 					timefield({
@@ -102,19 +95,28 @@ export class DateTimePage extends Page {
 						}
 					}),
 
-					timefield({
-						name: "12htime",
-						label: "Time (12h)",
-						value: "22:15",
-						twelveHour: true,
+					radio({
+						value: "system",
 						listeners: {
-							change:({newValue, oldValue}) => {
-								console.log("timefield change", newValue, oldValue)
+							change: ev => {
+								const tf = ev.target.previousSibling() as TimeField;
+								tf.twelveHour = ev.newValue == "system" ? DateTime.hour12() : ev.newValue == "12h";
 							}
-						}
-					}),
+						},
+						options: [{
+							value: "system",
+							text: "System format"
+						},{
+							value: "24h",
+							text: "24h"
+						},{
+							value: "12h",
+							text: "12h"
+						}]
+					})
+					,
 
-					comp(), //for breaking to next line
+					hr(), //for breaking to next line
 
 					durationfield({
 						name: "duration",
@@ -131,6 +133,11 @@ export class DateTimePage extends Page {
 						outputFormat: "j", //format as total number of minutes
 						min: new DateInterval("PT10H"),
 						max: new DateInterval("PT100H")
+					}),
+					comp(), //for breaking to next line
+					daterangefield({
+						label: "Range",
+						name:"daterange"
 					}),
 				),
 
