@@ -35,7 +35,7 @@ export class DisplayFieldPage extends Page {
 					}
 				},
 
-				p("Forms can also be used to present data using display fields."),
+				p({html: "Forms can also be used to present data using display fields."}),
 
 
 				fieldset({

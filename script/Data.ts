@@ -34,13 +34,13 @@ export class Data extends Page {
 		this.form = this.createForm();
 
 		this.items.add(
-			p("GOUI is event driven. A DataSource collection is a single source of truth for all types of data." +
+			p({html: "GOUI is event driven. A DataSource collection is a single source of truth for all types of data." +
 				" When the DataSource changes it fires an event. All components and stores listen to the 'change' event to " +
 				"update themselves. This approach reduces the amount of code that has to be written and maintained. <br>" +
 				"The example below demonstrates this with a table and a form. When you save the form the table store acts on the" +
-				" data source's change event."),
+				" data source's change event."}),
 
-			p("This example code also demonstrates how to load async data along with the store using relations and the buildRecord property"),
+			p({html: "This example code also demonstrates how to load async data along with the store using relations and the buildRecord property"}),
 
 			comp({cls: "hbox gap"},
 				comp({flex: 2, cls: "frame scroll"}, this.table),

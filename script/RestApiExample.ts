@@ -36,7 +36,7 @@ export class RestApiExample extends Component {
 		this.items.add(
 			h2("REST API Example"),
 
-			p("This example shows how to use a REST API Data source to show a table and edit dialog. Double click rows to edit. We used <a href='https://reqres.in'>https://reqres.in</a> for this example."),
+			p({html: "This example shows how to use a REST API Data source to show a table and edit dialog. Double click rows to edit. We used <a href='https://reqres.in'>https://reqres.in</a> for this example."}),
 
 			btn({
 				icon: "refresh",

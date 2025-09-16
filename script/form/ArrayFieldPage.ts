@@ -39,7 +39,7 @@ export class ArrayFieldPage extends Page {
 					}
 				},
 
-				p("An ArrayField can be used to represent an array of objects like contact e-mail addresses for example. Press 'Save' to see what that looks like."),
+				p({html: "An ArrayField can be used to represent an array of objects like contact e-mail addresses for example. Press 'Save' to see what that looks like."}),
 
 
 				fieldset({

@@ -15,7 +15,7 @@ export class PagingTable extends Component {
 			h2("Pagination"),
 
 
-			p("You can paginate using a toolbar or by scrolling."),
+			p({html: "You can paginate using a toolbar or by scrolling."}),
 
 
 			h3("Paginator toolbar"),

@@ -42,7 +42,7 @@ export class Page extends Component {
 				tagName:"footer",
 				cls: "main"
 			},
-				p('Powered by <a href="https://www.group-office.com">Intermesh Group-Office</a> ©2024'),
+				p({html: 'Powered by <a href="https://www.group-office.com">Intermesh Group-Office</a> ©2024'}),
 				p("Licensed under MIT license"
 				)
 			)

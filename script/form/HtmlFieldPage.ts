@@ -44,7 +44,7 @@ export class HtmlFieldPage extends Page {
 					}
 				},
 
-				p("Forms can handle complex object structures using Container and Array type fields. They don't submit in the traditional way but return a Javascript Object that can be sent using an XHR or fetch API request. To see how this works fill in some data and press 'Save' below."),
+				p({html: "Forms can handle complex object structures using Container and Array type fields. They don't submit in the traditional way but return a Javascript Object that can be sent using an XHR or fetch API request. To see how this works fill in some data and press 'Save' below."}),
 
 
 				fieldset({

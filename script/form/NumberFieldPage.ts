@@ -39,7 +39,7 @@ export class NumberFieldPage extends Page {
 					}
 				},
 
-				p("For numeric input there's a NumberField and RangeField."),
+				p({html: "For numeric input there's a NumberField and RangeField."}),
 
 
 				fieldset({

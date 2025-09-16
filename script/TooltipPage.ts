@@ -10,7 +10,7 @@ export class TooltipPage extends Page {
 
 
 		this.items.add(
-			p("You can render HTML tooltips with the ToolTip component:"),
+			p({html: "You can render HTML tooltips with the ToolTip component:"}),
 
 			btn({
 				cls: "filled",
@@ -25,7 +25,7 @@ export class TooltipPage extends Page {
 				}
 			}),
 
-			p("A larger tooltip with HTML:"),
+			p({html: "A larger tooltip with HTML:"}),
 
 			btn({
 				cls: "filled",

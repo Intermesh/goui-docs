@@ -25,7 +25,7 @@ export class Button extends Page {
 		this.title = "Buttons";
 
 		this.items.add(
-			p("This page shows all the buttons, toolbars and menu components."),
+			p({html: "This page shows all the buttons, toolbars and menu components."}),
 
 			h2({
 				text: "Basic"

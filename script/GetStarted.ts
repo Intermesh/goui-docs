@@ -9,12 +9,13 @@ export class GetStarted extends Page {
 
 		this.items.add(
 
-			p(
-				"Start building efficient web apps now! Use our simple 'Hello World' boilerplate project. " +
-				"Go to the template repository: <br /><br /> " +
-				"<a href=\"https://github.com/Intermesh/goui-hello-world.git\">https://github.com/Intermesh/goui-hello-world.git</a>." +
-				"<br /><br />Clone it and run it."
-			),
+			p({
+				html:
+					"Start building efficient web apps now! Use our simple 'Hello World' boilerplate project. " +
+					"Go to the template repository: <br /><br /> " +
+					"<a href=\"https://github.com/Intermesh/goui-hello-world.git\">https://github.com/Intermesh/goui-hello-world.git</a>." +
+					"<br /><br />Clone it and run it."
+			}),
 
 
 		)

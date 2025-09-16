@@ -8,11 +8,11 @@ export class Layout extends Page {
 		this.sourceURL = './Layout.ts';
 
 		this.items.add(
-			p("Layout's are created with CSS. We have made some classes to create layouts."),
+			p({html: "Layout's are created with CSS. We have made some classes to create layouts."}),
 
 			h2("hbox"),
 
-			p("The 'hbox' css class create a horizontal stack using flex css. You can use the 'gap' class to use a standard gap."),
+			p({html: "The 'hbox' css class create a horizontal stack using flex css. You can use the 'gap' class to use a standard gap."}),
 
 			comp({
 					cls: "hbox gap",
@@ -41,7 +41,7 @@ export class Layout extends Page {
 
 			h2("vbox"),
 
-			p("The 'vbox' css class create a vertical stack using flex css. You can use the 'gap' class to use a standard gap."),
+			p({html: "The 'vbox' css class create a vertical stack using flex css. You can use the 'gap' class to use a standard gap."}),
 
 			comp({
 					cls: "vbox gap",
@@ -71,7 +71,7 @@ export class Layout extends Page {
 
 			h2("Surface color"),
 
-			p("Use these classes to distinct different surfaces in the application"),
+			p({html: "Use these classes to distinct different surfaces in the application"}),
 
 			comp({cls: "card"},
 				comp({cls: "bg-lowest pad", text: ".bg-lowest"}),
@@ -83,7 +83,7 @@ export class Layout extends Page {
 
 			h2("Splitter"),
 
-			p("A Splitter Component can be used for resizing panels on the desktop. Try resizing the panels."),
+			p({html: "A Splitter Component can be used for resizing panels on the desktop. Try resizing the panels."}),
 
 			h3("Width"),
 
@@ -170,19 +170,19 @@ export class Layout extends Page {
 			),
 
 			h2("scroll"),
-			p("Use the 'scroll' css class for panels that need to scroll."),
+			p({html: "Use the 'scroll' css class for panels that need to scroll."}),
 
 			h2("pad"),
-			p("Use the 'pad' css class top apply default padding."),
+			p({html: "Use the 'pad' css class top apply default padding."}),
 
 			h2("fit"),
-			p("Use the 'fit' css class to make the component fit exactly in the parent component."),
+			p({html: "Use the 'fit' css class to make the component fit exactly in the parent component."}),
 
 			h2("border"),
-			p("Use the 'border-top', 'border-right', 'border-bottom' and 'border-left' css class to apply the standard border."),
+			p({html: "Use the 'border-top', 'border-right', 'border-bottom' and 'border-left' css class to apply the standard border."}),
 
 			h2("flow"),
-			p("The default for the Form and FieldSet component. Items are next eachother and move to the next row when there's no space left. When no width is given items will get 100% width."),
+			p({html: "The default for the Form and FieldSet component. Items are next eachother and move to the next row when there's no space left. When no width is given items will get 100% width."}),
 
 			h2("print"),
 

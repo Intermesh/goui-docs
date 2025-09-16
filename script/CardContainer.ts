@@ -8,7 +8,7 @@ export class CardContainer extends Page {
 		this.sourceURL = './CardContainer.ts';
 
 		this.items.add(
-			p("A CardContainer component contains multiple components but only one is shown. The others are hidden like in a pile of cards. In combination with a CardMenu you can create a tab panel:"),
+			p({html: "A CardContainer component contains multiple components but only one is shown. The others are hidden like in a pile of cards. In combination with a CardMenu you can create a tab panel:"}),
 
 			comp({
 					cls: "frame"
@@ -38,7 +38,7 @@ export class CardContainer extends Page {
 							title: "Tab 3",
 							cls: "pad"
 						},
-						p("Voluptatum cum repellendus aut et. Et tempore rerum numquam cupiditate amet sed consequuntur. Quam natus voluptatem ullam. Ut ipsum autem ex eum doloremque ducimus velit.")
+						p({html: "Voluptatum cum repellendus aut et. Et tempore rerum numquam cupiditate amet sed consequuntur. Quam natus voluptatem ullam. Ut ipsum autem ex eum doloremque ducimus velit."})
 					)
 				)
 			)

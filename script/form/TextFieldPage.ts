@@ -40,7 +40,7 @@ export class TextFieldPage extends Page {
 					}
 				},
 
-				p("Text fields can have various states and types. Play around with them below."),
+				p({html: "Text fields can have various states and types. Play around with them below."}),
 
 
 				fieldset({

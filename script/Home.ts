@@ -8,17 +8,18 @@ export class Home extends Page {
 
 		this.items.add(
 
-			p("Welcome to the GOUI (<a href=\"https://www.group-office.com/\">Group-Office</a> " +
-				"User Interface) Documentation website. " +
-				"Developed using <a href=\"https://www.typescriptlang.org/\">TypeScript</a> and " +
-				"<a href=\"https://sass-lang.com/\">SASS</a>, GOUI aims to create stunning and efficient " +
-				"web applications.<br><br>" +
+			p({
+				html: "Welcome to the GOUI (<a href=\"https://www.group-office.com/\">Group-Office</a> " +
+					"User Interface) Documentation website. " +
+					"Developed using <a href=\"https://www.typescriptlang.org/\">TypeScript</a> and " +
+					"<a href=\"https://sass-lang.com/\">SASS</a>, GOUI aims to create stunning and efficient " +
+					"web applications.<br><br>" +
 
-				"On this website, you'll find an extensive collection of available components. The complete " +
-				"source code is hosted on <a href=\"https://github.com/intermesh/goui\">GitHub</a>, which can be accessed to kickstart your development process. " +
-				"With comprehensive TypeScript documentation, your coding experience will be greatly enhanced " +
-				"through intelligent suggestions from your TypeScript editor."
-			),
+					"On this website, you'll find an extensive collection of available components. The complete " +
+					"source code is hosted on <a href=\"https://github.com/intermesh/goui\">GitHub</a>, which can be accessed to kickstart your development process. " +
+					"With comprehensive TypeScript documentation, your coding experience will be greatly enhanced " +
+					"through intelligent suggestions from your TypeScript editor."
+			}),
 
 
 			a({
@@ -35,23 +36,25 @@ export class Home extends Page {
 
 			h2("Group-Office"),
 
-			p(
-				"GOUI was designed to replace the outdated ExtJS 3.4 framework utilized in " +
-				"<a href=\"https://www.group-office.com/\">Group-Office</a>. " +
-				"However, it is not limited to Group-Office alone. This versatile framework can be seamlessly " +
-				"integrated into any JavaScript or TypeScript project."
-			),
+			p({
+				html:
+					"GOUI was designed to replace the outdated ExtJS 3.4 framework utilized in " +
+					"<a href=\"https://www.group-office.com/\">Group-Office</a>. " +
+					"However, it is not limited to Group-Office alone. This versatile framework can be seamlessly " +
+					"integrated into any JavaScript or TypeScript project."
+			}),
 
 
 			h2("Efficient architecture"),
 
-			p(
-				"GOUI has a highly efficient architecture, utilizing pure JavaScript and CSS for rendering. " +
-				"Whenever possible, pure HTML and CSS are leveraged, allowing the browser to efficiently render " +
-				"components. In cases where this is not feasible, JavaScript is employed. Additionally, applications " +
-				"are developed entirely in TypeScript, eliminating the need for parsing templates. The component generator are " +
-				"designed to make the code very structured and readable."
-			),
+			p({
+				html:
+					"GOUI has a highly efficient architecture, utilizing pure JavaScript and CSS for rendering. " +
+					"Whenever possible, pure HTML and CSS are leveraged, allowing the browser to efficiently render " +
+					"components. In cases where this is not feasible, JavaScript is employed. Additionally, applications " +
+					"are developed entirely in TypeScript, eliminating the need for parsing templates. The component generator are " +
+					"designed to make the code very structured and readable."
+			}),
 
 			btn({
 				text: "Get started",

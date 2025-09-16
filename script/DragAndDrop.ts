@@ -41,7 +41,7 @@ export class DragAndDrop extends Page {
 
 			h2("Table and tree"),
 
-			p("You can move nodes in the tree and from the table to the tree"),
+			p({html: "You can move nodes in the tree and from the table to the tree"}),
 
 			comp({cls: "hbox"},
 

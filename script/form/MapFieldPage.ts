@@ -36,7 +36,7 @@ export class MapFieldPage extends Page {
 					}
 				},
 
-				p("A MapField represents a key value object. Press 'Save' to see what that looks like."),
+				p({html: "A MapField represents a key value object. Press 'Save' to see what that looks like."}),
 
 
 				fieldset({

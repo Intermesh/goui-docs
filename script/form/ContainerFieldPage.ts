@@ -35,7 +35,7 @@ export class ContainerFieldPage extends Page {
 					}
 				},
 
-				p("A container field is used to create a sub property in the form object. Press 'Save' below to see the result."),
+				p({html: "A container field is used to create a sub property in the form object. Press 'Save' below to see the result."}),
 
 
 				fieldset({
