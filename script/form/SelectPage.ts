@@ -58,7 +58,7 @@ export class SelectPage extends Page {
 					}
 				},
 
-				p({html: "Forms can handle complex object structures using Container and Array type fields. They don't submit in the traditional way but return a Javascript Object that can be sent using an XHR or fetch API request. To see how this works fill in some data and press 'Save' below."}),
+				p({html: "In the examples below you'll find simple select fields and auto complete fields using data sources."}),
 
 
 				fieldset({
