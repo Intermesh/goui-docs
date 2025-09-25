@@ -55,7 +55,7 @@ export class ChipsFieldPage extends Page {
 					}
 				},
 
-				p({html: "Forms can handle complex object structures using Container and Array type fields. They don't submit in the traditional way but return a Javascript Object that can be sent using an XHR or fetch API request. To see how this works fill in some data and press 'Save' below."}),
+				p({html: "A chips field is form field that holds an array value represented in chips (small rectangular items with text). Like a tags field or recipients field for an e-mail composer for example."}),
 
 
 				fieldset({
