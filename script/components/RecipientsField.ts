@@ -1,4 +1,4 @@
-import {autocompletechips, AutocompleteChips, column, store, table} from "../../../goui";
+import {autocompletechips, AutocompleteChips, column, store, table} from "@intermesh/goui";
 
 const autocompleteRecords = [
 
