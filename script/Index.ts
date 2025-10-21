@@ -253,7 +253,9 @@ router
 				}
 
 			},
-				comp({cls: "side-bar"}, new MainMenu()),
+				comp({cls: "side-bar"},
+					new MainMenu()
+				),
 				// splitter({
 				// 	resizeComponentPredicate: mainMenu
 				// }),
