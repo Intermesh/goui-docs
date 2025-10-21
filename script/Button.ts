@@ -31,7 +31,7 @@ export class Button extends Page {
 				text: "Basic"
 			}),
 
-			tbar({},
+			tbar({cls: "wrap"},
 
 				btn({
 					text: "Basic",
@@ -96,7 +96,7 @@ export class Button extends Page {
 				text: "Filled buttons"
 			}),
 
-			tbar({},
+			tbar({cls: "wrap"},
 
 				btn({
 					text: "Basic",
@@ -128,7 +128,7 @@ export class Button extends Page {
 				text: "Outlined buttons"
 			}),
 
-			tbar({},
+			tbar({cls: "wrap"},
 
 				btn({
 					text: "Basic",
@@ -161,7 +161,7 @@ export class Button extends Page {
 				text: "Icons from the Material font"
 			}),
 
-			tbar({},
+			tbar({cls: "wrap"},
 
 				btn({
 					icon: "more_vert",
@@ -211,6 +211,7 @@ export class Button extends Page {
 			}),
 
 			tbar({
+					cls: "wrap",
 					style: {
 						backgroundColor: "#0277bd",
 						color: "white"
