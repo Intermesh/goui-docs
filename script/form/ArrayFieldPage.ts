@@ -48,6 +48,7 @@ export class ArrayFieldPage extends Page {
 
 
 					this.arrayField = arrayfield({
+						required: true,
 						name: "arrayfield",
 						/**
 						 * This function is called to create form fields for each array item.
@@ -62,6 +63,7 @@ export class ArrayFieldPage extends Page {
 									name: "type",
 									width: 140,
 									label: "Type",
+									value: "work",
 									options: [
 										{
 											value: "work",
@@ -77,6 +79,7 @@ export class ArrayFieldPage extends Page {
 									flex: 1,
 									label: "E-mail",
 									name: "email",
+									required: true
 								}),
 
 								btn({
@@ -110,7 +113,7 @@ export class ArrayFieldPage extends Page {
 								
 								this.arrayField.addValue({
 									type: "home",
-									email: "another@example.com"
+									email: ""
 								});
 							}
 						})

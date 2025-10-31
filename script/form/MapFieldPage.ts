@@ -45,6 +45,7 @@ export class MapFieldPage extends Page {
 
 					this.mapField = mapfield({
 						name: "mapfield",
+						required: true,
 						buildField: () => {
 							const field = containerfield({
 									cls: "group",
@@ -54,6 +55,7 @@ export class MapFieldPage extends Page {
 									name: "type",
 									width: 140,
 									label: "Type",
+									value: "work",
 									options: [
 										{
 											value: "work",
@@ -69,6 +71,7 @@ export class MapFieldPage extends Page {
 									flex: 1,
 									label: "E-mail",
 									name: "email",
+									required: true
 								}),
 
 								btn({
