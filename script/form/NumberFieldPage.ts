@@ -4,7 +4,7 @@ import {
 	checkbox, Field,
 	fieldset,
 	form,
-	Form as GouiForm,
+	Form as GouiForm, Format,
 	numberfield,
 	p, rangefield,
 	tbar,
@@ -23,9 +23,12 @@ export class NumberFieldPage extends Page {
 		this.title = "NumberField";
 		this.sourceURL = "form/NumberFieldPage.ts";
 
-		const tf = numberfield({
+		const numberField = numberfield({
 			label: "Number",
-			name: "number"
+			name: "number",
+			value: 6003.35,
+			min: -10000,
+			max: 10000
 		});
 
 		this.items.add(
@@ -34,8 +37,7 @@ export class NumberFieldPage extends Page {
 					title: "Form",
 					cls: "scroll fit",
 					handler: (form) => {
-
-						Window.alert("<code>" + JSON.stringify(form.value, null, 4) + "</code>");
+						void Window.alert("<code>" + JSON.stringify(form.value, null, 4) + "</code>");
 					}
 				},
 
@@ -46,19 +48,13 @@ export class NumberFieldPage extends Page {
 						legend: "NumberField"
 					},
 
-					textfield({
-						hidden: true,
-						name: "hiddenTextField",
-						value: "hiddenValue"
-					}),
-
-					tf,
+					numberField,
 
 					checkbox({
 						label: "Disabled",
 						listeners: {
 							change: ({newValue}) => {
-								tf.disabled = newValue;
+								numberField.disabled = newValue;
 							}
 						}
 					}),
@@ -67,7 +63,7 @@ export class NumberFieldPage extends Page {
 						label: "Required",
 						listeners: {
 							change: ({newValue}) => {
-								tf.required = newValue;
+								numberField.required = newValue;
 							}
 						}
 					}),
@@ -76,7 +72,7 @@ export class NumberFieldPage extends Page {
 						label: "Read only",
 						listeners: {
 							change: ({newValue}) => {
-								tf.readOnly = newValue;
+								numberField.readOnly = newValue;
 							}
 						}
 					}),
@@ -85,7 +81,7 @@ export class NumberFieldPage extends Page {
 						label: "Leading icon",
 						listeners: {
 							change: ({newValue}) => {
-								tf.icon = newValue ? "favorite" : undefined;
+								numberField.icon = newValue ? "favorite" : undefined;
 							}
 						}
 					}),
@@ -94,11 +90,11 @@ export class NumberFieldPage extends Page {
 						label: "Button",
 						listeners: {
 							change: ({newValue}) => {
-								tf.buttons = newValue ? [btn({
+								numberField.buttons = newValue ? [btn({
 									icon: "clear",
 									handler: (clearBtn) => {
 										const field = clearBtn.findAncestorByType(Field)!;
-										field.reset();
+										field.value = undefined;
 									}
 								})] : []
 							}
@@ -111,7 +107,8 @@ export class NumberFieldPage extends Page {
 					},
 					rangefield({
 						name: "rangefield",
-						label: "Range"
+						label: "Range",
+						step: 1
 					})
 				),
 
