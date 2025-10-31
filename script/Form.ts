@@ -85,10 +85,12 @@ export class Form extends Page {
 
 				},
 
-					comp({cls: "group"},
+					comp({cls: "group", style: {alignItems: "unset"}},
 						btn({icon: "add"}),
 						htmlfield({
-							flex: 1
+							cls: "frame-hint",
+							flex: 1,
+							required: true
 						}),
 						btn({icon: "send"}),
 					),
