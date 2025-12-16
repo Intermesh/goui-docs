@@ -440,7 +440,7 @@ export class Button extends Page {
 	private createCollapsibleCard() {
 		const body = comp({
 			cls: "pad",
-			text: "Click the button in the toolbar to collapse and expand this body."
+			text: "Click the button in the toolbar to collapse and expand this body. Also checkout the Panel component."
 		})
 
 		return comp({cls: "card"},
@@ -448,7 +448,7 @@ export class Button extends Page {
 				h3("Collapsible card"),
 				"->",
 				collapsebtn({
-					collapseEl: body
+					target: body
 				})
 			),
 			body

@@ -1,19 +1,6 @@
-import {
-	a,
-	btn,
-	cards,
-	comp,
-	Component,
-	ComponentEventMap,
-	h2,
-	img,
-	Menu,
-	menu,
-	radio,
-	root,
-	router
-} from "@intermesh/goui"
+import {a, btn, cards, comp, Component, h2, img, Menu, menu, radio, root, router} from "@intermesh/goui"
 import {Button} from "./Button.js";
+import {Panel} from "./Panel.js";
 
 import {Window} from "./Window.js";
 import {List} from "./List.js";
@@ -151,6 +138,9 @@ router
 	.add(/^buttons$/, () => {
 		pageLoader(Button);
 	})
+	.add(/^panel$/, () => {
+		pageLoader(Panel);
+	})
 
 	.add(/^getstarted$/, () => {
 		pageLoader(GetStarted);
@@ -244,14 +234,7 @@ router
 
 			header,
 			comp({
-				cls: "hbox main-container",
-				// flex: 1
-				listeners: {
-					focus: ev => {
-
-					}
-				}
-
+				cls: "hbox main-container"
 			},
 				comp({cls: "side-bar"},
 					new MainMenu()

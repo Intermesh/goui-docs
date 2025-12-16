@@ -1,5 +1,4 @@
 import {Tree} from "@intermesh/goui"
-import {router} from "@intermesh/goui"
 
 
 export class MainMenu extends Tree {
@@ -66,6 +65,10 @@ export class MainMenu extends Tree {
 		{
 			text: "Card container",
 			href: "#cardcontainer",
+			children: []
+		},{
+			text: "Panel",
+			href: "#panel",
 			children: []
 		},{
 			text: "Buttons",
