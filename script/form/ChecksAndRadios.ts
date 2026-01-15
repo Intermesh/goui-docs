@@ -99,6 +99,20 @@ export class ChecksAndRadios extends Page {
 						}
 					),
 
+					radio({
+							label: "Radio with type='box' but stacked vertically",
+							type: "box",
+							cls: "vertical-stack",
+							name: "radio-box-vertical-stack",
+							value: 1,
+							options: [
+								{text: "Option 1", value: 1},
+								{text: "Option 2", value: 2},
+								{text: "Null", value: null},
+							]
+						}
+					),
+
 
 					radio({
 							label: "Radio with type='list'",

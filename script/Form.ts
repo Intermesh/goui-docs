@@ -10,10 +10,10 @@ import {
 	h1, htmlfield,
 	img,
 	p,
-	t,
+	t, TextField,
 	textfield,
 	tree,
-	Tree
+	Tree, Window
 } from "@intermesh/goui";
 import {MainMenu} from "./MainMenu.js"
 import {demoDataSource} from "./DemoDataSource.js"
@@ -25,11 +25,24 @@ export class Form extends Page {
 
 		this.items.add(
 
-			form({},
+			form({
+				handler: async (form) => {
+
+						// Simulate a fake async validation error. It will be cleared if the user changes the field.
+						if(form.value.middleName !== "van") {
+							form.findField("middleName")!.setInvalid("Middle name must be 'van'");
+						} else {
+
+							void Window.alert("<code>" + JSON.stringify(form.value, null, 4) + "</code>", "Success");
+						}
+					}
+				},
 
 				fieldset({
-					legend: "Example form"
+						legend: "Example form"
 					},
+
+					p("This form also demonstrates some validation principles. The passwords must match, e-mail must be valid and the middle name field will be validated asynchronously after submitting the form."),
 
 					comp({cls: "group"},
 						textfield({
@@ -48,6 +61,12 @@ export class Form extends Page {
 						})
 					),
 
+					textfield({
+						name: "email",
+						label: "E-mail",
+						type: "email"
+					}),
+
 					combobox({
 						dataSource: demoDataSource,
 						label: t("Contact"),
@@ -63,6 +82,33 @@ export class Form extends Page {
 						filterName: "name"
 					}),
 				),
+
+				fieldset({},
+
+					textfield({
+						required: true,
+						type: "password",
+						name: "password",
+						label: t("Password")
+					}),
+
+					textfield({
+						required: true,
+						type: "password",
+						name: "confirmPassword",
+						label: t("Confirm password"),
+						listeners: {
+							validate: ({target}) =>
+							{
+								// Validate if passwords match
+								if(target.value != (target.previousSibling() as TextField).value) {
+									target.setInvalid(t("Passwords don't match"));
+								}
+							}
+						}
+					})
+
+					),
 
 				fieldset({},
 					datefield({
@@ -89,6 +135,7 @@ export class Form extends Page {
 						btn({icon: "add"}),
 						htmlfield({
 							cls: "frame-hint",
+							hint: "Type something nice here",
 							flex: 1,
 							required: true
 						}),
