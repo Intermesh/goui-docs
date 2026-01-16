@@ -11,7 +11,8 @@ export class PlaygroundTable extends Table {
 		for (let i = 1; i <= 20; i++) {
 			records.push({
 				number: i,
-				description: "Test " + i,
+				name: "Test " + i,
+				description: "Description " + i,
 				createdBy: "John " + i,
 				createdAt: (new DateTime()).addDays(Math.ceil(Math.random() * -365)).format("c")
 			});
@@ -35,10 +36,15 @@ export class PlaygroundTable extends Table {
 
 				// Omitting width will auto size this to fill the width
 				column({
-					header: "Description",
-					id: "description",
+					header: "Name",
+					id: "name",
 					sortable: true,
-					resizable: true
+					resizable: true,
+					htmlEncode: false, // disable html encoding as we will use html in the renderer. Make sure to encode the data in there.
+					renderer: (columnValue, record, td, table1, storeIndex) => {
+						// 2 line rendering
+						return `<h3>${record.name.htmlEncode()}</h3> <h4>${record.description.htmlEncode()}</h4>`
+					}
 				}),
 
 				column({

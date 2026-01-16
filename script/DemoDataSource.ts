@@ -28,6 +28,7 @@ for (let i = 1; i <= max; i++) {
 		id: i + "",
 		parentId: i < topLevel ? null : (Math.floor(Math.random() * (max-topLevel)) + 1) + "",
 		name: "Test " + i,
+		description: "Test description " + i,
 		group: groups[Math.floor(Math.random() * 10)],
 		createdAt: (new DateTime()).addDays(Math.ceil(Math.random() * -365)).format('c')
 	};
@@ -156,6 +157,7 @@ export class DemoDataSource extends AbstractDataSource<DemoEntity, DataSourceEve
 
 export interface DemoEntity extends BaseEntity {
 	name: string,
+	description: string,
 	parentId: string | null,
 	createdAt: string,
 	group: string
