@@ -40,10 +40,12 @@ export class List extends Page {
 				store: datasourcestore({
 					dataSource: demoDataSource,
 					queryParams: {
-						filter: {
-							parentId: null
-						},
 						limit: 20
+					},
+					filters: {
+						parent: {
+							parentId: null
+						}
 					},
 					sort: [{
 						isAscending: true,

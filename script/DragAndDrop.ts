@@ -126,10 +126,12 @@ export class DragAndDrop extends Page {
 			store: datasourcestore({
 				dataSource: demoDataSource,
 				queryParams: {
-					filter: {
+					limit: 10
+				},
+				filters: {
+					parent: {
 						parentId: null
 					},
-					limit: 10
 				}
 			}),
 
@@ -181,10 +183,12 @@ export class DragAndDrop extends Page {
 			store: datasourcestore({
 				dataSource: demoDataSource,
 				queryParams: {
-					filter: {
+					limit: 10
+				},
+				filters: {
+					parent: {
 						parentId: null
 					},
-					limit: 10
 				}
 			}),
 
@@ -362,10 +366,10 @@ export class DragAndDrop extends Page {
 					dropOn: true,
 					store: datasourcestore({
 						dataSource: demoDataSource,
-						queryParams: {
-							filter: {
+						filters: {
+							parent: {
 								parentId: null
-							}
+							},
 						}
 					}),
 					columns: [
@@ -393,8 +397,8 @@ export class DragAndDrop extends Page {
 					dropOn: true,
 					store: datasourcestore({
 						dataSource: demoDataSource,
-						queryParams: {
-							filter: {
+						filters: {
+							parent: {
 								parentId: null
 							},
 						}

@@ -158,11 +158,10 @@ export class SelectPage extends Page {
 							render:({target}) => {
 								//group the list by the group column
 								target.list.groupBy = "group";
-								target.list.store.queryParams = {
-									filter: {
+								target.list.store.setFilter("parent", {
 										parentId: null
-									}
-								};
+									});
+
 								target.list.store.sort = [{
 									isAscending: true,
 									property: "group"

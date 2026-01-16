@@ -49,10 +49,12 @@ export class Table extends Page {
 			store: datasourcestore<DemoDataSource, DemoEntity & {selected:boolean}>({
 				dataSource: demoDataSource,
 				queryParams: {
-					filter: {
+					limit: 10
+				},
+				filters: {
+					parent: {
 						parentId: null
 					},
-					limit: 10
 				},
 				buildRecord:async entity => {
 					return Object.assign(entity , {selected: true});
@@ -140,10 +142,12 @@ export class Table extends Page {
 			store: datasourcestore({
 				dataSource: demoDataSource,
 				queryParams: {
-					filter: {
+					limit: 20
+				},
+				filters: {
+					parent: {
 						parentId: null
 					},
-					limit: 20
 				},
 				sort: [{
 					isAscending: true,
