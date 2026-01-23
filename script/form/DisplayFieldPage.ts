@@ -6,7 +6,7 @@ import {
 	form,
 	Form as GouiForm, Format, h2, h3,
 	numberfield,
-	p,
+	p, span,
 	tbar,
 	TextField,
 	textfield, timefield,
@@ -124,6 +124,13 @@ export class DisplayFieldPage extends Page {
 					}),
 
 
+				),
+
+				h3("Data in HTML elements"),
+
+				p({},
+					span("Data can be loaded into an HTML element by passing the 'tagName': "),
+					displayfield({tagName: "strong", name: "email", value: "demo@foo.bar"})
 				),
 
 				tbar({cls: "bottom"},
