@@ -99,6 +99,17 @@ export class NumberFieldPage extends Page {
 								})] : []
 							}
 						}
+					}),
+
+					numberfield({
+						decimals: 0,
+						label: "Decimals",
+						value: 2,
+						listeners: {
+							change: ({newValue}) => {
+								numberField.decimals = newValue
+							}
+						}
 					})
 				),
 
