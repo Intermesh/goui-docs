@@ -4,10 +4,10 @@ import {
 	checkboxselectcolumn,
 	column, comp,
 	datasourcestore,
-	datecolumn,
+	datecolumn, Format,
 	h2,
-	menu,
-	p,
+	menu, numbercolumn,
+	p, store,
 	table,
 	Window
 } from "@intermesh/goui";
@@ -36,8 +36,78 @@ export class Table extends Page {
 
 			h2("Grouped"),
 
-			this.createGroupedTable()
+			this.createGroupedTable(),
+
+
+			h2("Footer"),
+			p("Table with summary in the footer. The footer sticks to the bottom of the table. "),
+
+			this.createFooterTable()
 		);
+	}
+
+	private createFooterTable() {
+
+		const data = [];
+
+		let total = 0;
+		for(let i = 0; i < 100; i++) {
+
+			const rnd = Math.floor(Math.random() * 100) * Math.random();
+			total += rnd;
+			data.push({
+					id: i.toString(),
+					amount: rnd
+				})
+		}
+		const tbl = table({
+			fitParent: true,
+			store: store({
+				data
+			}),
+
+
+
+			columns: [
+
+				column({
+					header: "ID",
+					id: "id",
+					sortable: true,
+					resizable: true,
+					width: 100,
+					align: "right"
+				}),
+
+				// Omitting width will auto size this to fill the width
+				numbercolumn({
+					header: "Amount",
+					id: "amount",
+					sortable: true,
+					resizable: true,
+					width: 300,
+					// optional footer renderer that can be used to render the footer row. setFooter() must be used too.
+					footerRenderer: (v) => {
+						return "Total: " + Format.number(v);
+					}
+				}),
+
+			],
+		});
+
+
+		tbl.setFooter({
+			id: "Total",
+			amount: total
+		})
+		return comp({
+				cls: "border scroll",
+				height: 300
+			},
+			tbl
+		);
+
+
 	}
 
 	private createCheckboxSelectionTable() {
