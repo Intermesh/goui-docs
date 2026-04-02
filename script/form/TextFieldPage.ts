@@ -1,10 +1,10 @@
 import {Page} from "../Page.js";
 import {
 	btn,
-	checkbox,
+	checkbox, comp,
 	fieldset,
 	form,
-	Form as GouiForm,
+	Form as GouiForm, h4, numberfield,
 	p, t,
 	tbar,
 	textarea,
@@ -26,7 +26,8 @@ export class TextFieldPage extends Page {
 
 		const tf = textfield({
 			label: "Text",
-			name: "text"
+			name: "text",
+			pattern: "[a-zA-Z0-9_]*",
 		});
 
 		this.items.add(
@@ -55,6 +56,12 @@ export class TextFieldPage extends Page {
 
 					tf,
 
+
+					fieldset({
+							cls: "card flow",
+							width: 280,
+						},
+						comp({text:"Appearance"}),
 					checkbox({
 						label: "Disabled",
 						listeners: {
@@ -64,14 +71,7 @@ export class TextFieldPage extends Page {
 						}
 					}),
 
-					checkbox({
-						label: "Required",
-						listeners: {
-							change: ({newValue}) => {
-								tf.required = newValue;
-							}
-						}
-					}),
+
 
 					checkbox({
 						label: "Read only",
@@ -113,6 +113,77 @@ export class TextFieldPage extends Page {
 							}
 						}
 					}),
+
+					textfield({
+						label: "Prefix",
+						listeners: {
+							input: ({value}) => {
+								tf.prefix = value;
+							}
+						}
+					}),
+
+					textfield({
+						label: "Suffix",
+						listeners: {
+							input: ({value}) => {
+								tf.suffix = value;
+							}
+						}
+					}),
+					),
+
+					fieldset({
+						cls: "card flow",
+							width: 280,
+					},
+						comp({text:"Validation"}),
+						checkbox({
+							label: "Required",
+							listeners: {
+								change: ({newValue}) => {
+									tf.required = newValue;
+									tf.clearInvalid();
+								}
+							}
+						}),
+
+						textfield({
+							label: "Pattern",
+							value: "[a-zA-Z0-9_]*",
+							listeners: {
+								input: ({value}) => {
+									tf.pattern = value ? value : undefined
+									tf.clearInvalid();
+								}
+							}
+						}),
+
+						numberfield({
+							label: "Min length",
+							decimals: 0,
+							listeners: {
+								change: ({newValue}) => {
+									tf.minLength = newValue;
+									tf.clearInvalid();
+								}
+							}
+						}),
+
+						numberfield({
+							label: "Max length",
+							decimals: 0,
+							listeners: {
+								change: ({newValue}) => {
+									tf.maxLength = newValue;
+									tf.clearInvalid();
+								}
+							}
+						})
+
+						)
+
+
 				),
 
 				fieldset({
