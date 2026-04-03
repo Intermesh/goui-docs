@@ -4,13 +4,13 @@ import {
 	checkbox, comp,
 	fieldset,
 	form,
-	Form as GouiForm, h4, numberfield,
+	passwordfield, numberfield,
 	p, t,
 	tbar,
 	textarea,
 	TextField,
 	textfield,
-	Window
+	Window, h4
 } from "@intermesh/goui";
 
 
@@ -216,7 +216,45 @@ export class TextFieldPage extends Page {
 						type: "submit"
 					})
 				)
+			),
+
+
+			fieldset({
+					legend: "PasswordField"
+				},
+
+				h4("New password"),
+				passwordfield({
+					name: "password",
+					autocomplete: "new-password",
+				})
+					.on("generatepassword", ({target, password}) =>{
+						(target.nextSibling() as TextField).value = password;
+					}),
+				textfield({
+					type: "password",
+					label: t("Confirm password"),
+					autocomplete: "new-password",
+				}),
+
+				h4("Current password"),
+				passwordfield({
+					name: "password",
+					autocomplete: "current-password",
+				})
+			),
+
+			tbar({cls: "bottom"},
+
+				"->",
+
+				btn({
+					cls: "primary",
+					html: "Save",
+					type: "submit"
+				})
 			)
+
 		)
 	}
 }
