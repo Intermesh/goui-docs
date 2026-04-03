@@ -28,7 +28,13 @@ export class TextFieldPage extends Page {
 			label: "Text",
 			name: "text",
 			pattern: "[a-zA-Z0-9_]*",
-		});
+		}).on("validate", async ({target}) => {
+			// Shows how a custom validation can be done. This event supports async operations so you could do a server side
+			// check for example.
+			if(target.value === "custom") {
+				target.setInvalid("You can't use 'custom' as a value");
+			}
+		})
 
 		this.items.add(
 			form({
@@ -59,85 +65,90 @@ export class TextFieldPage extends Page {
 
 					fieldset({
 							cls: "card flow",
-							width: 280,
 						},
-						comp({text:"Appearance"}),
-					checkbox({
-						label: "Disabled",
-						listeners: {
-							change: ({newValue}) => {
-								tf.disabled = newValue;
-							}
-						}
-					}),
+						comp({text: "Appearance"}),
 
+						comp({style: {display: "grid", gridTemplateColumns: "auto auto", gap: ".8rem"}},
 
-
-					checkbox({
-						label: "Read only",
-						listeners: {
-							change: ({newValue}) => {
-								tf.readOnly = newValue;
-							}
-						}
-					}),
-
-					checkbox({
-						label: "Leading icon",
-						listeners: {
-							change: ({newValue}) => {
-								tf.icon = newValue ? "favorite" : undefined;
-							}
-						}
-					}),
-
-					checkbox({
-						label: "Hint",
-						listeners: {
-							change: ({newValue}) => {
-								tf.hint = newValue ? t("Please enter something useful") : undefined;
-							}
-						}
-					}),
-
-					checkbox({
-						label: "Button",
-						listeners: {
-							change: ({newValue}) => {
-								tf.buttons = newValue ? [btn({
-									icon: "clear",
-									handler: (clearBtn) => {
-										clearBtn.findAncestorByType(TextField)!.reset();
+							textfield({
+								label: "Prefix",
+								listeners: {
+									input: ({value}) => {
+										tf.prefix = value;
 									}
-								})] : []
-							}
-						}
-					}),
+								}
+							}),
 
-					textfield({
-						label: "Prefix",
-						listeners: {
-							input: ({value}) => {
-								tf.prefix = value;
+							textfield({
+								label: "Suffix",
+								listeners: {
+									input: ({value}) => {
+										tf.suffix = value;
+									}
+								}
+							}),
+						checkbox({
+							label: "Disabled",
+							listeners: {
+								change: ({newValue}) => {
+									tf.disabled = newValue;
+								}
 							}
-						}
-					}),
+						}),
 
-					textfield({
-						label: "Suffix",
-						listeners: {
-							input: ({value}) => {
-								tf.suffix = value;
+
+						checkbox({
+							label: "Read only",
+							listeners: {
+								change: ({newValue}) => {
+									tf.readOnly = newValue;
+								}
 							}
-						}
-					}),
+						}),
+
+						checkbox({
+							label: "Leading icon",
+							listeners: {
+								change: ({newValue}) => {
+									tf.icon = newValue ? "favorite" : undefined;
+								}
+							}
+						}),
+
+						checkbox({
+							label: "Hint",
+							listeners: {
+								change: ({newValue}) => {
+									tf.hint = newValue ? t("Please enter something useful") : undefined;
+								}
+							}
+						}),
+
+						checkbox({
+							label: "Button",
+							listeners: {
+								change: ({newValue}) => {
+									tf.buttons = newValue ? [btn({
+										icon: "clear",
+										handler: (clearBtn) => {
+											clearBtn.findAncestorByType(TextField)!.reset();
+										}
+									})] : []
+								}
+							}
+						}),
+
+
+						),
 					),
 
 					fieldset({
-						cls: "card flow",
-							width: 280,
-					},
-						comp({text:"Validation"}),
+							cls: "card flow",
+						},
+						comp({text: "Validation"}),
+						p("You can use the following validation options. In the source code you'll also find how to handle a " +
+							"custom validation asynchronically. In this example you can't use the text 'custom' as a value. " +
+							"Validation occurs when the form is submitted or when an invalid field is changed."),
 						checkbox({
 							label: "Required",
 							listeners: {
@@ -180,20 +191,18 @@ export class TextFieldPage extends Page {
 								}
 							}
 						})
-
-						)
-
-
+					)
 				),
 
 				fieldset({
-					legend: "TextArea"
-				},
+						legend: "TextArea"
+					},
 
 					textarea({
 						label: "Text area",
 						name: "textarea",
-						height: 160
+						height: 160, // in combination with autoHeight this will become a minimum height
+						autoHeight: true,
 					}),
 				),
 
