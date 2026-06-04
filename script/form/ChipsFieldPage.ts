@@ -4,7 +4,7 @@ import {
 	btn,
 	checkboxselectcolumn,
 	chips,
-	column,
+	column, comp,
 	datasourcestore,
 	DateTime,
 	fieldset,
@@ -12,7 +12,7 @@ import {
 	p,
 	store,
 	table,
-	tbar,
+	tbar, textfield,
 	Window
 } from "@intermesh/goui";
 import {demoDataSource} from "../DemoDataSource.js"
@@ -62,13 +62,15 @@ export class ChipsFieldPage extends Page {
 
 					},
 
-					new RecipientsField(),
-
-					chips({
+					comp({style: {display:"flex", alignItems:"start"}},chips({
 						name: "fruits",
 						label: "Fruits",
 						value: ["Apple", "Banana", "Coconut"]
-					}),
+					}),textfield()),
+
+					new RecipientsField(),
+
+
 
 					autocompletechips({
 						label: "Autocomplete single select",
