@@ -62,11 +62,11 @@ export class ChipsFieldPage extends Page {
 
 					},
 
-					comp({style: {display:"flex", alignItems:"start"}},chips({
+					chips({
 						name: "fruits",
 						label: "Fruits",
 						value: ["Apple", "Banana", "Coconut"]
-					}),textfield()),
+					}),
 
 					new RecipientsField(),
 
