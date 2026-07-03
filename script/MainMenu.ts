@@ -5,104 +5,100 @@ export class MainMenu extends Tree {
 
 	static formComponents = [
 		{
-			href: "#form/TextField",
-			text: "TextField",
-			children: []
-		},
-		{
-			href: "#form/NumberField",
-			text: "NumberField",
-			children: []
-		},
-		{
-			href: "#form/DateTime",
-			text: "Date and time",
-			children: []
-		},
-		{
-			href: "#form/Select",
-			text: "Select fields",
-			children: []
-		},
-		{
-			href: "#form/HtmlField",
-			text: "HtmlField",
-			children: []
-		},
-		{
-			href: "#form/ChecksAndRadios",
-			text: "Checks and Radios",
-			children: []
-		},
-		{
-			href: "#form/ContainerField",
-			text: "ContainerField",
-			children: []
-		},
-		{
-			href: "#form/MapField",
-			text: "MapField",
-			children: []
-		},
-		{
 			href: "#form/ArrayField",
 			text: "ArrayField",
 			children: []
-		},
-		{
+		},{
+			href: "#form/ChecksAndRadios",
+			text: "Checks and Radios",
+			children: []
+		},{
 			href: "#form/ChipsField",
 			text: "ChipsField",
 			children: []
-		},
-		{
+		},{
+			href: "#form/ContainerField",
+			text: "ContainerField",
+			children: []
+		},{
+			href: "#form/DateTime",
+			text: "Date and time",
+			children: []
+		},{
 			href: "#form/DisplayField",
 			text: "DisplayField",
+			children: []
+		},{
+			href: "#form/HtmlField",
+			text: "HtmlField",
+			children: []
+		},{
+			href: "#form/MapField",
+			text: "MapField",
+			children: []
+		},{
+			href: "#form/NumberField",
+			text: "NumberField",
+			children: []
+		},	{
+			href: "#form/Select",
+			text: "Select fields",
+			children: []
+		},{
+			href: "#form/TextField",
+			text: "TextField",
 			children: []
 		}
 	];
 
 	static components = [
 		{
+			text: "Buttons",
+			href: "#buttons",
+			children: []
+		},{
 			text: "Card container",
 			href: "#cardcontainer",
+			children: []
+		},{
+			text: "DatePicker",
+			href: "#datepicker",
+			children: []
+		},{
+			text: "Form",
+			href: "#form",
+			children:  MainMenu.formComponents
+		},{
+			text: "List",
+			href: "#list",
 			children: []
 		},{
 			text: "Panel",
 			href: "#panel",
 			children: []
-		},{
-			text: "Buttons",
-			href: "#buttons",
-			children: []
+		},
+		{
+			text: "Patching",
+			href: "#patching",
+			children:  []
 		},{
 			text: "Table",
 			href: "#table",
 			children: []
 		},{
-			text: "Window",
-			href: "#window",
-			children: []
-		},{
-			text: "List",
-			href: "#list",
+			text: "Tooltip",
+			href: "#tooltip",
 			children: []
 		},{
 			text: "Tree",
 			href: "#tree",
 			children: []
 		},{
-			text: "DatePicker",
-			href: "#datepicker",
+			text: "Window",
+			href: "#window",
 			children: []
-		}, {
-			text: "Tooltip",
-			href: "#tooltip",
-			children: []
-		}, {
-			text: "Form",
-			href: "#form",
-			children:  MainMenu.formComponents
-		}];
+		}
+	];
 	constructor() {
 		super(() => [
 			{

@@ -4,12 +4,12 @@ import {a, btn, code, comp, h2, img, p} from "@intermesh/goui"
 export class Home extends Page {
 	constructor() {
 		super();
-		this.title = "Group-Office User Interface";
+		this.title = "GroupOffice User Interface";
 
 		this.items.add(
 
 			p({
-				html: "Welcome to the GOUI (<a href=\"https://www.group-office.com/\">Group-Office</a> " +
+				html: "Welcome to the GOUI (<a href=\"https://www.group-office.com/\">GroupOffice</a> " +
 					"User Interface) Documentation website. " +
 					"Developed using <a href=\"https://www.typescriptlang.org/\">TypeScript</a> and " +
 					"<a href=\"https://sass-lang.com/\">SASS</a>, GOUI aims to create stunning and efficient " +
@@ -34,13 +34,13 @@ export class Home extends Page {
 				})
 			),
 
-			h2("Group-Office"),
+			h2("GroupOffice"),
 
 			p({
 				html:
 					"GOUI was designed to replace the outdated ExtJS 3.4 framework utilized in " +
-					"<a href=\"https://www.group-office.com/\">Group-Office</a>. " +
-					"However, it is not limited to Group-Office alone. This versatile framework can be seamlessly " +
+					"<a href=\"https://www.group-office.com/\">GroupOffice</a>. " +
+					"However, it is not limited to GroupOffice alone. This versatile framework can be seamlessly " +
 					"integrated into any JavaScript or TypeScript project."
 			}),
 

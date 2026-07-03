@@ -32,6 +32,7 @@ import {GetStarted} from "./GetStarted.js"
 import {DatePickerPage} from "./DatePickerPage.js"
 import "./OverrideTest.js"
 import {TooltipPage} from "./TooltipPage";
+import {Patching} from "./Patching.js";
 
 /**
  * Create main card panel for displaying SPA pages
@@ -137,6 +138,9 @@ router
 	})
 	.add(/^buttons$/, () => {
 		pageLoader(Button);
+	})
+	.add(/^patching$/, () => {
+		pageLoader(Patching);
 	})
 	.add(/^panel$/, () => {
 		pageLoader(Panel);
