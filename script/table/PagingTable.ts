@@ -22,7 +22,6 @@ export class PagingTable extends Component {
 
 			comp({cls: "border",} ,
 				table({
-					fitParent: true,
 					store: s,
 					columns: [
 						column({
@@ -64,7 +63,6 @@ export class PagingTable extends Component {
 				height: 300
 			},
 				table({
-					fitParent: true,
 					store: datasourcestore({
 						dataSource: demoDataSource,
 						queryParams: {

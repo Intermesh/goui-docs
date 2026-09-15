@@ -113,7 +113,7 @@ export class DemoDataSource extends AbstractDataSource<DemoEntity, DataSourceEve
 							break;
 						}
 					} else {
-						if (e[filterName].toLowerCase().indexOf(params.filter[filterName].toLowerCase()) == -1) {
+						if (e[filterName as keyof DemoEntity]!.toLowerCase().indexOf(params.filter[filterName].toLowerCase()) == -1) {
 							pass = false;
 							break;
 						}

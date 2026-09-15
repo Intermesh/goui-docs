@@ -47,7 +47,6 @@ export class RestApiExample extends Component {
 			}),
 
 			table({
-				fitParent: true,
 				store: datasourcestore({
 					dataSource: userDS
 				}),

@@ -61,7 +61,6 @@ export class Table extends Page {
 				})
 		}
 		const tbl = table({
-			fitParent: true,
 			store: store({
 				data
 			}),
@@ -115,7 +114,6 @@ export class Table extends Page {
 			cls: "border scroll",
 			height: 300
 		},table({
-			fitParent: true,
 			store: datasourcestore<DemoDataSource, DemoEntity & {selected:boolean}>({
 				dataSource: demoDataSource,
 				queryParams: {
@@ -208,7 +206,6 @@ export class Table extends Page {
 
 	private createGroupedTable() {
 		return table({
-			fitParent: true,
 			store: datasourcestore({
 				dataSource: demoDataSource,
 				queryParams: {

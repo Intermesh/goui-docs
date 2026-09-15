@@ -82,7 +82,6 @@ export class Data extends Page {
 		const tab = table({
 			// Create a data source store that gets its data from a DataSource.
 			// This store listens for changes on the DataSource.
-			fitParent: true,
 			store: datasourcestore<DemoDataSource, DemoEntity & {async: number}>({
 				dataSource: demoDataSource,
 				queryParams: {

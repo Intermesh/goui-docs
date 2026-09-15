@@ -93,7 +93,7 @@ export class Tree extends Page {
 					}
 				}
 			}
-		});
+		}).on("render", ({target}) => target.store.load())
 
 		/**
 		 * Tree that pulls data out of a datasource
@@ -148,9 +148,10 @@ export class Tree extends Page {
 						}
 					}))
 				},
-				draggable: true,
+				draggableRows: true,
 				dropOn: true,
 				listeners: {
+					render:  ({target}) => target.store.load(),
 					drop: ({target, toIndex, fromIndex, droppedOn, source, dragDataSet}) => {
 
 						if(source != target	) {
@@ -250,6 +251,7 @@ export class Tree extends Page {
 		return tree({
 			nodeProvider: () => treeData,
 			listeners: {
+				render: ({target}) => target.store.load(),
 				checkchange:(ev) => {
 					console.log(ev);
 				}

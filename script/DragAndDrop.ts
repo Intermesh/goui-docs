@@ -45,10 +45,10 @@ export class DragAndDrop extends Page {
 
 			comp({cls: "hbox"},
 
-				tree,
+				comp({cls: "pad scroll", width: 300},tree),
 
 				splitter({
-					resizeComponent: tree
+					resizeComponent: splitter1 => splitter1.previousSibling()!
 				}),
 
 				comp({cls: "pad scroll", flex: 1},
@@ -60,69 +60,9 @@ export class DragAndDrop extends Page {
 		)
 	}
 
-	// private createSortingTree() {
-	// 	const treeData = [
-	// 		{
-	// 			id: "1",
-	// 			text: "Node 1",
-	// 			children: [
-	// 				{
-	// 					id: "1.1",
-	// 					text: "Node 1.1",
-	// 					children: []
-	// 				},
-	// 				{
-	// 					id: "1.2",
-	// 					text: "Node 1.2",
-	// 					children: []
-	// 				},
-	// 				{
-	// 					id: "1.3",
-	// 					text: "Node 1.3",
-	// 					children: []
-	// 				},
-	// 				{
-	// 					id: "1.4",
-	// 					text: "Node 1.4",
-	// 					children: []
-	// 				}
-	// 			]
-	// 		}, {
-	// 			id: "2",
-	// 			text: "Node 2",
-	// 			children: [
-	// 				{
-	// 					id: "2.1",
-	// 					text: "Node 2.1",
-	// 					children: []
-	// 				},
-	// 				{
-	// 					id: "2.2",
-	// 					text: "Node 2.2",
-	// 					children: []
-	// 				}
-	// 			]
-	// 		}
-	// 	];
-	// 	return tree({
-	// 		nodeProvider: () => treeData,
-	// 		draggable: true,
-	// 		dropBetween: true,
-	// 		dropOn: false,
-	// 		listeners: {
-	//
-	// 			drop: ({target, toIndex, fromIndex}) => {
-	// 				target.store.move(fromIndex, toIndex);
-	// 				console.log(target.store);
-	// 			}
-	//
-	// 		}
-	// 	});
-	// }
 
 	private createSortTable() {
 		return table({
-			fitParent: true,
 			store: datasourcestore({
 				dataSource: demoDataSource,
 				queryParams: {
@@ -137,7 +77,7 @@ export class DragAndDrop extends Page {
 
 			dropBetween: true,
 			dropOn: false,
-			draggable: true,
+			draggableRows: true,
 
 			columns: [
 
@@ -179,7 +119,6 @@ export class DragAndDrop extends Page {
 
 	private createTable() {
 		return table({
-			fitParent: true,
 			store: datasourcestore({
 				dataSource: demoDataSource,
 				queryParams: {
@@ -193,7 +132,7 @@ export class DragAndDrop extends Page {
 			}),
 
 			sortableGroup: "gridtotree",
-			draggable: true,
+			draggableRows: true,
 			dropBetween: false,
 			dropOn: false,
 			rowSelectionConfig: {
@@ -201,8 +140,6 @@ export class DragAndDrop extends Page {
 			},
 
 			columns: [
-
-
 
 				// Omitting width will auto size this to fill the width
 				column({
@@ -221,11 +158,6 @@ export class DragAndDrop extends Page {
 			],
 
 			listeners: {
-
-				// dropallowed:(list, e, dropRow, dragData) => {
-				// 	// todo: this should not be needed to disable drop
-				// 	return false;
-				// },
 
 				render: ({target}) => {
 					target.store.load();
@@ -286,11 +218,12 @@ export class DragAndDrop extends Page {
 					multiSelect:true
 				},
 				sortableGroup: "gridtotree",
-				draggable: true,
+				draggableRows: true,
 				dropOn: true,
 				dropBetween: false,
 				width: 240,
 				listeners: {
+					render: ({target}) => target.store.load(),
 					drop: ({target, toIndex, fromIndex, droppedOn, source, dragDataSet}) => {
 
 						const selectedRowIndexes = dragDataSet.selectedRowIndexes as SelectedRow<Store>[],
@@ -358,10 +291,11 @@ export class DragAndDrop extends Page {
 			comp({flex: 1},
 				h2("List 1"),
 				table({
+					fit: true,
 					reorderColumns: false,
 					id: "drop-list-1",
 					sortableGroup: "list",
-					draggable: true,
+					draggableRows: true,
 					dropBetween: true,
 					dropOn: true,
 					store: datasourcestore({
@@ -389,10 +323,11 @@ export class DragAndDrop extends Page {
 			comp({flex: 1},
 				h2("List 2"),
 				table({
+					fit: true,
 					reorderColumns: false,
 					id: "drop-list-2",
 					sortableGroup: "list",
-					draggable: true,
+					draggableRows: true,
 					dropBetween: true,
 					dropOn: true,
 					store: datasourcestore({

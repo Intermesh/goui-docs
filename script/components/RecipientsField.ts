@@ -23,7 +23,6 @@ export class RecipientsField extends AutocompleteChips {
 	constructor() {
 		super(
 			table({
-				fitParent: true,
 				headers: false,
 				store: store({
 					data: autocompleteRecords,

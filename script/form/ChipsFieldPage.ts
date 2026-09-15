@@ -103,7 +103,6 @@ export class ChipsFieldPage extends Page {
 
 						// dropdown list can be a table or list component
 						list: table({
-							fitParent: true,
 							headers: false,
 							store: store<AutoCompleteRecord>({
 								data: autocompleteRecords,
@@ -126,7 +125,6 @@ export class ChipsFieldPage extends Page {
 
 					autocompletechips({
 						list: table({
-							fitParent: true,
 							headers: false,
 							store: datasourcestore({
 								dataSource: demoDataSource

@@ -241,7 +241,7 @@ router
 				cls: "hbox main-container"
 			},
 				comp({cls: "side-bar"},
-					new MainMenu()
+					new MainMenu().on("render", ({target}) => target.store.load())
 				),
 				// splitter({
 				// 	resizeComponentPredicate: mainMenu

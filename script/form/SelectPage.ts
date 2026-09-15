@@ -127,7 +127,6 @@ export class SelectPage extends Page {
 
 						list: table({
 							headers: false,
-							fitParent: true,
 							store: store<AutoCompleteRecord>({
 								data: autocompleteRecords,
 								sort: [{

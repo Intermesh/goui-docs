@@ -174,7 +174,7 @@ export class Window extends Page {
 			btn({
 				text: "Prompt",
 				handler: async () => {
-					const input = await GouiWindow.prompt("Name", "", "Enter your name");
+					const input = await GouiWindow.prompt({inputLabel: "Name", title: "Enter your name"});
 					input != undefined ?
 						GouiWindow.alert("Hi " + input) :
 						GouiWindow.alert("You cancelled");

@@ -157,7 +157,6 @@ export class Form extends Page {
 				"To see how this works fill in some data and press 'Save' in the various form component pages."),
 
 			tree({
-				fitParent: true,
 				cls: "main-menu",
 				nodeProvider: () => MainMenu.formComponents
 			})

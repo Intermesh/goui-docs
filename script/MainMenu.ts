@@ -132,7 +132,6 @@ export class MainMenu extends Tree {
 			}
 		]);
 
-		this.fitParent = true;
 
 		this.cls = "no-row-lines main-menu";
 
